@@ -1,15 +1,13 @@
+#include "stdafx.h"
 #include "EventManager.h"
 
 
-EventManager::EventManager()
-	:m_currentState(StateType(0)), m_hasFocus(true)
-{
-	LoadBindings();
-}
+EventManager::EventManager(): m_hasFocus(true){ LoadBindings(); }
 
 EventManager::~EventManager(){
 	for (auto &itr : m_bindings){
 		delete itr.second;
+		itr.second = nullptr;
 	}
 }
 
@@ -26,10 +24,6 @@ bool EventManager::RemoveBinding(std::string l_name){
 	delete itr->second;
 	m_bindings.erase(itr);
 	return true;
-}
-
-void EventManager::SetCurrentState(StateType l_state){
-	m_currentState = l_state;
 }
 
 void EventManager::SetFocus(const bool& l_focus){ m_hasFocus = l_focus; }
@@ -108,23 +102,9 @@ void EventManager::Update(){
 		}
 
 		if (bind->m_events.size() == bind->c){
-			auto stateCallbacks = m_callbacks.find(m_currentState);
-			auto otherCallbacks = m_callbacks.find(StateType(0));
-
-			if (stateCallbacks != m_callbacks.end()){
-				auto callItr = stateCallbacks->second.find(bind->m_name);
-				if (callItr != stateCallbacks->second.end()){
-					// Pass in information about events.
-					callItr->second(&bind->m_details);
-				}
-			}
-
-			if (otherCallbacks != m_callbacks.end()){
-				auto callItr = otherCallbacks->second.find(bind->m_name);
-				if (callItr != otherCallbacks->second.end()){
-					// Pass in information about events.
-					callItr->second(&bind->m_details);
-				}
+			auto callItr = m_callbacks.find(bind->m_name);
+			if(callItr != m_callbacks.end()){
+				callItr->second(&bind->m_details);
 			}
 		}
 		bind->c = 0;
@@ -132,8 +112,7 @@ void EventManager::Update(){
 	}
 }
 
-void EventManager::LoadBindings()
-{
+void EventManager::LoadBindings(){
 	std::string delimiter = ":";
 
 	std::ifstream bindings;
@@ -154,9 +133,9 @@ void EventManager::LoadBindings()
 			EventType type = EventType(stoi(keyval.substr(start, end - start)));
 			int code = stoi(keyval.substr(end + delimiter.length(),
 				keyval.find(delimiter, end + delimiter.length())));
-
 			EventInfo eventInfo;
 			eventInfo.m_code = code;
+
 			bind->BindEvent(type, eventInfo);
 		}
 
