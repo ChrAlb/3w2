@@ -2,10 +2,17 @@
 //
 
 #include "stdafx.h"
-
+#include "Game.h"
 
 int main()
 {
-    return 0;
+	Game game;
+
+	while (!game.GetWindow()->IsDone())
+    {
+		game.HandleInput();
+		game.Update();
+		game.Render();
+	}
 }
 
