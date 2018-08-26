@@ -11,14 +11,23 @@ Wind::Wind(const std::string& title, const sf::Vector2u& size){
 
 Wind::~Wind(){ m_window.close(); }
 
-void Wind::Setup(const std::string& title, const sf::Vector2u& size){
+void Wind::Setup(const std::string& title, const sf::Vector2u& size)
+{
 	m_windowTitle = title;
 	m_windowSize = size;
 	m_isFullscreen = false;
 	m_isDone = false;
 	m_isFocused = true;
 
+	m_eventManager.AddCallback("Fullscreen_toggle", &Wind::ToggleFullscreen, this);
+	m_eventManager.AddCallback("Window_close", &Wind::Close, this);
+
 	Create();
+}
+
+void Wind::Destroy()
+{
+	m_window.close();
 }
 
 void Wind::Create(){
@@ -29,22 +38,38 @@ void Wind::Create(){
 }
 
 void Wind::BeginDraw(){ m_window.clear(sf::Color::Black); }
+
 void Wind::EndDraw(){ m_window.display(); }
 
 bool Wind::IsDone(){ return m_isDone; }
+
 bool Wind::IsFullscreen(){ return m_isFullscreen; }
+
+EventManager * Wind::GetEventManager()
+{
+	 return &m_eventManager; 
+}
+
+
 void Wind::Draw(sf::Drawable & l_drawable)
 {
 	m_window.draw(l_drawable);
 }
+
 bool Wind::IsFocused(){ return m_isFocused; }
+
+void Wind::Close(EventDetails * l_details)
+{
+	m_isDone = true;
+}
 
 sf::RenderWindow* Wind::GetRenderWindow(){ return &m_window; }
 
 sf::Vector2u Wind::GetWindowSize(){ return m_windowSize; }
 
 
-void Wind::ToggleFullscreen(){
+void Wind::ToggleFullscreen(EventDetails* l_details)
+{
 	m_isFullscreen = !m_isFullscreen;
 	m_window.close();
 	Create();
@@ -58,15 +83,18 @@ void Wind::Update()
 	while (m_window.pollEvent(event))
 
 	{
-		if (event.type == sf::Event::Closed  || event.key.code == sf::Keyboard::Escape)
+		if (event.type == sf::Event::LostFocus  )
 
 		{
-			m_isDone = true;
+			m_isFocused = false;
+			m_eventManager.SetFocus(false);
 		}
-		else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::F5)
+		else if (event.type == sf::Event::GainedFocus)
 		{
-			ToggleFullscreen();
+			m_isFocused = true;
+			m_eventManager.SetFocus(true);
 		}
-
+		m_eventManager.HandleEvent(event);
 	}
+	m_eventManager.Update();
 }

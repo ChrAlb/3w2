@@ -4,6 +4,7 @@
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
+#include "EventManager.h"
 
 
 class Wind
@@ -21,11 +22,15 @@ public:
 
 	bool IsDone();
 	bool IsFullscreen();
+	
+	EventManager* GetEventManager() ;
 
 	void Draw(sf::Drawable& l_drawable);
+	
 	bool IsFocused();
 
-	void ToggleFullscreen();
+	void ToggleFullscreen(EventDetails* l_details);
+	void Close(EventDetails* l_details);
 	
 	sf::RenderWindow* GetRenderWindow();
 	
@@ -33,8 +38,13 @@ public:
 	
 
 private:
+	
+	EventManager m_eventManager;
+	bool m_isFocused;
+	
 	void Setup(const std::string& title, const sf::Vector2u& size);
 	void Create();
+	void Destroy();
 
 	sf::RenderWindow m_window;
 	
@@ -42,5 +52,5 @@ private:
 	std::string m_windowTitle;
 	bool m_isDone;
 	bool m_isFullscreen;
-	bool m_isFocused;
+	
 };
