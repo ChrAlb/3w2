@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Game.h"
 
-Game::Game(): m_window("3w2", sf::Vector2u(800, 600))
+Game::Game(): m_window("3w2", sf::Vector2u(sf::VideoMode::getDesktopMode().width, sf::VideoMode::getDesktopMode().height))
 	
 {
 	m_clock.restart();
@@ -34,7 +34,7 @@ void Game::Update()
 
 void Game::Render(){
 	m_window.BeginDraw();
-	w.draw(sprite);
+	m_window.Draw(sprite);
 	m_window.EndDraw();
 }
 

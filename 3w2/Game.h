@@ -27,6 +27,5 @@ private:
 	sf::Texture bild;
 	sf::Sprite sprite;
 
-    sf::RenderWindow w;
-	
+   
 };

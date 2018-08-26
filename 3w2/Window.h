@@ -21,11 +21,12 @@ public:
 
 	bool IsDone();
 	bool IsFullscreen();
+
+	void Draw(sf::Drawable& l_drawable);
 	bool IsFocused();
 
 	void ToggleFullscreen();
-	void Close();
-
+	
 	sf::RenderWindow* GetRenderWindow();
 	
 	sf::Vector2u GetWindowSize();

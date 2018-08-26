@@ -33,6 +33,10 @@ void Wind::EndDraw(){ m_window.display(); }
 
 bool Wind::IsDone(){ return m_isDone; }
 bool Wind::IsFullscreen(){ return m_isFullscreen; }
+void Wind::Draw(sf::Drawable & l_drawable)
+{
+	m_window.draw(l_drawable);
+}
 bool Wind::IsFocused(){ return m_isFocused; }
 
 sf::RenderWindow* Wind::GetRenderWindow(){ return &m_window; }
@@ -44,10 +48,6 @@ void Wind::ToggleFullscreen(){
 	m_isFullscreen = !m_isFullscreen;
 	m_window.close();
 	Create();
-}
-
-void Wind::Close()
-{
 }
 
 
