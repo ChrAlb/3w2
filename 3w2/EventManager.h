@@ -58,7 +58,8 @@ struct EventDetails{
 using Events = std::vector<std::pair<EventType, EventInfo>>;
 
 struct Binding{
-	Binding(const std::string& l_name): m_name(l_name), m_details(l_name), c(0){}
+	Binding(const std::string& l_name) : m_name(l_name), m_details(l_name), c(0){}
+	~Binding(){}
 	void BindEvent(EventType l_type, EventInfo l_info = EventInfo()){
 		m_events.emplace_back(l_type, l_info);
 	}
@@ -71,7 +72,11 @@ struct Binding{
 };
 
 using Bindings = std::unordered_map<std::string, Binding*>;
-using Callbacks = std::unordered_map<std::string, std::function<void(EventDetails*)>>;
+// Callback container.
+using CallbackContainer = std::unordered_map<std::string, std::function<void(EventDetails*)>>;
+// State callback container.
+enum class StateType;
+using Callbacks = std::unordered_map<StateType, CallbackContainer>;
 
 class EventManager{
 public:
@@ -81,31 +86,41 @@ public:
 	bool AddBinding(Binding *l_binding);
 	bool RemoveBinding(std::string l_name);
 
+	void SetCurrentState(StateType l_state);
 	void SetFocus(const bool& l_focus);
 
 	// Needs to be defined in the header!
 	template<class T>
-	bool AddCallback(const std::string& l_name, 
+	bool AddCallback(StateType l_state, const std::string& l_name,
 		void(T::*l_func)(EventDetails*), T* l_instance)
 	{
-		auto temp = std::bind(l_func,l_instance, std::placeholders::_1);
-		return m_callbacks.emplace(l_name, temp).second;
+		auto itr = m_callbacks.emplace(l_state, CallbackContainer()).first;
+		auto temp = std::bind(l_func, l_instance, std::placeholders::_1);
+		return itr->second.emplace(l_name, temp).second;
 	}
 
-	void RemoveCallback(const std::string& l_name){
-		m_callbacks.erase(l_name);
+	bool RemoveCallback(StateType l_state, const std::string& l_name){
+		auto itr = m_callbacks.find(l_state);
+		if (itr == m_callbacks.end()){ return false; }
+		auto itr2 = itr->second.find(l_name);
+		if (itr2 == itr->second.end()){ return false; }
+		itr->second.erase(l_name);
+		return true;
 	}
 
 	void HandleEvent(sf::Event& l_event);
 	void Update();
 
+	// Getters.
 	sf::Vector2i GetMousePos(sf::RenderWindow* l_wind = nullptr){
 		return (l_wind ? sf::Mouse::getPosition(*l_wind) : sf::Mouse::getPosition());
 	}
 private:
 	void LoadBindings();
 
+	StateType m_currentState;
 	Bindings m_bindings;
 	Callbacks m_callbacks;
+
 	bool m_hasFocus;
 };
