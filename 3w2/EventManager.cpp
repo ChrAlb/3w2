@@ -111,7 +111,7 @@ void EventManager::Update(){
 		bind->m_details.Clear();
 	}
 }
-
+ 
 void EventManager::LoadBindings(){
 	std::string delimiter = ":";
 
