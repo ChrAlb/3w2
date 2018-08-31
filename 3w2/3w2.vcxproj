@@ -154,6 +154,8 @@
     <ClInclude Include="BaseState.h" />
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="ResourceHolder.h" />
+    <ClInclude Include="ResourceIdentifiers.h" />
     <ClInclude Include="SharedContext.h" />
     <ClInclude Include="StateManager.h" />
     <ClInclude Include="State_Intro.h" />
@@ -174,6 +176,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Window.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ResourceHolder.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
