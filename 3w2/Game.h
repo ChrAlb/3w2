@@ -1,14 +1,15 @@
 #pragma once
 #include "Window.h"
+#include "EventManager.h"
+#include "StateManager.h"
 
 #include <iostream>
 
-class Game{
+class Game {
 public:
 	Game();
 	~Game();
 
-	void HandleInput();
 	void Update();
 	void Render();
 	void LateUpdate();
@@ -21,11 +22,8 @@ private:
 
 	sf::Clock m_clock;
 	sf::Time m_elapsed;
-	
+	SharedContext m_context;
 	Wind m_window;
-
-	sf::Texture bild;
-	sf::Sprite sprite;
-
-   
+	
+	StateManager m_stateManager;
 };

@@ -10,7 +10,7 @@ int main()
 
 	while (!game.GetWindow()->IsDone())
     {
-		game.HandleInput();
+		//game.HandleInput();
 		game.Update();
 		game.Render();
 	}

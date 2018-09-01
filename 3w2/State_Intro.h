@@ -1,8 +1,11 @@
 #pragma once
 #include "BaseState.h"
 #include "EventManager.h"
+#include "SharedContext.h"
+#include "ResourceIdentifiers.h"
 
 class State_Intro : public BaseState{
+
 public:
 	State_Intro(StateManager* l_stateManager);
 	~State_Intro();
@@ -17,8 +20,9 @@ public:
 	void Draw();
 
 	void Continue(EventDetails* l_details);
+
 private:
-	sf::Sprite m_introSprite;
-	sf::Font m_font;
-	sf::Text m_text;
+	TextureHolder m_introTexture;
+	sf::Sprite  m_introBild;
+	
 };

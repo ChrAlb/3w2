@@ -45,9 +45,6 @@
     <ClInclude Include="EventManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ResourceHolder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ResourceIdentifiers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
