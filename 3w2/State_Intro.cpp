@@ -19,26 +19,23 @@ void State_Intro::OnCreate(){
 
 void State_Intro::OnDestroy(){
 	
-	EventManager* evMgr = m_stateMgr->
-		GetContext()->m_eventManager;
+	EventManager* evMgr = m_stateMgr->GetContext()->m_eventManager;
 	evMgr->RemoveCallback(StateType::Intro,"Intro_Continue");
 }
 
 void State_Intro::Draw(){
 	sf::RenderWindow* window = m_stateMgr->
-		GetContext()->m_wind->GetRenderWindow();
+	GetContext()->m_wind->GetRenderWindow();
 	m_introBild.setTexture(m_introTexture.get(Textures::TitleScreen));
-
-
-	window->draw(m_introBild);
+    window->draw(m_introBild);
 	
 }
 
 void State_Intro::Continue(EventDetails* l_details){
-	//m_stateMgr->SwitchTo(StateType::MainMenu);
+	m_stateMgr->SwitchTo(StateType::MainMenu);
 	m_stateMgr->Remove(StateType::Intro);
 }
 
 void State_Intro::Update(const sf::Time& l_time){}
-void State_Intro::Activate(){}
-void State_Intro::Deactivate(){}
+void State_Intro::Activate(){ m_music.play(Musik::Intro); }
+void State_Intro::Deactivate() { m_music.stop(); }

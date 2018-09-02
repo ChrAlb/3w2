@@ -3,6 +3,7 @@
 #include "EventManager.h"
 #include "SharedContext.h"
 #include "ResourceIdentifiers.h"
+#include "MusicPlayer.h"
 
 class State_Intro : public BaseState{
 
@@ -24,5 +25,5 @@ public:
 private:
 	TextureHolder m_introTexture;
 	sf::Sprite  m_introBild;
-	
+	MusicPlayer  m_music;
 };
