@@ -8,10 +8,12 @@ State_MainMenu::State_MainMenu(StateManager* l_stateManager)
 State_MainMenu::~State_MainMenu(){}
 
 void State_MainMenu::OnCreate(){
-	m_font.loadFromFile("graphics/arial.ttf");
-	m_text.setFont(m_font);
+	m_bgtexture.load(Textures::MenuBGScreen, "graphics/BG.png");
+	
+	m_font.load(Fonts::ComicS, "graphics/Comics.ttf"); 
+	m_text.setFont(m_font.get(Fonts::ComicS));
 	m_text.setString(sf::String("Worums geit:"));
-	m_text.setCharacterSize(18);
+	m_text.setCharacterSize(24);
 
 	sf::FloatRect textRect = m_text.getLocalBounds();
 	m_text.setOrigin(textRect.left + textRect.width / 2.0f,
@@ -39,9 +41,9 @@ void State_MainMenu::OnCreate(){
 			m_buttonSize.x / 2.0f, m_buttonSize.y / 2.0f);
 		m_rects[i].setPosition(buttonPosition);
 
-		m_labels[i].setFont(m_font);
+		m_labels[i].setFont(m_font.get(Fonts::ComicS));
 		m_labels[i].setString(sf::String(str[i]));
-		m_labels[i].setCharacterSize(18);
+		m_labels[i].setCharacterSize(24);
 
 		sf::FloatRect rect = m_labels[i].getLocalBounds();
 		m_labels[i].setOrigin(
@@ -102,6 +104,8 @@ void State_MainMenu::MouseClick(EventDetails* l_details){
 void State_MainMenu::Draw(){
 	sf::RenderWindow* window = m_stateMgr->
 		GetContext()->m_wind->GetRenderWindow();
+	m_BGSprite.setTexture(m_bgtexture.get(Textures::MenuBGScreen));
+	window->draw(m_BGSprite);
 	window->draw(m_text);
 	for(int i = 0; i < 3; ++i){
 		window->draw(m_rects[i]);
