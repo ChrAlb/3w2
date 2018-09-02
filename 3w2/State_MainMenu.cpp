@@ -8,9 +8,9 @@ State_MainMenu::State_MainMenu(StateManager* l_stateManager)
 State_MainMenu::~State_MainMenu(){}
 
 void State_MainMenu::OnCreate(){
-	m_font.loadFromFile("arial.ttf");
+	m_font.loadFromFile("graphics/arial.ttf");
 	m_text.setFont(m_font);
-	m_text.setString(sf::String("MAIN MENU:"));
+	m_text.setString(sf::String("Worums geit:"));
 	m_text.setCharacterSize(18);
 
 	sf::FloatRect textRect = m_text.getLocalBounds();
@@ -19,7 +19,7 @@ void State_MainMenu::OnCreate(){
 
 	m_text.setPosition(400,100);
 
-	m_buttonSize = sf::Vector2f(300.0f,32.0f);
+	m_buttonSize = sf::Vector2f(600.0f,64.0f);
 	m_buttonPos = sf::Vector2f(400,200);
 	m_buttonPadding = 4; // 4px.
 
@@ -41,7 +41,7 @@ void State_MainMenu::OnCreate(){
 
 		m_labels[i].setFont(m_font);
 		m_labels[i].setString(sf::String(str[i]));
-		m_labels[i].setCharacterSize(12);
+		m_labels[i].setCharacterSize(18);
 
 		sf::FloatRect rect = m_labels[i].getLocalBounds();
 		m_labels[i].setOrigin(
@@ -68,7 +68,7 @@ void State_MainMenu::Activate(){
 	{
 		m_labels[0].setString(sf::String("RESUME"));
 	} else {
-		m_labels[0].setString(sf::String("PLAY"));
+		m_labels[0].setString(sf::String("Hi chasch spilä"));
 	}
 
 	sf::FloatRect rect = m_labels[0].getLocalBounds();
