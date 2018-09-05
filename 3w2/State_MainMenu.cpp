@@ -12,8 +12,9 @@ void State_MainMenu::OnCreate(){
 	
 	m_font.load(Fonts::ComicS, "graphics/Comics.ttf"); 
 	m_text.setFont(m_font.get(Fonts::ComicS));
+	m_text.setFillColor(sf::Color::Black);
 	m_text.setString(sf::String("Worums geit:"));
-	m_text.setCharacterSize(24);
+	m_text.setCharacterSize(36);
 
 	sf::FloatRect textRect = m_text.getLocalBounds();
 	m_text.setOrigin(textRect.left + textRect.width / 2.0f,
@@ -21,7 +22,7 @@ void State_MainMenu::OnCreate(){
 
 	m_text.setPosition(400,100);
 
-	m_buttonSize = sf::Vector2f(600.0f,64.0f);
+	m_buttonSize = sf::Vector2f(600.0f,72.0f);
 	m_buttonPos = sf::Vector2f(400,200);
 	m_buttonPadding = 4; // 4px.
 
@@ -42,8 +43,9 @@ void State_MainMenu::OnCreate(){
 		m_rects[i].setPosition(buttonPosition);
 
 		m_labels[i].setFont(m_font.get(Fonts::ComicS));
+		m_labels[i].setFillColor(sf::Color::Black);
 		m_labels[i].setString(sf::String(str[i]));
-		m_labels[i].setCharacterSize(24);
+		m_labels[i].setCharacterSize(36);
 
 		sf::FloatRect rect = m_labels[i].getLocalBounds();
 		m_labels[i].setOrigin(
@@ -95,7 +97,7 @@ void State_MainMenu::MouseClick(EventDetails* l_details){
 			} else if(i == 1){
 				// Credits state.
 			} else if(i == 2){
-				//m_stateMgr->GetContext()->m_wind->Close();
+				m_stateMgr->GetContext()->m_wind->Close(l_details);
 			}
 		}
 	}

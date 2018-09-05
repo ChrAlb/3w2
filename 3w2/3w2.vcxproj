@@ -151,14 +151,23 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animation.h" />
     <ClInclude Include="BaseState.h" />
+    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnemyAnimation.h" />
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameStats.h" />
+    <ClInclude Include="LevelManager.h" />
     <ClInclude Include="MusicPlayer.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerInfo.h" />
     <ClInclude Include="ResourceIdentifiers.h" />
     <ClInclude Include="SharedContext.h" />
     <ClInclude Include="SoundPlayer.h" />
     <ClInclude Include="StateManager.h" />
+    <ClInclude Include="State_Game.h" />
     <ClInclude Include="State_Intro.h" />
     <ClInclude Include="State_MainMenu.h" />
     <ClInclude Include="State_Paused.h" />
@@ -168,11 +177,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="3w2.cpp" />
+    <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="DetectCollisions.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemyAnimation.cpp" />
     <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="musicPlayer.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="SoundPlayer.cpp" />
     <ClCompile Include="StateManager.cpp" />
+    <ClCompile Include="State_Game.cpp" />
     <ClCompile Include="State_Intro.cpp" />
     <ClCompile Include="State_MainMenu.cpp" />
     <ClCompile Include="State_Paused.cpp" />
