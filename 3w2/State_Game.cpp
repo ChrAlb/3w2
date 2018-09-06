@@ -1,6 +1,6 @@
 #include "State_Game.h"
 #include "StateManager.h"
-
+#include "LevelManager.h"
 #include <iostream>
 #include "LevelManager.h"
 #include <list>
@@ -58,7 +58,7 @@ void State_Game::Update(const sf::Time& l_time)
 	if ((m_LM.get_allLeveldone()) || (m_gameStats.nomorelives()))
 	{
 
-		this->game->pushState(new GameStateEnd(this->game));
+		m_stateMgr->SwitchTo(StateType::MainMenu);
 	}
 
 
@@ -204,51 +204,52 @@ void State_Game::Draw()
 	m_Tree_Sprite.setTexture(m_Textures.get(Textures::Tree));
 	m_Tree_Sprite.setPosition(Vector2f(1000, 700));
 
-	this->game->window.clear(sf::Color::White);
-
-	this->game->window.setView(bgview);
-	this->game->window.draw(m_BackgroundSprite);
+	sf::RenderWindow* window = m_stateMgr->GetContext()->m_wind->GetRenderWindow();
+	
+	window->clear(sf::Color::White);
+    window->setView(bgview);
+	window->draw(m_BackgroundSprite);
 
 	if (stats)
 	{
-		this->game->window.setView(PlInfo);
-		m_PlayerInfo.print(this->game->window, *player);
-		m_PlayerInfo.printEnemy(this->game->window, *enemy);
+		window->setView(PlInfo);
+		m_PlayerInfo.print(*window, *player);
+		m_PlayerInfo.printEnemy(*window, *enemy);
 	}
 
 	if (gamestat)
 	{
-		this->game->window.setView(PlInfo);
-		m_gameStats.print(this->game->window, *player);
+		window->setView(PlInfo);
+		m_gameStats.print(*window, *player);
 	}
 
-	this->game->window.setView(gameview);
+	window->setView(gameview);
 
-	this->game->window.draw(m_Tree_Sprite);
+	window->draw(m_Tree_Sprite);
 
-	this->game->window.draw(m_VALevel, &m_Textures.get(m_leveldaten.m_tileset));
+	window->draw(m_VALevel, &m_Textures.get(m_leveldaten.m_tileset));
 
 
 	for (iter = objects.begin(); iter != objects.end(); ++iter)
 	{
-		this->game->window.draw((*iter)->getSprite());
+		window->draw((*iter)->getSprite());
 	}
 
 
-	this->game->window.draw(text);
+	window->draw(text);
 
 	// DEBUG
 	if (debug)
 	{
-		this->game->window.draw(center_box);
-		this->game->window.draw(head_box);
-		this->game->window.draw(right_box);
-		this->game->window.draw(left_box);
-		this->game->window.draw(feet_box);
+		window->draw(center_box);
+		window->draw(head_box);
+		window->draw(right_box);
+		window->draw(left_box);
+		window->draw(feet_box);
 
-		this->game->window.draw(box);
+		window->draw(box);
 
-		this->game->window.draw(box_position);
+		window->draw(box_position);
 		// DEBUNG End
 	}
 
@@ -270,12 +271,12 @@ void State_Game::Deactivate(){}
 
 }
 
-void GameStateGame::set_gamestats(bool stat)
+void State_Game::set_gamestats(bool stat)
 {
 	gamestat = stat;
 }
 
-Vector2f GameStateGame::getPlayer_position_putofList()
+Vector2f State_Game::getPlayer_position_putofList()
 {
 
 	for (iter = objects.begin(); iter != objects.end(); ++iter)
@@ -285,7 +286,7 @@ Vector2f GameStateGame::getPlayer_position_putofList()
 
 }
 
-void GameStateGame::spawnRandomEnemies()
+void State_Game::spawnRandomEnemies()
 {
 	//unschön!
 	int maxlevelsize = (m_LM.getLevelSize().x * TILE_SIZE) - TILE_SIZE;

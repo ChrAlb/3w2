@@ -84,8 +84,7 @@ private:
 
 	bool m_justexploded;
 
-
-
+	
 	int slopenumber;
 
 

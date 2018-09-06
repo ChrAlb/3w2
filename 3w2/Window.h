@@ -46,7 +46,8 @@ private:
 	void Create();
 	void Destroy();
 
-	sf::RenderWindow m_window;
+	m_stateMgr->GetContext()
+		->m_wind->GetRenderWindow()->getSize();
 	
 	sf::Vector2u m_windowSize;
 	std::string m_windowTitle;

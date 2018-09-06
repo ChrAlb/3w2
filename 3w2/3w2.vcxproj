@@ -183,6 +183,8 @@
     <ClCompile Include="EnemyAnimation.cpp" />
     <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="LevelManager.cpp" />
+    <ClCompile Include="LoadLevel.cpp" />
     <ClCompile Include="musicPlayer.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SoundPlayer.cpp" />

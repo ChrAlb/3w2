@@ -1,9 +1,10 @@
 #include "stdafx.h"
 #include "game.h"
 #include <iostream>
-#include "Game_state_game.h"
+#include "State_Game.h"
 
-bool GameStateGame::detectCollisions(PlayableCharacter& character)
+
+bool State_Game::detectCollisions(PlayableCharacter& character)
 
 {
 
@@ -242,7 +243,7 @@ for (int x = startX; x < endX; x++)
 	return reachedGoal;
 }
 
-void GameStateGame::clean_objects()
+void State_Game::clean_objects()
 {
 
 
@@ -262,7 +263,7 @@ void GameStateGame::clean_objects()
 
 }
 
-void GameStateGame::detectCollisions_Objects()
+void State_Game::detectCollisions_Objects()
 {
 	for (iter = objects.begin(); iter != objects.end(); ++iter)
 	{
@@ -327,7 +328,7 @@ void GameStateGame::detectCollisions_Objects()
 	} //for
 } //end
 
-bool GameStateGame::checkNextTile(Vector2f &vel, Vector2i &tile_pos, int &slopenumber)
+bool State_Game::checkNextTile(Vector2f &vel, Vector2i &tile_pos, int &slopenumber)
 {
 	
 	if (slopenumber == 10)
