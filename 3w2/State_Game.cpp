@@ -212,6 +212,7 @@ void State_Game::Draw()
 	sf::RenderWindow* window = m_stateMgr->GetContext()->m_wind->GetRenderWindow();
 	
 	window->clear(sf::Color::White);
+	
     window->setView(bgview);
 	window->draw(m_BackgroundSprite);
 
@@ -257,7 +258,7 @@ void State_Game::Draw()
 		window->draw(box_position);
 		// DEBUNG End
 	}
-
+	//window->display();
 	return;
 
 }

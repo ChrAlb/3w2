@@ -8,7 +8,7 @@ State_MainMenu::State_MainMenu(StateManager* l_stateManager)
 State_MainMenu::~State_MainMenu(){}
 
 void State_MainMenu::OnCreate(){
-	m_bgtexture.load(Textures::MenuBGScreen, "graphics/BG.png");
+	m_bgtexture.load(Textures::MenuBGScreen, "graphics/BG3.png");
 	
 	m_font.load(Fonts::ComicS, "graphics/Comics.ttf"); 
 	m_text.setFont(m_font.get(Fonts::ComicS));
@@ -92,8 +92,10 @@ void State_MainMenu::MouseClick(EventDetails* l_details){
 			mousePos.y>=m_rects[i].getPosition().y - halfY &&
 			mousePos.y<=m_rects[i].getPosition().y + halfY)
 		{
-			if(i == 0){
+			if(i == 0)
+			{
 				m_stateMgr->SwitchTo(StateType::Game);
+				
 			} else if(i == 1){
 				// Credits state.
 			} else if(i == 2){
