@@ -21,7 +21,7 @@ void Wind::Setup(const std::string& title, const sf::Vector2u& size)
 
 	m_eventManager.AddCallback(StateType(0), "Fullscreen_toggle", &Wind::ToggleFullscreen, this);
 	m_eventManager.AddCallback(StateType(0), "Window_close", &Wind::Close, this);
-	m_eventManager.AddCallback(StateType(0), "Key_Escape" , &Wind::Close, this);
+	//m_eventManager.AddCallback(StateType(0), "Key_Escape" , &Wind::Close, this);
 
 	Create();
 }

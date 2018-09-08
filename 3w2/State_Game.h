@@ -108,8 +108,7 @@ public:
 
 	void MainMenu(EventDetails* l_details);
 	void Pause(EventDetails* l_details);
-	void ToggleOverlay(EventDetails* l_details);
-
+	
 	void set_gamestats(bool stat);
 
 	Vector2f getPlayer_position_putofList();

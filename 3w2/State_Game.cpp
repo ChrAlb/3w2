@@ -10,12 +10,6 @@
 State_Game::State_Game(StateManager* l_stateManager)
 	: BaseState(l_stateManager)
 {
-	slopenumber = 0;
-	//m_font.loadFromFile("graphics/Arial.ttf");
-	// Dummy für Deco in Levels, später zu LevelManager zügeln!
-	m_Textures.load(Textures::Tree, "graphics/Tree.png");
-
-	m_justexploded = false;
 
 }
 
@@ -28,6 +22,13 @@ void State_Game::OnCreate(){
 	evMgr->AddCallback(StateType::Game, "Key_Escape", &State_Game::MainMenu, this);
 	evMgr->AddCallback(StateType::Game, "Key_P", &State_Game::Pause, this);
 	
+	slopenumber = 0;
+	//m_font.loadFromFile("graphics/Arial.ttf");
+	// Dummy für Deco in Levels, später zu LevelManager zügeln!
+	m_Textures.load(Textures::Tree, "graphics/Tree.png");
+
+	m_justexploded = false;
+
 	sf::Vector2u size = m_stateMgr->GetContext()->m_wind->GetWindowSize();
 	m_view.setSize(size.x,size.y);
 	m_view.setCenter(size.x/2,size.y/2);
@@ -318,3 +319,4 @@ void State_Game::spawnRandomEnemies()
 	}
 
 }
+
