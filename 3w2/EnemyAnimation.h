@@ -1,7 +1,7 @@
 #pragma once
 
 #include <SFML\Graphics.hpp>
-#include "ResourceHolder.h"
+#include "SharedContext.h"
 #include "ResourceIdentifiers.h"
 
 class EnemyAnimation

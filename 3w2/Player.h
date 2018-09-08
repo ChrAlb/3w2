@@ -1,7 +1,7 @@
 #pragma once
 #include "PlayableCharacter.h"
 #include "Animation.h"
-#include "ResourceHolder.h"
+#include "SharedContext.h"
 #include "ResourceIdentifiers.h"
 #include "SoundPlayer.h"
 

@@ -161,6 +161,7 @@
     <ClInclude Include="GameStats.h" />
     <ClInclude Include="LevelManager.h" />
     <ClInclude Include="MusicPlayer.h" />
+    <ClInclude Include="PlayableCharacter.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerInfo.h" />
     <ClInclude Include="ResourceIdentifiers.h" />
@@ -178,15 +179,19 @@
   <ItemGroup>
     <ClCompile Include="3w2.cpp" />
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="DetectCollisions.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyAnimation.cpp" />
     <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameStats.cpp" />
     <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="LoadLevel.cpp" />
     <ClCompile Include="musicPlayer.cpp" />
+    <ClCompile Include="PlayableCharacter.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerInfo.cpp" />
     <ClCompile Include="SoundPlayer.cpp" />
     <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="State_Game.cpp" />

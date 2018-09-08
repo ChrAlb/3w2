@@ -2,7 +2,7 @@
 #define BOOK_SOUNDPLAYER_HPP
 
 
-#include "ResourceHolder.h"
+#include "SharedContext.h"
 #include "ResourceIdentifiers.h"
 
 

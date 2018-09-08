@@ -2,7 +2,7 @@
 
 #include <SFML\Graphics.hpp>
 #include "Player.h"
-#include "ResourceHolder.h"
+#include "SharedContext.h"
 #include "ResourceIdentifiers.h"
 
 

@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "State_Game.h"
 #include "StateManager.h"
 #include "LevelManager.h"
@@ -52,6 +53,9 @@ void State_Game::Update(const sf::Time& l_time)
 
 {
 	float newpos, move;
+
+	float dt = l_time.asSeconds();
+
 	//LevelManager lm;
 
 
@@ -268,8 +272,6 @@ void State_Game::Pause(EventDetails* l_details){
 void State_Game::Activate(){}
 void State_Game::Deactivate(){}
 
-
-}
 
 void State_Game::set_gamestats(bool stat)
 {

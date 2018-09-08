@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Animation.h"
-#include "ResourceHolder.h"
+#include "SharedContext.h"
 #include "ResourceIdentifiers.h"
 
 Animation::Animation()

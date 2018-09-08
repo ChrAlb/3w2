@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "EnemyAnimation.h"
-#include "ResourceHolder.h"
+#include "SharedContext.h"
 #include "ResourceIdentifiers.h"
 
 EnemyAnimation::EnemyAnimation()

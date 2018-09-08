@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Player.h"
-#include "ResourceHolder.h"
+#include "SharedContext.h"
 #include "ResourceIdentifiers.h"
 
 #include <iostream>
