@@ -93,6 +93,8 @@ private:
 
 	SoundPlayer m_SoundPlayer;
 
+	
+
 public:
 	State_Game(StateManager* l_stateManager);
 	~State_Game();
@@ -108,6 +110,10 @@ public:
 
 	void MainMenu(EventDetails* l_details);
 	void Pause(EventDetails* l_details);
+
+	void Statistik(EventDetails* l_details);
+	void Debug(EventDetails* l_details);
+	void PlayerInfo(EventDetails* l_details);
 	
 	void set_gamestats(bool stat);
 

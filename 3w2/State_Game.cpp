@@ -21,7 +21,11 @@ void State_Game::OnCreate(){
 
 	evMgr->AddCallback(StateType::Game, "Key_Escape", &State_Game::MainMenu, this);
 	evMgr->AddCallback(StateType::Game, "Key_P", &State_Game::Pause, this);
-	
+	evMgr->AddCallback(StateType::Game, "Key_F1", &State_Game::Statistik,this);
+	evMgr->AddCallback(StateType::Game, "Key_F2", &State_Game::Debug, this);
+	evMgr->AddCallback(StateType::Game, "Key_F3", &State_Game::PlayerInfo, this);
+
+
 	slopenumber = 0;
 	//m_font.loadFromFile("graphics/Arial.ttf");
 	// Dummy für Deco in Levels, später zu LevelManager zügeln!
@@ -43,8 +47,9 @@ void State_Game::OnDestroy(){
 		GetContext()->m_eventManager;
 	evMgr->RemoveCallback(StateType::Game, "Key_Escape");
 	evMgr->RemoveCallback(StateType::Game, "Key_P");
-	
-	
+	evMgr->RemoveCallback(StateType::Game, "Key_F1");
+	evMgr->RemoveCallback(StateType::Game, "Key_F1");
+	evMgr->RemoveCallback(StateType::Game, "Key_F3");
 }
 
 
@@ -52,6 +57,7 @@ void State_Game::OnDestroy(){
 
 void State_Game::Update(const sf::Time& l_time)
 
+//////////////////////////////////////////////////////////////////////////
 {
 	
 	m_Playing = true;
@@ -63,7 +69,7 @@ void State_Game::Update(const sf::Time& l_time)
 			;
 		}
 	}
-	
+/////////////////////////////////////////////////////////////////////////////	
 	
 	float newpos, move;
 
@@ -330,6 +336,34 @@ void State_Game::spawnRandomEnemies()
 		objects.push_back(enemy);
 
 	}
+
+}
+
+void State_Game::Statistik(EventDetails* l_details)
+{
+if ( (gamestat)  && (!stats) )
+gamestat = false;
+else
+gamestat = true;
+}
+
+
+void State_Game::Debug(EventDetails* l_details)
+{
+if (debug)
+	debug = false;
+else
+	debug = true;
+
+}
+
+
+void State_Game::PlayerInfo(EventDetails* l_details)
+{
+if  ( (stats) && (!gamestat) )
+	stats = false;
+else
+	stats = true;
 
 }
 
