@@ -53,6 +53,18 @@ void State_Game::OnDestroy(){
 void State_Game::Update(const sf::Time& l_time)
 
 {
+	
+	m_Playing = true;
+
+	for (iter = objects.begin(); iter != objects.end(); ++iter)
+	{
+		if ((*iter)->handleInput())
+		{
+			;
+		}
+	}
+	
+	
 	float newpos, move;
 
 	float dt = l_time.asSeconds();
