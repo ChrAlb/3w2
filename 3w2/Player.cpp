@@ -2,6 +2,8 @@
 #include "Player.h"
 #include "SharedContext.h"
 #include "ResourceIdentifiers.h"
+#include "EventManager.h"
+#include "StateManager.h"
 
 #include <iostream>
 
@@ -49,9 +51,47 @@ Player::Player()
 
 	dir.x = 1;
 
-	//Player::
+	EventManager* events = m_entityManager->GetContext()->m_eventManager;
+	events->AddCallback<Player>(StateType::Game, "LeftPressed", &Player::React, this);
+	events->AddCallback<Player>(StateType::Game, "RightPressed", &Player::React, this);
+	events->AddCallback<Player>(StateType::Game, "JumpPressed", &Player::React, this);
+	events->AddCallback<Player>(StateType::Game, "AttackPressed", &Player::React, this);
 	
 }
+
+Player::~Player() 
+{
+	EventManager* events = m_entityManager->GetContext()->m_eventManager;
+	events->RemoveCallback(StateType::Game, "LeftPressed");
+	events->RemoveCallback(StateType::Game, "RightPressed");
+	events->RemoveCallback(StateType::Game, "JumpPressed");
+	events->RemoveCallback(StateType::Game, "AttackPressed");	
+}
+
+void Player::React(EventDetails* l_details) 
+{
+	if (l_details->m_name == "LeftPressed") 
+	
+	{
+		;
+	}
+	else if (l_details->m_name == "RightPressed") 
+	
+	{
+		;
+	}
+	else if (l_details->m_name == "JumpPressed") 
+	{
+		;
+	}
+	else if (l_details->m_name == "AttackPressed") 
+	
+	{
+		;
+	}
+}
+
+
 
 bool Player::handleInput()
 {

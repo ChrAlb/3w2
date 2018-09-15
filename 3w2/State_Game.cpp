@@ -341,7 +341,7 @@ void State_Game::spawnRandomEnemies()
 
 void State_Game::Statistik(EventDetails* l_details)
 {
-if ( (gamestat)  && (!stats) )
+if ( (gamestat)   )
 gamestat = false;
 else
 gamestat = true;
@@ -360,7 +360,7 @@ else
 
 void State_Game::PlayerInfo(EventDetails* l_details)
 {
-if  ( (stats) && (!gamestat) )
+if  ( (stats) )
 	stats = false;
 else
 	stats = true;

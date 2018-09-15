@@ -4,6 +4,7 @@
 #include "SharedContext.h"
 #include "ResourceIdentifiers.h"
 #include "SoundPlayer.h"
+#include "EventManager.h"
 
 
 class Player : public PlayableCharacter 
@@ -28,14 +29,16 @@ private:
 
 	SoundPlayer m_SoundPlayer;
 
-	
 	AnimationIndex temp;
+
+	void Player::React(EventDetails* l_details);
 
 public:
 
 	
 	void SetDirection(const sf::Vector2f& dir);
 	Player::Player();
+	Player::~Player();
 	
 	bool handleInput();
 	void update(float dt, Vector2f Plpos);
