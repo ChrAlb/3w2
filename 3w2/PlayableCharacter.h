@@ -10,8 +10,7 @@ enum object_types { t_Player, t_Enemy, t_Bullets, t_Others };
 class PlayableCharacter
 	
 {
-
-
+	
 public:
 
 	const int TILE_SIZE = 50;
@@ -81,8 +80,8 @@ public:
 
 protected:
 	Sprite m_Sprite;
-	
 
+	
 	float m_JumpDuration;
 
 	bool  m_isJumping;

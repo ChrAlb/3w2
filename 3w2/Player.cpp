@@ -4,7 +4,6 @@
 #include "ResourceIdentifiers.h"
 #include "EventManager.h"
 #include "StateManager.h"
-
 #include <iostream>
 
 
@@ -51,7 +50,7 @@ Player::Player()
 
 	dir.x = 1;
 
-	EventManager* events = m_entityManager->GetContext()->m_eventManager;
+	EventManager* events = m_stateMgr->GetContext()->m_eventManager;
 	events->AddCallback<Player>(StateType::Game, "LeftPressed", &Player::React, this);
 	events->AddCallback<Player>(StateType::Game, "RightPressed", &Player::React, this);
 	events->AddCallback<Player>(StateType::Game, "JumpPressed", &Player::React, this);
@@ -61,35 +60,62 @@ Player::Player()
 
 Player::~Player() 
 {
-	EventManager* events = m_entityManager->GetContext()->m_eventManager;
+	EventManager* events = m_stateMgr->GetContext()->m_eventManager;
 	events->RemoveCallback(StateType::Game, "LeftPressed");
 	events->RemoveCallback(StateType::Game, "RightPressed");
 	events->RemoveCallback(StateType::Game, "JumpPressed");
 	events->RemoveCallback(StateType::Game, "AttackPressed");	
 }
 
-void Player::React(EventDetails* l_details) 
+void Player::React(EventDetails* l_details)
 {
-	if (l_details->m_name == "LeftPressed") 
-	
+	if (l_details->m_name == "LeftPressed")
+
 	{
-		;
+		m_LeftPressed = true;
+		dir.x = -1.0f;
+
 	}
-	else if (l_details->m_name == "RightPressed") 
-	
-	{
-		;
-	}
-	else if (l_details->m_name == "JumpPressed") 
-	{
-		;
-	}
-	else if (l_details->m_name == "AttackPressed") 
-	
-	{
-		;
+	else {
+
+		m_LeftPressed = false;
+		if (l_details->m_name == "RightPressed")
+
+		{
+			m_RightPressed = true;
+			dir.x = 1.0f;
+		}
+		else
+		{
+			m_RightPressed = false;
+			if (l_details->m_name == "JumpPressed")
+			{
+				if (!m_isJumping && !m_isFalling)
+				{
+					m_isJumping = true;
+					m_TimeThisJump = 0;
+					m_JustJumped = true;
+				}
+			}
+			else
+			{
+				m_isJumping = false;
+				m_isFalling = true;
+				if (l_details->m_name == "AttackPressed")
+
+				{
+					m_isfiring = true;
+				}
+				else
+				{
+					m_isJumping = false;
+					m_isFalling = true;
+				}
+			}
+		}
 	}
 }
+
 
 
 
@@ -99,59 +125,6 @@ bool Player::handleInput()
 
 	m_JustJumped = false;
 	
-	if (Keyboard::isKeyPressed(Keyboard::S))
-	{
-       m_isfiring = true;
-	  
-
-	}
-		
-	else
-	{
-		m_isfiring = false;
-		m_justfired = true;
-		
-	}
-		
-
-	if ( (Keyboard::isKeyPressed(Keyboard::Space)) )
-	{
-		//m_anykeypressed = true;
-		if (!m_isJumping && !m_isFalling)
-		{
-			m_isJumping = true;
-			m_TimeThisJump = 0;
-			m_JustJumped = true;
-		}
-	}
-	else
-	{
-		//m_anykeypressed = false;
-		m_isJumping = false;
-		m_isFalling = true;
-	}
-	if (Keyboard::isKeyPressed(Keyboard::Left))
-	{
-		m_LeftPressed = true;
-		dir.x = -1.0f;
-		
-			
-	}
-	else
-	{
-        m_LeftPressed = false;
-	}
-		
-
-	if (Keyboard::isKeyPressed(Keyboard::Right))
-	{
-		m_RightPressed = true;
-		dir.x = 1.0f;
-	}
-	else
-	{
-		m_RightPressed = false;
-	}
 	Player::SetDirection(dir);
 	return m_JustJumped;
 
