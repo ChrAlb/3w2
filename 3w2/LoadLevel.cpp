@@ -4,6 +4,7 @@
 #include <iostream>
 
 
+
 void State_Game::loadLevel()
 
 {
@@ -42,7 +43,7 @@ void State_Game::loadLevel()
 	// end Load Textures
 	
 
-    player = new Player();
+    player = new Player(m_stateMgr);
     player->spawn(m_LM.getStartPosition(), GRAVITY); 
 	
 

@@ -5,11 +5,13 @@
 #include "ResourceIdentifiers.h"
 #include "SoundPlayer.h"
 #include "EventManager.h"
+#include "StateManager.h"
 
 
 class Player : public PlayableCharacter 
 	
 {
+ 
 private:
 	enum class AnimationIndex
 	{
@@ -36,7 +38,7 @@ public:
 
 	
 	void SetDirection(const sf::Vector2f& dir);
-	Player::Player();
+	Player::Player(StateManager* l_stateManager);
 	Player::~Player();
 	
 	bool handleInput();
@@ -50,6 +52,6 @@ public:
 	int m_explosion_counter;
 	const int m_explosion_time = 90;
 
-	
+	EventManager* events;
 
 };

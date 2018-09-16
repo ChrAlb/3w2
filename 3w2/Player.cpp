@@ -9,9 +9,8 @@
 
 
 
-Player::Player()
+Player::Player(StateManager* l_stateManager)
 {
-	
 	m_otype = t_Player;
 	m_iscollided = false;
 	m_is_alive = true;
@@ -50,17 +49,17 @@ Player::Player()
 
 	dir.x = 1;
 
-	EventManager* events = m_stateMgr->GetContext()->m_eventManager;
-	events->AddCallback<Player>(StateType::Game, "LeftPressed", &Player::React, this);
-	events->AddCallback<Player>(StateType::Game, "RightPressed", &Player::React, this);
-	events->AddCallback<Player>(StateType::Game, "JumpPressed", &Player::React, this);
-	events->AddCallback<Player>(StateType::Game, "AttackPressed", &Player::React, this);
+	EventManager* events = l_stateManager->GetContext()->m_eventManager;
+	events->AddCallback(StateType::Game, "LeftPressed", &Player::React, this);
+	events->AddCallback(StateType::Game, "RightPressed", &Player::React, this);
+	events->AddCallback(StateType::Game, "JumpPressed", &Player::React, this);
+	events->AddCallback(StateType::Game, "AttackPressed", &Player::React, this);
 	
 }
 
-Player::~Player() 
+Player::~Player()
 {
-	EventManager* events = m_stateMgr->GetContext()->m_eventManager;
+	//EventManager* events = l_stateManager->GetContext()->m_eventManager;
 	events->RemoveCallback(StateType::Game, "LeftPressed");
 	events->RemoveCallback(StateType::Game, "RightPressed");
 	events->RemoveCallback(StateType::Game, "JumpPressed");
