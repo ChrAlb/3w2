@@ -75,19 +75,23 @@ void Player::React(EventDetails* l_details)
 		dir.x = -1.0f;
 
 	}
-	else {
-
+	else
+	{ 
 		m_LeftPressed = false;
-		if (l_details->m_name == "RightPressed")
+	}
+	
+	if (l_details->m_name == "RightPressed")
 
 		{
 			m_RightPressed = true;
 			dir.x = 1.0f;
 		}
-		else
-		{
-			m_RightPressed = false;
-			if (l_details->m_name == "JumpPressed")
+	else
+	{
+		   m_RightPressed = false;
+	}
+/*	
+	if (l_details->m_name == "JumpPressed")
 			{
 				if (!m_isJumping && !m_isFalling)
 				{
@@ -96,11 +100,13 @@ void Player::React(EventDetails* l_details)
 					m_JustJumped = true;
 				}
 			}
-			else
-			{
-				m_isJumping = false;
-				m_isFalling = true;
-				if (l_details->m_name == "AttackPressed")
+	else
+	{
+		m_isJumping = false;
+		m_isFalling = true;
+	}
+				
+	if (l_details->m_name == "AttackPressed")
 
 				{
 					m_isfiring = true;
@@ -110,9 +116,7 @@ void Player::React(EventDetails* l_details)
 					m_isJumping = false;
 					m_isFalling = true;
 				}
-			}
-		}
-	}
+	*/		
 }
 
 
