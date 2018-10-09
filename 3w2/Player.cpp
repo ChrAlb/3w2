@@ -55,7 +55,7 @@ Player::Player(StateManager* l_stateManager)
 	events->AddCallback(StateType::Game, "JumpPressed", &Player::React, this);
 	events->AddCallback(StateType::Game, "AttackPressed", &Player::React, this);
 	
-}
+} 
 
 Player::~Player()
 {
