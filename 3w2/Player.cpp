@@ -68,58 +68,66 @@ Player::~Player()
 
 void Player::React(EventDetails* l_details)
 {
-	if (l_details->m_name == "LeftPressed")
+	m_JustJumped = false;
 
+	if (l_details->m_name == "AttackPressed")
+	{
+		m_isfiring = true;
+
+
+	}
+
+	else
+	{
+		m_isfiring = false;
+		m_justfired = true;
+
+	}
+
+
+	if (l_details->m_name == "JumpPressed")
+	{
+		//m_anykeypressed = true;
+		if (!m_isJumping && !m_isFalling)
+		{
+			m_isJumping = true;
+			m_TimeThisJump = 0;
+			m_JustJumped = true;
+		}
+	}
+	else
+	{
+		//m_anykeypressed = false;
+		m_isJumping = false;
+		m_isFalling = true;
+	}
+	if (l_details->m_name == "LeftPressed")
 	{
 		m_LeftPressed = true;
 		dir.x = -1.0f;
 
+
 	}
 	else
-	{ 
+	{
 		m_LeftPressed = false;
 	}
-	
+
+
 	if (l_details->m_name == "RightPressed")
-
-		{
-			m_RightPressed = true;
-			dir.x = 1.0f;
-		}
+	{
+		m_RightPressed = true;
+		dir.x = 1.0f;
+	}
 	else
 	{
-		   m_RightPressed = false;
+		m_RightPressed = false;
 	}
-/*	
-	if (l_details->m_name == "JumpPressed")
-			{
-				if (!m_isJumping && !m_isFalling)
-				{
-					m_isJumping = true;
-					m_TimeThisJump = 0;
-					m_JustJumped = true;
-				}
-			}
-	else
-	{
-		m_isJumping = false;
-		m_isFalling = true;
-	}
-				
-	if (l_details->m_name == "AttackPressed")
+	Player::SetDirection(dir);
+	
+	
 
-				{
-					m_isfiring = true;
-				}
-				else
-				{
-					m_isJumping = false;
-					m_isFalling = true;
-				}
-	*/		
 }
-
-
 
 
 bool Player::handleInput()
