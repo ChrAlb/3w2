@@ -123,7 +123,7 @@ void Player::React(EventDetails* l_details)
 	{
 		m_RightPressed = false;
 	}
-	Player::SetDirection(dir);
+	
 	
 	
 
@@ -136,7 +136,7 @@ bool Player::handleInput()
 
 	m_JustJumped = false;
 	
-	Player::SetDirection(dir);
+	//Player::SetDirection(dir);
 	return m_JustJumped;
 
 }
@@ -245,6 +245,7 @@ void Player::update(float elapsedTime, Vector2f Plpos)
 	m_Center.width = 2;
 	m_Center.height = r.height - (r.height *.3) ;
 
+	Player::SetDirection(dir);
 	animations[int(curAnimation)].Update(elapsedTime, max_frames[int(curAnimation)]);
 
 	
