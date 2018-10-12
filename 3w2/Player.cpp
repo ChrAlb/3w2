@@ -51,19 +51,26 @@ Player::Player(StateManager* l_stateManager)
 
 	EventManager* events = l_stateManager->GetContext()->m_eventManager;
 	events->AddCallback(StateType::Game, "LeftPressed", &Player::React, this);
+	events->AddCallback(StateType::Game, "nLeftPressed", &Player::React, this);
 	events->AddCallback(StateType::Game, "RightPressed", &Player::React, this);
+	events->AddCallback(StateType::Game, "nRightPressed", &Player::React, this);
 	events->AddCallback(StateType::Game, "JumpPressed", &Player::React, this);
+	events->AddCallback(StateType::Game, "nJumpPressed", &Player::React, this);
 	events->AddCallback(StateType::Game, "AttackPressed", &Player::React, this);
-	
+	events->AddCallback(StateType::Game, "nAttackPressed", &Player::React, this);
 } 
 
 Player::~Player()
 {
 	//EventManager* events = l_stateManager->GetContext()->m_eventManager;
 	events->RemoveCallback(StateType::Game, "LeftPressed");
+	events->RemoveCallback(StateType::Game, "nLeftPressed");
 	events->RemoveCallback(StateType::Game, "RightPressed");
+	events->RemoveCallback(StateType::Game, "nRightPressed");
 	events->RemoveCallback(StateType::Game, "JumpPressed");
+	events->RemoveCallback(StateType::Game, "nJumpPressed");
 	events->RemoveCallback(StateType::Game, "AttackPressed");	
+	events->RemoveCallback(StateType::Game, "nAttackPressed");
 }
 
 void Player::React(EventDetails* l_details)
@@ -73,11 +80,9 @@ void Player::React(EventDetails* l_details)
 	if (l_details->m_name == "AttackPressed")
 	{
 		m_isfiring = true;
-
-
 	}
 
-	else
+	if (l_details->m_name == "nAttackPressed")
 	{
 		m_isfiring = false;
 		m_justfired = true;
@@ -95,7 +100,7 @@ void Player::React(EventDetails* l_details)
 			m_JustJumped = true;
 		}
 	}
-	else
+	if (l_details->m_name == "nJumpPressed")
 	{
 		//m_anykeypressed = false;
 		m_isJumping = false;
@@ -108,7 +113,7 @@ void Player::React(EventDetails* l_details)
 
 
 	}
-	else
+	if (l_details->m_name == "nLeftPressed")
 	{
 		m_LeftPressed = false;
 	}
@@ -119,7 +124,7 @@ void Player::React(EventDetails* l_details)
 		m_RightPressed = true;
 		dir.x = 1.0f;
 	}
-	else
+	if (l_details->m_name == "nRightPressed")
 	{
 		m_RightPressed = false;
 	}
