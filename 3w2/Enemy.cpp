@@ -36,7 +36,7 @@ Enemy::Enemy() : m_hasDestination(false)
 	
 }
 
-
+ 
 bool Enemy::handleInput() 
 {
 	m_isFalling = true;
