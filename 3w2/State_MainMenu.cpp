@@ -97,7 +97,7 @@ void State_MainMenu::MouseClick(EventDetails* l_details){
 				m_stateMgr->SwitchTo(StateType::Game);
 				
 			} else if(i == 1){
-				// Credits state.
+				m_stateMgr->SwitchTo(StateType::LevelEditor);
 			} else if(i == 2){
 				m_stateMgr->GetContext()->m_wind->Close(l_details);
 			}

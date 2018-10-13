@@ -2,6 +2,9 @@
 #include <SFML\Graphics.hpp>
 #include "BaseState.h"
 #include "StateManager.h"
+#include "EventManager.h"
+#include "SharedContext.h"
+#include "ResourceIdentifiers.h"
 #include <string>
 
 using namespace sf;
@@ -10,6 +13,9 @@ class LevelEditor : public BaseState
 {
 public:
 
+	LevelEditor(StateManager* l_stateManager);
+	~LevelEditor();
+	
 	void OnCreate();
 	void OnDestroy();
 

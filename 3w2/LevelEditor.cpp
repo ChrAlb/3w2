@@ -1,5 +1,17 @@
 #include "stdafx.h"
 #include "LevelEditor.h"
+#include "StateManager.h"
+
+
+LevelEditor::LevelEditor(StateManager* l_stateManager)
+	: BaseState(l_stateManager) {}
+{
+}
+
+LevelEditor::~LevelEditor()
+{
+	
+}
 
 void LevelEditor::OnCreate()
 {
