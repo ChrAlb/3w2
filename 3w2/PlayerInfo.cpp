@@ -8,7 +8,7 @@ PlayerInfo::PlayerInfo()
 	m_fonts.load(Fonts::Arial, "graphics/arial.ttf");
 	
 }
-
+ 
 void PlayerInfo::print(sf::RenderWindow & windowRef, Player& PlayerRef)
 {
 	// Titel
