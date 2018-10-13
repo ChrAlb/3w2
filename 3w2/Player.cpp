@@ -133,7 +133,7 @@ void Player::React(EventDetails* l_details)
 	}
 	
 	
-	
+	//Player::SetDirection(dir);
 
 }
 
@@ -142,10 +142,10 @@ bool Player::handleInput()
 {
 	
 
-	m_JustJumped = false;
+	//m_JustJumped = false;
 	
 	//Player::SetDirection(dir);
-	return m_JustJumped;
+	return true ;
 
 }
 
