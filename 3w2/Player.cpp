@@ -76,6 +76,7 @@ Player::~Player()
 void Player::React(EventDetails* l_details)
 {
 	m_JustJumped = false;
+	
 
 	if (l_details->m_name == "AttackPressed")
 	{
@@ -126,6 +127,7 @@ void Player::React(EventDetails* l_details)
 	{
 		m_RightPressed = true;
 		dir.x = 1.0f;
+		
 	}
 	if (l_details->m_name == "nRightPressed")
 	{
