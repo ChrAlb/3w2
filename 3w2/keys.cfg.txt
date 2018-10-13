@@ -14,4 +14,4 @@ nRightPressed 6:72
 JumpPressed 5:57
 nJumpPressed 6:57
 AttackPressed 5:18
-AttackPressed 6:18
+nAttackPressed 6:18

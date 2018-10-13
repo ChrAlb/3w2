@@ -106,6 +106,8 @@ void Player::React(EventDetails* l_details)
 		m_isJumping = false;
 		m_isFalling = true;
 	}
+	
+
 	if (l_details->m_name == "LeftPressed")
 	{
 		m_LeftPressed = true;
@@ -113,6 +115,7 @@ void Player::React(EventDetails* l_details)
 
 
 	}
+	
 	if (l_details->m_name == "nLeftPressed")
 	{
 		m_LeftPressed = false;
