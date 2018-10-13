@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML\Graphics.hpp>
 #include "BaseState.h"
+#include "StateManager.h"
 #include <string>
 
 using namespace sf;

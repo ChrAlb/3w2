@@ -28,5 +28,7 @@ void LevelEditor::Update(const sf::Time & l_time)
 
 void LevelEditor::Draw()
 {
-	;
+	sf::RenderWindow* window = m_stateMgr->GetContext()->m_wind->GetRenderWindow();
+
+	window->clear(sf::Color::White);
 }
