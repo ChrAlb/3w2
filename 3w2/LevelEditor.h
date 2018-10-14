@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML\Graphics.hpp>
 #include "BaseState.h"
-#include "StateManager.h"
+
 #include "EventManager.h"
 #include "SharedContext.h"
 #include "ResourceIdentifiers.h"
@@ -25,6 +25,7 @@ public:
 	void Update(const sf::Time& l_time);
 	void Draw();
 
+	void Continue(EventDetails* l_details);
 
 private:
 
@@ -33,7 +34,7 @@ private:
 	Vector2i   m_LevelDimension;
 	View       m_TileView;
 	View       m_DesignView;
-	View       m_LevelViel;
+	View       m_LevelView;
 
 	String     m_tileFile;
 	String     m_LevelFile;
@@ -42,6 +43,4 @@ private:
 	VertexArray  m_LevelArray;  
 
 
-	TextureHolder m_introTexture;
-	sf::Sprite  m_introBild;
 };
