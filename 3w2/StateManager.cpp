@@ -12,7 +12,7 @@ StateManager::StateManager(SharedContext* l_shared)
 	RegisterState<State_MainMenu>(StateType::MainMenu);
 	RegisterState<State_Game> (StateType::Game);
 	RegisterState<State_Paused>(StateType::Paused);
-	RegisterState<State_Paused>(StateType::LevelEditor);
+	RegisterState<LevelEditor>(StateType::LevelEditor);
 	//RegisterState<State_GameOver>(StateType::GameOver);
 }
 

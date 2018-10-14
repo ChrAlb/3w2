@@ -28,7 +28,7 @@ public:
 
 private:
 
-	const int m_NumberofFiles;
+	int m_NumberofFiles;
 	
 	Vector2i   m_LevelDimension;
 	View       m_TileView;
@@ -41,4 +41,7 @@ private:
 	VertexArray  m_TileArray;
 	VertexArray  m_LevelArray;  
 
+
+	TextureHolder m_introTexture;
+	sf::Sprite  m_introBild;
 };

@@ -4,7 +4,7 @@
 #include "State_Intro.h"
 #include "SharedContext.h"
 
-enum class StateType{ Intro = 1, MainMenu, Game, Paused, LevelEditor, GameOver, Credits };
+enum class StateType{ Intro = 1, MainMenu, Game, Paused,  LevelEditor, GameOver, Credits };
 
 // State container.
 using StateContainer = std::vector<std::pair<StateType, BaseState*>>;
