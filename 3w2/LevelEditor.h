@@ -42,5 +42,7 @@ private:
 	VertexArray  m_TileArray;
 	VertexArray  m_LevelArray;  
 
+	TextureHolder m_introTexture;
+	Sprite m_introBild;
 
 };

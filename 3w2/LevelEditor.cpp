@@ -12,8 +12,11 @@ void LevelEditor::OnCreate()
 {
 	sf::Vector2u windowSize = m_stateMgr->GetContext()->m_wind->GetRenderWindow()->getSize();
 
-	m_TileView.reset(sf::FloatRect(0,0,100, VideoMode::getDesktopMode().height));
-	m_DesignView.reset(sf::FloatRect(100,0, VideoMode::getDesktopMode().width, VideoMode::getDesktopMode().height));
+	m_introTexture.load(Textures::TitleScreen, "graphics/Title.png");
+	m_introBild.setTexture(m_introTexture.get(Textures::TitleScreen));
+
+	m_TileView.reset(sf::FloatRect(0,0,300, VideoMode::getDesktopMode().height));
+	m_DesignView.reset(sf::FloatRect(-300,0, VideoMode::getDesktopMode().width, VideoMode::getDesktopMode().height));
 	m_LevelView.reset(sf::FloatRect(0, 0, VideoMode::getDesktopMode().width, VideoMode::getDesktopMode().height));
 
 	EventManager* evMgr = m_stateMgr->GetContext()->m_eventManager;
@@ -49,7 +52,16 @@ void LevelEditor::Draw()
 {
 	sf::RenderWindow* window = m_stateMgr->	GetContext()->m_wind->GetRenderWindow();
 	window->clear(sf::Color::White);
+
+	window->setView(m_DesignView);
+	window->draw(m_introBild);
+
 	window->setView(m_TileView);
-	window->clear(sf::Color::Blue);
-	//window->draw();
+	m_TileView.setViewport(sf::FloatRect(0, 0, 0.14, 1));
+	window->draw(m_introBild);
+	
+	window->setView(m_LevelView);
+	m_LevelView.setViewport(sf::FloatRect(0.75f, 0, 0.25f, 0.25f));
+	window->draw(m_introBild);
+
 }
