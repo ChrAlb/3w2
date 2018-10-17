@@ -27,6 +27,8 @@ public:
 
 	void Continue(EventDetails* l_details);
 
+	void read_Tileset();
+
 private:
 
 	int m_NumberofFiles;
@@ -36,11 +38,19 @@ private:
 	View       m_DesignView;
 	View       m_LevelView;
 
+	Vector2f  m_LevelSize = { 4,7 };
+
+	int     VERTS_IN_QUAD = 4;
+	int     TILE_SIZE = 50;
+
 	String     m_tileFile;
 	String     m_LevelFile;
 
 	VertexArray  m_TileArray;
-	VertexArray  m_LevelArray;  
+	VertexArray  m_LevelArray;
+
+	TextureHolder m_TileSheet;
+	
 
 	TextureHolder m_introTexture;
 	Sprite m_introBild;
