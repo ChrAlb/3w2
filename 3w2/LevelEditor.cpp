@@ -60,6 +60,7 @@ void LevelEditor::read_Tileset()
 
 	int currentVertex = 0;
 	int verticalOffset = 0;
+	int verticalcounter = 0;
 
 	for (int x = 0; x < m_LevelSize.x; x++)
 	{
@@ -70,7 +71,7 @@ void LevelEditor::read_Tileset()
 			m_TileArray[currentVertex + 2].position = Vector2f(x*TILE_SIZE + TILE_SIZE, y* TILE_SIZE + TILE_SIZE);
 			m_TileArray[currentVertex + 3].position = Vector2f(x*TILE_SIZE, y* TILE_SIZE + TILE_SIZE);
 			
-			verticalOffset = verticalOffset * TILE_SIZE;
+			verticalOffset = verticalcounter * TILE_SIZE;
 			
 
 			m_TileArray[currentVertex + 0].texCoords = Vector2f(0, 0 + verticalOffset);
@@ -79,7 +80,7 @@ void LevelEditor::read_Tileset()
 			m_TileArray[currentVertex + 3].texCoords = Vector2f(0, TILE_SIZE + verticalOffset);
 
 			currentVertex = currentVertex + VERTS_IN_QUAD;
-			verticalOffset++;
+			verticalcounter++;
 		}
 	}
 
@@ -106,7 +107,7 @@ void LevelEditor::Draw()
 	window->draw(m_TileArray, &m_TileSheet.get(Textures::Test));
 	
 
-
+	
 	window->setView(m_LevelView);
 	m_LevelView.setViewport(sf::FloatRect(0.8f, 0, 0.2f, 0.2f));
 	window->draw(m_introBild);
