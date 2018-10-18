@@ -23,9 +23,12 @@ void LevelEditor::OnCreate()
 	m_DesignView.reset(sf::FloatRect(-300,0, VideoMode::getDesktopMode().width, VideoMode::getDesktopMode().height));
 	m_LevelView.reset(sf::FloatRect(0, 0, VideoMode::getDesktopMode().width, VideoMode::getDesktopMode().height));
 
+	m_TileSheet.load(Textures::Test, "graphics/tiles_sheet.png");
+
 	EventManager* evMgr = m_stateMgr->GetContext()->m_eventManager;
     evMgr->AddCallback(StateType::LevelEditor, "Finish_LevelEditor", &LevelEditor::Continue, this);
 
+	LevelEditor::read_Tileset();
 }
 
 void LevelEditor::OnDestroy()
@@ -80,7 +83,7 @@ void LevelEditor::read_Tileset()
 		}
 	}
 
-	m_TileSheet.load(Textures::Test, "graphics/tiles_sheet.png");
+	
 	
 		
 
@@ -98,6 +101,8 @@ void LevelEditor::Draw()
 
 	window->setView(m_TileView);
 	m_TileView.setViewport(sf::FloatRect(0, 0, 0.14, 1));
+	
+	
 	window->draw(m_TileArray, &m_TileSheet.get(Textures::Test));
 	
 
