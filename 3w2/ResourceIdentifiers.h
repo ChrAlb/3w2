@@ -27,7 +27,7 @@ namespace Textures
 		Bullet,
 		FinishLine,
 		Hufeisen,
-		Test,
+		LevelEditorSet,
 		
 	};
 }

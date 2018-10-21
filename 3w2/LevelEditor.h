@@ -28,6 +28,7 @@ public:
 	void Continue(EventDetails* l_details);
 
 	void read_Tileset();
+	void create_initLevel();
 
 private:
 
@@ -38,7 +39,8 @@ private:
 	View       m_DesignView;
 	View       m_LevelView;
 
-	Vector2f  m_LevelSize = { 4,7 };
+	Vector2f  m_TileLevelSize = { 4,8 };
+	Vector2f  m_LevelSize = {40,21 };
 
 	int     VERTS_IN_QUAD = 4;
 	int     TILE_SIZE = 50;
@@ -50,9 +52,9 @@ private:
 	VertexArray  m_LevelArray;
 
 	TextureHolder m_TileSheet;
+	TextureHolder m_DefaultTile;
 	
 
-	TextureHolder m_introTexture;
-	Sprite m_introBild;
+	
 
 };
