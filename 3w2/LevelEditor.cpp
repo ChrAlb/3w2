@@ -90,6 +90,7 @@ void LevelEditor::read_Tileset()
 			currentVertex = currentVertex + VERTS_IN_QUAD;
 			verticalcounter++;
 		}
+		
 	}
 
 	
@@ -141,18 +142,13 @@ void LevelEditor::Draw()
 	window->setView(m_DesignView);
 	window->draw(m_LevelArray, &m_DefaultTile.get(Textures::LevelEditorSet));
 
-	
+	window->setView(m_LevelView);
+	m_LevelView.setViewport(sf::FloatRect(0.01, 0.2, 0.15, 0.15));
+	window->draw(m_LevelArray, &m_DefaultTile.get(Textures::LevelEditorSet));
+
+
 	window->setView(m_TileView);
 	m_TileView.setViewport(sf::FloatRect(0, 0, 0.14, 1));
-	
-	
-	window->draw(m_TileArray, &m_TileSheet.get(Textures::Tileset1));
-	
-
-	
-	window->setView(m_LevelView);
-	
-	m_LevelView.setViewport(sf::FloatRect(0.005, 0.15, 0.2f, 0.2f));
-	window->draw(m_LevelArray, &m_DefaultTile.get(Textures::LevelEditorSet));
+    window->draw(m_TileArray, &m_TileSheet.get(Textures::Tileset1));
 
 }

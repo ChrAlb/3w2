@@ -39,7 +39,7 @@ private:
 	View       m_DesignView;
 	View       m_LevelView;
 
-	Vector2f  m_TileLevelSize = { 4,8 };
+	Vector2f  m_TileLevelSize = { 5,6};
 	Vector2f  m_LevelSize = {40,21 };
 
 	int     VERTS_IN_QUAD = 4;
