@@ -16,10 +16,11 @@ void LevelEditor::OnCreate()
 {
 	sf::Vector2u windowSize = m_stateMgr->GetContext()->m_wind->GetRenderWindow()->getSize();
 
+	LevelEditor::set_const();
 	
 	m_TileView.reset(sf::FloatRect(0,0,400, VideoMode::getDesktopMode().height));
 	m_DesignView.reset(sf::FloatRect(400,0, VideoMode::getDesktopMode().width, VideoMode::getDesktopMode().height));
-	m_LevelView.reset(sf::FloatRect(400, 0, 21*50, 40*50));
+	m_LevelView.reset(sf::FloatRect(400, 0,(m_LevelSize.y*TILE_SIZE) , (m_LevelSize.x*TILE_SIZE) ));
 
 	m_TileSheet.load(Textures::Tileset1, "graphics/tiles_sheet.png");
 	m_DefaultTile.load(Textures::LevelEditorSet,"graphics/default_tile.png");
@@ -27,6 +28,7 @@ void LevelEditor::OnCreate()
 	EventManager* evMgr = m_stateMgr->GetContext()->m_eventManager;
     evMgr->AddCallback(StateType::LevelEditor, "Finish_LevelEditor", &LevelEditor::Continue, this);
 
+	
 	LevelEditor::read_Tileset();
 	LevelEditor::create_initLevel();
 }
@@ -74,10 +76,10 @@ void LevelEditor::read_Tileset()
 	{
 		for (int x = 0; x < m_TileLevelSize.x; x++)
 		{		
-			m_TileArray[currentVertex + 0].position = Vector2f(50+x*TILE_SIZE, 400+y* TILE_SIZE);
-			m_TileArray[currentVertex + 1].position = Vector2f(50+x*TILE_SIZE + TILE_SIZE, 400+y* TILE_SIZE);
-			m_TileArray[currentVertex + 2].position = Vector2f(50+x*TILE_SIZE + TILE_SIZE, 400+y* TILE_SIZE + TILE_SIZE);
-			m_TileArray[currentVertex + 3].position = Vector2f(50+x*TILE_SIZE, 400+y* TILE_SIZE + TILE_SIZE);
+			m_TileArray[currentVertex + 0].position = Vector2f(m_pos_TileArray.x+x*TILE_SIZE, m_pos_TileArray.y+y* TILE_SIZE);
+			m_TileArray[currentVertex + 1].position = Vector2f(m_pos_TileArray.x +x*TILE_SIZE + TILE_SIZE, m_pos_TileArray.y +y* TILE_SIZE);
+			m_TileArray[currentVertex + 2].position = Vector2f(m_pos_TileArray.x +x*TILE_SIZE + TILE_SIZE, m_pos_TileArray.y +y* TILE_SIZE + TILE_SIZE);
+			m_TileArray[currentVertex + 3].position = Vector2f(m_pos_TileArray.x +x*TILE_SIZE, m_pos_TileArray.y +y* TILE_SIZE + TILE_SIZE);
 			
 			verticalOffset = verticalcounter * TILE_SIZE;
 			
@@ -113,10 +115,10 @@ void LevelEditor::create_initLevel()
 	{
 		for (int y = 0; y < m_LevelSize.y; y++)
 		{
-			m_LevelArray[currentVertex + 0].position = Vector2f(400+x*TILE_SIZE, y* TILE_SIZE);
-			m_LevelArray[currentVertex + 1].position = Vector2f(400+x*TILE_SIZE + TILE_SIZE, y* TILE_SIZE);
-			m_LevelArray[currentVertex + 2].position = Vector2f(400+x*TILE_SIZE + TILE_SIZE, y* TILE_SIZE + TILE_SIZE);
-			m_LevelArray[currentVertex + 3].position = Vector2f(400+x*TILE_SIZE, y* TILE_SIZE + TILE_SIZE);
+			m_LevelArray[currentVertex + 0].position = Vector2f(m_pos_DesingArray.x+x*TILE_SIZE, y* TILE_SIZE);
+			m_LevelArray[currentVertex + 1].position = Vector2f(m_pos_DesingArray.x +x*TILE_SIZE + TILE_SIZE, y* TILE_SIZE);
+			m_LevelArray[currentVertex + 2].position = Vector2f(m_pos_DesingArray.x +x*TILE_SIZE + TILE_SIZE, y* TILE_SIZE + TILE_SIZE);
+			m_LevelArray[currentVertex + 3].position = Vector2f(m_pos_DesingArray.x +x*TILE_SIZE, y* TILE_SIZE + TILE_SIZE);
 
 			verticalOffset = 0;
 
@@ -130,6 +132,22 @@ void LevelEditor::create_initLevel()
 			verticalcounter++;
 		}
 	}
+}
+
+void LevelEditor::set_const()
+{
+	m_TileLevelSize.x = 6;
+	m_TileLevelSize.y = 6; 
+	
+	m_LevelSize.x = 41;
+	m_LevelSize.y = 21;
+
+	m_pos_TileArray.x = 50 ;
+	m_pos_TileArray.y = 400 ;
+
+	m_pos_DesingArray.x = 400;
+	m_pos_DesingArray.y = 0;
+	
 }
 
 void LevelEditor::Update(const sf::Time & l_time) {}

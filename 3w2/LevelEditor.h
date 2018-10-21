@@ -30,6 +30,8 @@ public:
 	void read_Tileset();
 	void create_initLevel();
 
+	void set_const();
+
 private:
 
 	int m_NumberofFiles;
@@ -39,8 +41,10 @@ private:
 	View       m_DesignView;
 	View       m_LevelView;
 
-	Vector2f  m_TileLevelSize = { 6,6};
-	Vector2f  m_LevelSize = {40,21 };
+	Vector2f  m_TileLevelSize;
+	Vector2f  m_LevelSize;
+	Vector2f  m_pos_TileArray;
+	Vector2f  m_pos_DesingArray;
 
 	int     VERTS_IN_QUAD = 4;
 	int     TILE_SIZE = 50;
