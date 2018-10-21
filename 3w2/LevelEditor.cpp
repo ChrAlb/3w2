@@ -19,7 +19,7 @@ void LevelEditor::OnCreate()
 	
 	m_TileView.reset(sf::FloatRect(0,0,400, VideoMode::getDesktopMode().height));
 	m_DesignView.reset(sf::FloatRect(400,0, VideoMode::getDesktopMode().width, VideoMode::getDesktopMode().height));
-	m_LevelView.reset(sf::FloatRect(400, 0, VideoMode::getDesktopMode().width, VideoMode::getDesktopMode().height));
+	m_LevelView.reset(sf::FloatRect(400, 0, 21*50, 40*50));
 
 	m_TileSheet.load(Textures::Tileset1, "graphics/tiles_sheet.png");
 	m_DefaultTile.load(Textures::LevelEditorSet,"graphics/default_tile.png");
@@ -148,7 +148,7 @@ void LevelEditor::Draw()
     window->draw(m_TileArray, &m_TileSheet.get(Textures::Tileset1));
 
 	window->setView(m_LevelView);
-	m_LevelView.setViewport(sf::FloatRect(0, 0, 0.15, 0.15));
+	m_LevelView.setViewport(sf::FloatRect(0, 0, 0.2, 0.2));
 	window->draw(m_LevelArray, &m_DefaultTile.get(Textures::LevelEditorSet));
 	
 
