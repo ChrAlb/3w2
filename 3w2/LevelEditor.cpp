@@ -154,8 +154,13 @@ bool LevelEditor::mouse_pos_in(FloatRect Fläche, Vector2f pos)
 
 void LevelEditor::Update(const sf::Time & l_time) 
 
-
 {
+	mouseposition = static_cast <sf::Vector2f> (sf::Mouse::getPosition());
+	//printf((char)(pos.x)));
+	if (mouse_pos_in(TileFläche, mouseposition))
+	{
+		;
+    }
 
 
 }

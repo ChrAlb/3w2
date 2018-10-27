@@ -61,7 +61,7 @@ private:
 	FloatRect TileFläche;
 	FloatRect DesignFläche;
 	
+	Vector2f mouseposition;
 
 	
-
 };
