@@ -156,10 +156,11 @@ void LevelEditor::Update(const sf::Time & l_time)
 
 {
 	mouseposition = static_cast <sf::Vector2f> (sf::Mouse::getPosition());
-	//printf((char)(pos.x)));
+	//printf("%f\n", mouseposition.x);
+	//printf("%f\n", mouseposition.y);
 	if (mouse_pos_in(TileFläche, mouseposition))
 	{
-		;
+		printf("yessssss");
     }
 
 
