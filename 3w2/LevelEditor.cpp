@@ -28,9 +28,9 @@ void LevelEditor::OnCreate()
 	EventManager* evMgr = m_stateMgr->GetContext()->m_eventManager;
     evMgr->AddCallback(StateType::LevelEditor, "Finish_LevelEditor", &LevelEditor::Continue, this);
 
-	
 	LevelEditor::read_Tileset();
 	LevelEditor::create_initLevel();
+
 }
 
 void LevelEditor::OnDestroy()
@@ -63,14 +63,7 @@ void LevelEditor::read_Tileset()
 	int currentVertex = 0;
 	int verticalOffset = 0;
 	int verticalcounter = 0;
-
-	/*
-	for (int x = 0; x < m_TileLevelSize.x; x++)
-	{
-		for (int y = 0; y < m_TileLevelSize.y; y++)
-		{
-			
-	*/		
+	
 	
 	for (int y = 0; y < m_TileLevelSize.y; y++)
 	{
@@ -94,10 +87,6 @@ void LevelEditor::read_Tileset()
 		}
 		
 	}
-
-	
-	
-		
 
 }
 
@@ -147,10 +136,29 @@ void LevelEditor::set_const()
 
 	m_pos_DesingArray.x = 400;
 	m_pos_DesingArray.y = 0;
-	
+
+	TileFläche = { m_pos_TileArray.x,m_pos_TileArray.y, m_pos_TileArray.x + m_TileLevelSize.x * TILE_SIZE,   m_pos_TileArray.y + m_TileLevelSize.y * TILE_SIZE };
+	DesignFläche = { m_pos_DesingArray.x, m_pos_DesingArray.y, m_pos_DesingArray.x + m_LevelSize.x*TILE_SIZE, m_pos_DesingArray.y + m_LevelSize.y*TILE_SIZE };
 }
 
-void LevelEditor::Update(const sf::Time & l_time) {}
+bool LevelEditor::mouse_pos_in(FloatRect Fläche, Vector2f pos)
+{
+	if ( 
+		(pos.x > Fläche.left) &&  (pos.x < Fläche.left + Fläche.width) &&
+		(pos.y > Fläche.top) && (pos.y < Fläche.top + Fläche.height)
+	   )
+		return true;
+	else
+		return false;
+}
+
+void LevelEditor::Update(const sf::Time & l_time) 
+
+
+{
+
+
+}
 
 void LevelEditor::Draw()
 {

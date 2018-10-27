@@ -29,8 +29,8 @@ public:
 
 	void read_Tileset();
 	void create_initLevel();
-
-	void set_const();
+    void set_const();
+	bool mouse_pos_in(FloatRect Fläche, Vector2f pos);
 
 private:
 
@@ -57,6 +57,9 @@ private:
 
 	TextureHolder m_TileSheet;
 	TextureHolder m_DefaultTile;
+
+	FloatRect TileFläche;
+	FloatRect DesignFläche;
 	
 
 	
