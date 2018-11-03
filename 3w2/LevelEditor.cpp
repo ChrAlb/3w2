@@ -199,8 +199,7 @@ void LevelEditor::MouseClick(EventDetails * l_details)
 		m_ClickedTile.height = TILE_SIZE;
 
 	}
-	else
-		m_Tile_picked = false;
+	
 
 	if (m_inDesignView)
 	{
@@ -230,8 +229,8 @@ void LevelEditor::Update(const sf::Time & l_time)
 		static_cast <sf::Vector2i> (mouseposition);
 
 
-		//Vector2f mousePositionFloat = static_cast<sf::Vector2f>(mouseposition);
-		//m_DesignView.move(mousePositionFloat.x,mousePositionFloat.y);
+		Vector2f mousePositionFloat = static_cast<sf::Vector2f>(mouseposition);
+		m_DesignView.setCenter(mousePositionFloat.x,m_LevelSize.y*TILE_SIZE/2);
 	}
 	else
 		m_inDesignView = false;
