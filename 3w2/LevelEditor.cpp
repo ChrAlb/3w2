@@ -145,6 +145,8 @@ void LevelEditor::set_const()
 
 	m_inTileView = false;
 	m_inDesignView = false;
+
+	m_Tile_picked = false;
 }
 
 bool LevelEditor::mouse_pos_in(FloatRect Fläche, Vector2f pos)
@@ -190,9 +192,15 @@ void LevelEditor::MouseClick(EventDetails * l_details)
 
 	if (m_inTileView)
 	{
-
+		m_Tile_picked = true;
+		m_ClickedTile.left = ((int)mousePos.x / TILE_SIZE) * TILE_SIZE;
+		m_ClickedTile.top = ((int)mousePos.y / TILE_SIZE) * TILE_SIZE;
+		m_ClickedTile.width = TILE_SIZE;
+		m_ClickedTile.height = TILE_SIZE;
 
 	}
+	else
+		m_Tile_picked = false;
 
 	if (m_inDesignView)
 	{
@@ -238,5 +246,18 @@ void LevelEditor::Draw()
 	if (m_inTileView)
 	   LevelEditor::draw_mousepose_inTileView(m_ActualTile);
 	
-	
+	if (m_Tile_picked)
+	{
+
+		window->setView(m_LayerView);
+		sf::RectangleShape rectangle;
+		rectangle.setPosition(m_ClickedTile.left, m_ClickedTile.top);
+		rectangle.setSize(sf::Vector2f(m_ClickedTile.width, m_ClickedTile.height));
+		rectangle.setOutlineThickness(6);
+		rectangle.setOutlineColor(sf::Color::Blue);
+		rectangle.setFillColor(sf::Color::Transparent);
+		window->draw(rectangle);
+
+	}
+
 }

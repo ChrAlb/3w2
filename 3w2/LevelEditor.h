@@ -69,10 +69,12 @@ private:
 	FloatRect DesignFläche;
 
 	FloatRect m_ActualTile;
+	FloatRect m_ClickedTile;
 	
 	Vector2f mouseposition;
 
 	bool m_inTileView;
+	bool m_Tile_picked;
 	bool m_inDesignView;
 
 	};
