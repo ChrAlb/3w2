@@ -34,6 +34,8 @@ public:
 
 	void draw_mousepose_inTileView(FloatRect field);
 
+	FloatRect calculateActualTile(Vector2f mouspos);
+
 private:
 
 	int m_NumberofFiles;
@@ -63,6 +65,8 @@ private:
 
 	FloatRect TileFläche;
 	FloatRect DesignFläche;
+
+	FloatRect m_ActualTile;
 	
 	Vector2f mouseposition;
 

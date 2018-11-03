@@ -127,7 +127,7 @@ void LevelEditor::create_initLevel()
 void LevelEditor::set_const()
 {
 	m_TileLevelSize.x = 6;
-	m_TileLevelSize.y = 6; 
+	m_TileLevelSize.y = 5;
 	
 	m_LevelSize.x = 41;
 	m_LevelSize.y = 21;
@@ -138,8 +138,8 @@ void LevelEditor::set_const()
 	m_pos_DesingArray.x = 400;
 	m_pos_DesingArray.y = 0;
 
-	TileFläche = { m_pos_TileArray.x,m_pos_TileArray.y, m_pos_TileArray.x + m_TileLevelSize.x * TILE_SIZE,   m_pos_TileArray.y + m_TileLevelSize.y * TILE_SIZE };
-	DesignFläche = { m_pos_DesingArray.x, m_pos_DesingArray.y, m_pos_DesingArray.x + m_LevelSize.x*TILE_SIZE, m_pos_DesingArray.y + m_LevelSize.y*TILE_SIZE };
+	TileFläche = { m_pos_TileArray.x,m_pos_TileArray.y, m_TileLevelSize.x * TILE_SIZE,   m_TileLevelSize.y * TILE_SIZE };
+	DesignFläche = { m_pos_DesingArray.x, m_pos_DesingArray.y,m_LevelSize.x*TILE_SIZE, m_LevelSize.y*TILE_SIZE };
 
 	m_inTileView = false;
 	m_inDesignView = false;
@@ -169,6 +169,18 @@ void LevelEditor::draw_mousepose_inTileView(FloatRect field)
 	window->draw(rectangle);
 }
 
+FloatRect LevelEditor::calculateActualTile(Vector2f mouspos)
+{
+	FloatRect Tile;
+
+	Tile.left = ((int) mouspos.x / TILE_SIZE) * TILE_SIZE;
+	Tile.top = ((int) mouspos.y / TILE_SIZE ) * TILE_SIZE ;
+	Tile.width = TILE_SIZE;
+	Tile.height = TILE_SIZE;
+
+	return Tile;
+}
+
 void LevelEditor::Update(const sf::Time & l_time) 
 
 {
@@ -177,15 +189,15 @@ void LevelEditor::Update(const sf::Time & l_time)
 	//printf("%f\n", mouseposition.y);
 	if (mouse_pos_in(TileFläche, mouseposition))
 	{
+		m_ActualTile = LevelEditor::calculateActualTile(mouseposition);
 		m_inTileView = true;
     }
-
+	else m_inTileView = false;
 	
 }
 
 void LevelEditor::Draw()
 {
-	
 	
 	
 	sf::RenderWindow* window = m_stateMgr->	GetContext()->m_wind->GetRenderWindow();
@@ -206,12 +218,12 @@ void LevelEditor::Draw()
 	
 
 
-	window->setView(m_LevelView);
-	m_LevelView.setViewport(sf::FloatRect(0, 0, 0.2, 0.2));
-	window->draw(m_LevelArray, &m_DefaultTile.get(Textures::LevelEditorSet));
+	//window->setView(m_LevelView);
+	//m_LevelView.setViewport(sf::FloatRect(0, 0, 0.2, 0.2));
+	//window->draw(m_LevelArray, &m_DefaultTile.get(Textures::LevelEditorSet));
 	
 	if (m_inTileView)
-	//LevelEditor::draw_mousepose_inTileView();
+	   LevelEditor::draw_mousepose_inTileView(m_ActualTile);
 	
 	
 }
