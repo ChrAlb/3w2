@@ -28,6 +28,8 @@ void LevelEditor::OnCreate()
 	
 	EventManager* evMgr = m_stateMgr->GetContext()->m_eventManager;
     evMgr->AddCallback(StateType::LevelEditor, "Finish_LevelEditor", &LevelEditor::Continue, this);
+    evMgr->AddCallback(StateType::LevelEditor, "Mouse_Left", &LevelEditor::MouseClick, this);
+
 
 	LevelEditor::read_Tileset();
 	LevelEditor::create_initLevel();
@@ -181,6 +183,24 @@ FloatRect LevelEditor::calculateActualTile(Vector2f mouspos)
 	return Tile;
 }
 
+void LevelEditor::MouseClick(EventDetails * l_details)
+{
+	SharedContext* context = m_stateMgr->GetContext();
+	sf::Vector2i mousePos = l_details->m_mouse;
+
+	if (m_inTileView)
+	{
+
+
+	}
+
+	if (m_inDesignView)
+	{
+
+	}
+
+}
+
 void LevelEditor::Update(const sf::Time & l_time) 
 
 {
@@ -199,13 +219,9 @@ void LevelEditor::Update(const sf::Time & l_time)
 void LevelEditor::Draw()
 {
 	
-	
 	sf::RenderWindow* window = m_stateMgr->	GetContext()->m_wind->GetRenderWindow();
 	window->clear(sf::Color::Yellow);
 
-	
-
-	
 	window->setView(m_DesignView);
 	m_DesignView.setViewport(sf::FloatRect(0.2, 0, 1, 1));
 	window->draw(m_LevelArray, &m_DefaultTile.get(Textures::LevelEditorSet));
@@ -214,9 +230,6 @@ void LevelEditor::Draw()
 	window->setView(m_TileView);
 	m_TileView.setViewport(sf::FloatRect(0, 0, 0.2, 1));
     window->draw(m_TileArray, &m_TileSheet.get(Textures::Tileset1));
-
-	
-
 
 	//window->setView(m_LevelView);
 	//m_LevelView.setViewport(sf::FloatRect(0, 0, 0.2, 0.2));

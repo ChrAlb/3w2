@@ -36,6 +36,8 @@ public:
 
 	FloatRect calculateActualTile(Vector2f mouspos);
 
+	void MouseClick(EventDetails* l_details);
+
 private:
 
 	int m_NumberofFiles;
