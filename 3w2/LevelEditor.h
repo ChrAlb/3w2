@@ -32,6 +32,8 @@ public:
     void set_const();
 	bool mouse_pos_in(FloatRect Fläche, Vector2f pos);
 
+	void draw_mousepose_inTileView(FloatRect field);
+
 private:
 
 	int m_NumberofFiles;
@@ -40,6 +42,7 @@ private:
 	View       m_TileView;
 	View       m_DesignView;
 	View       m_LevelView;
+	View       m_LayerView;
 
 	Vector2f  m_TileLevelSize;
 	Vector2f  m_LevelSize;
@@ -63,5 +66,7 @@ private:
 	
 	Vector2f mouseposition;
 
-	
-};
+	bool m_inTileView;
+	bool m_inDesignView;
+
+	};
