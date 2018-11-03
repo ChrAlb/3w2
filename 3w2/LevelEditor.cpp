@@ -222,6 +222,20 @@ void LevelEditor::Update(const sf::Time & l_time)
     }
 	else m_inTileView = false;
 	
+
+	if (mouse_pos_in(DesignFläche, mouseposition))
+	{
+		m_inDesignView = true;
+
+		static_cast <sf::Vector2i> (mouseposition);
+
+
+		//Vector2f mousePositionFloat = static_cast<sf::Vector2f>(mouseposition);
+		//m_DesignView.move(mousePositionFloat.x,mousePositionFloat.y);
+	}
+	else
+		m_inDesignView = false;
+
 }
 
 void LevelEditor::Draw()
