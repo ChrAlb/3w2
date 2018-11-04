@@ -147,6 +147,8 @@ void LevelEditor::set_const()
 	m_inDesignView = false;
 
 	m_Tile_picked = false;
+
+	m_oldpos = { 0,0 };
 }
 
 bool LevelEditor::mouse_pos_in(FloatRect Fläche, Vector2f pos)
@@ -226,11 +228,24 @@ void LevelEditor::Update(const sf::Time & l_time)
 	{
 		m_inDesignView = true;
 
-		static_cast <sf::Vector2i> (mouseposition);
+		Vector2f newpos;
+		float move;
 
+		newpos = mouseposition;
 
-		Vector2f mousePositionFloat = static_cast<sf::Vector2f>(mouseposition);
-		m_DesignView.setCenter(mousePositionFloat.x,m_LevelSize.y*TILE_SIZE/2);
+		if (newpos == m_oldpos)
+		{
+
+			move = 0;
+		}
+		else
+		{
+			move = newpos.x - m_oldpos.x;
+		}
+		m_oldpos = newpos;
+
+		m_DesignView.move(move, 0);
+		
 	}
 	else
 		m_inDesignView = false;

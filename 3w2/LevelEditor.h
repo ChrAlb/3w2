@@ -53,6 +53,8 @@ private:
 	Vector2f  m_pos_TileArray;
 	Vector2f  m_pos_DesingArray;
 
+	Vector2f  m_oldpos;
+
 	int     VERTS_IN_QUAD = 4;
 	int     TILE_SIZE = 50;
 
