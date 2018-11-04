@@ -149,6 +149,8 @@ void LevelEditor::set_const()
 	m_Tile_picked = false;
 
 	m_oldpos = { 0,0 };
+
+	m_picked_TileNumber = 0;
 }
 
 bool LevelEditor::mouse_pos_in(FloatRect Fläche, Vector2f pos)
@@ -200,6 +202,7 @@ void LevelEditor::MouseClick(EventDetails * l_details)
 		m_ClickedTile.width = TILE_SIZE;
 		m_ClickedTile.height = TILE_SIZE;
 
+		m_picked_TileNumber = Calc_TileNumber(mousePos);
 	}
 	
 
@@ -209,6 +212,26 @@ void LevelEditor::MouseClick(EventDetails * l_details)
 	}
 
 }
+
+int LevelEditor::Calc_TileNumber(Vector2i mousepos)
+{
+	
+	Vector2f pos;
+	int Number;
+	
+	mousepos.x = mousepos.x - m_pos_TileArray.x;
+	mousepos.y = mousepos.y - m_pos_TileArray.y;
+
+	pos.x = (int)mousepos.x / TILE_SIZE + 1;
+	Number = pos.x;
+
+	pos.y = (int)mousepos.y / TILE_SIZE;
+
+	Number = Number + pos.y*m_TileLevelSize.x;
+
+	return Number;
+}
+
 
 void LevelEditor::Update(const sf::Time & l_time) 
 

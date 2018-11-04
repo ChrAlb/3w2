@@ -38,6 +38,8 @@ public:
 
 	void MouseClick(EventDetails* l_details);
 
+	int Calc_TileNumber(Vector2i mousepos);
+
 private:
 
 	int m_NumberofFiles;
@@ -78,5 +80,7 @@ private:
 	bool m_inTileView;
 	bool m_Tile_picked;
 	bool m_inDesignView;
+
+	int m_picked_TileNumber;
 
 	};
