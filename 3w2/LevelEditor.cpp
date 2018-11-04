@@ -112,7 +112,7 @@ void LevelEditor::create_initLevel()
 			m_LevelArray[currentVertex + 2].position = Vector2f(m_pos_DesingArray.x +x*TILE_SIZE + TILE_SIZE, y* TILE_SIZE + TILE_SIZE);
 			m_LevelArray[currentVertex + 3].position = Vector2f(m_pos_DesingArray.x +x*TILE_SIZE, y* TILE_SIZE + TILE_SIZE);
 
-			verticalOffset = 0;
+			verticalOffset = 29*TILE_SIZE;  // 20 29. Tile in Set
 
 
 			m_LevelArray[currentVertex + 0].texCoords = Vector2f(0, 0 + verticalOffset);
@@ -260,16 +260,16 @@ void LevelEditor::Draw()
 
 	window->setView(m_DesignView);
 	m_DesignView.setViewport(sf::FloatRect(0.2, 0, 1, 1));
-	window->draw(m_LevelArray, &m_DefaultTile.get(Textures::LevelEditorSet));
+	//window->draw(m_LevelArray, &m_DefaultTile.get(Textures::LevelEditorSet));
+	window->draw(m_LevelArray, &m_TileSheet.get(Textures::Tileset1));
 	
-    
 	window->setView(m_TileView);
 	m_TileView.setViewport(sf::FloatRect(0, 0, 0.2, 1));
     window->draw(m_TileArray, &m_TileSheet.get(Textures::Tileset1));
 
-	//window->setView(m_LevelView);
-	//m_LevelView.setViewport(sf::FloatRect(0, 0, 0.2, 0.2));
-	//window->draw(m_LevelArray, &m_DefaultTile.get(Textures::LevelEditorSet));
+	window->setView(m_LevelView);
+	m_LevelView.setViewport(sf::FloatRect(0, 0, 0.2, 0.2));
+	window->draw(m_LevelArray, &m_TileSheet.get(Textures::Tileset1));
 	
 	if (m_inTileView)
 	   LevelEditor::draw_mousepose_inTileView(m_ActualTile);
