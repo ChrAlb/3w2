@@ -209,6 +209,36 @@ void LevelEditor::MouseClick(EventDetails * l_details)
 	if (m_inDesignView)
 	{
 
+
+		int currentVertex = 0;
+		int verticalOffset = 0;
+		int verticalcounter = 0;
+
+		for (int x = 0; x < m_LevelSize.x; x++)
+		{
+			for (int y = 0; y < m_LevelSize.y; y++)
+			{
+				m_LevelArray[currentVertex + 0].position = Vector2f(m_pos_DesingArray.x + x*TILE_SIZE, y* TILE_SIZE);
+				m_LevelArray[currentVertex + 1].position = Vector2f(m_pos_DesingArray.x + x*TILE_SIZE + TILE_SIZE, y* TILE_SIZE);
+				m_LevelArray[currentVertex + 2].position = Vector2f(m_pos_DesingArray.x + x*TILE_SIZE + TILE_SIZE, y* TILE_SIZE + TILE_SIZE);
+				m_LevelArray[currentVertex + 3].position = Vector2f(m_pos_DesingArray.x + x*TILE_SIZE, y* TILE_SIZE + TILE_SIZE);
+
+				verticalOffset = m_picked_TileNumber * TILE_SIZE;  
+
+
+
+				m_LevelArray[currentVertex + 0].texCoords = Vector2f(0, 0 + verticalOffset);
+				m_LevelArray[currentVertex + 1].texCoords = Vector2f(TILE_SIZE, 0 + verticalOffset);
+				m_LevelArray[currentVertex + 2].texCoords = Vector2f(TILE_SIZE, TILE_SIZE + verticalOffset);
+				m_LevelArray[currentVertex + 3].texCoords = Vector2f(0, TILE_SIZE + verticalOffset);
+
+				currentVertex = currentVertex + VERTS_IN_QUAD;
+				verticalcounter++;
+			}
+		}
+
+
+
 	}
 
 }
