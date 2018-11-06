@@ -177,6 +177,25 @@ void LevelEditor::draw_mousepose_inTileView(FloatRect field)
 	window->draw(rectangle);
 }
 
+void LevelEditor::draw_picked_tile()
+{
+	m_ClickedTile.left = ((int)mouseposition.x / TILE_SIZE) * TILE_SIZE;
+	m_ClickedTile.top = ((int)mouseposition.y / TILE_SIZE) * TILE_SIZE;
+	m_ClickedTile.width = TILE_SIZE;
+	m_ClickedTile.height = TILE_SIZE;
+
+	sf::RenderWindow* window = m_stateMgr->GetContext()->m_wind->GetRenderWindow();
+	window->setView(m_LayerView);
+	sf::RectangleShape rectangle;
+	rectangle.setPosition(m_ClickedTile.left, m_ClickedTile.top);
+	rectangle.setSize(sf::Vector2f(m_ClickedTile.width, m_ClickedTile.height));
+	rectangle.setOutlineThickness(6);
+	rectangle.setOutlineColor(sf::Color::Blue);
+	rectangle.setFillColor(sf::Color::Transparent);
+	window->draw(rectangle);
+
+}
+
 FloatRect LevelEditor::calculateActualTile(Vector2f mouspos)
 {
 	FloatRect Tile;
@@ -192,17 +211,16 @@ FloatRect LevelEditor::calculateActualTile(Vector2f mouspos)
 void LevelEditor::MouseClick(EventDetails * l_details)
 {
 	SharedContext* context = m_stateMgr->GetContext();
-	sf::Vector2i mousePos = l_details->m_mouse;
+	sf::Vector2i mouseposition = l_details->m_mouse;
 
+	
+	
+	
 	if (m_inTileView)
 	{
 		m_Tile_picked = true;
-		m_ClickedTile.left = ((int)mousePos.x / TILE_SIZE) * TILE_SIZE;
-		m_ClickedTile.top = ((int)mousePos.y / TILE_SIZE) * TILE_SIZE;
-		m_ClickedTile.width = TILE_SIZE;
-		m_ClickedTile.height = TILE_SIZE;
-
-		m_picked_TileNumber = Calc_TileNumber(mousePos);
+		
+		m_picked_TileNumber = Calc_TileNumber(mouseposition);
 	}
 	
 
@@ -295,20 +313,15 @@ void LevelEditor::Draw()
 	window->draw(m_LevelArray, &m_TileSheet.get(Textures::Tileset1));
 	
 	if (m_inTileView)
-	   LevelEditor::draw_mousepose_inTileView(m_ActualTile);
+	{
+        LevelEditor::draw_mousepose_inTileView(m_ActualTile);
+	}
+	  
 	
 	if (m_Tile_picked)
 	{
-
-		window->setView(m_LayerView);
-		sf::RectangleShape rectangle;
-		rectangle.setPosition(m_ClickedTile.left, m_ClickedTile.top);
-		rectangle.setSize(sf::Vector2f(m_ClickedTile.width, m_ClickedTile.height));
-		rectangle.setOutlineThickness(6);
-		rectangle.setOutlineColor(sf::Color::Blue);
-		rectangle.setFillColor(sf::Color::Transparent);
-		window->draw(rectangle);
-
+		LevelEditor::draw_picked_tile();		
 	}
+	
 
 }

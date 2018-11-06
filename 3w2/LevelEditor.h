@@ -33,6 +33,7 @@ public:
 	bool mouse_pos_in(FloatRect Fläche, Vector2f pos);
 
 	void draw_mousepose_inTileView(FloatRect field);
+	void draw_picked_tile();
 
 	FloatRect calculateActualTile(Vector2f mouspos);
 
