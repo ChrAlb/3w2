@@ -206,7 +206,7 @@ void LevelEditor::MouseClick(EventDetails * l_details)
 	}
 	
 
-	if (m_inDesignView)
+	if (m_inDesignView && m_Tile_picked)
 	{
 
 
@@ -252,7 +252,7 @@ int LevelEditor::Calc_TileNumber(Vector2i mousepos)
 	mousepos.x = mousepos.x - m_pos_TileArray.x;
 	mousepos.y = mousepos.y - m_pos_TileArray.y;
 
-	pos.x = (int)mousepos.x / TILE_SIZE + 1;
+	pos.x = (int)mousepos.x / TILE_SIZE ;
 	Number = pos.x;
 
 	pos.y = (int)mousepos.y / TILE_SIZE;
