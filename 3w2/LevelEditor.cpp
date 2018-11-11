@@ -209,7 +209,7 @@ void LevelEditor::MouseClick(EventDetails * l_details)
 	if (m_inDesignView && m_Tile_picked)
 	{
 
-
+/*
 		int currentVertex = 0;
 		int verticalOffset = 0;
 		int verticalcounter = 0;
@@ -236,7 +236,20 @@ void LevelEditor::MouseClick(EventDetails * l_details)
 				verticalcounter++;
 			}
 		}
+*/
+		m_LevelArray[0].position = Vector2f(0,0);
+		m_LevelArray[1].position = Vector2f(0,50);
+		m_LevelArray[2].position = Vector2f(50,50);
+		m_LevelArray[3].position = Vector2f(50,0);
 
+		int verticalOffset = m_picked_TileNumber * TILE_SIZE;
+
+
+
+		m_LevelArray[0].texCoords = Vector2f(0, 0 + verticalOffset);
+		m_LevelArray[1].texCoords = Vector2f(TILE_SIZE, 0 + verticalOffset);
+		m_LevelArray[2].texCoords = Vector2f(TILE_SIZE, TILE_SIZE + verticalOffset);
+		m_LevelArray[3].texCoords = Vector2f(0, TILE_SIZE + verticalOffset);
 
 
 	}
@@ -277,7 +290,7 @@ void LevelEditor::Update(const sf::Time & l_time)
 	else m_inTileView = false;
 	
 
-	if (mouse_pos_in(DesignFläche, mouseposition))
+	if (mouse_pos_in(DesignFläche, mouseposition))    
 	{
 		m_inDesignView = true;
 
@@ -286,10 +299,11 @@ void LevelEditor::Update(const sf::Time & l_time)
 
 		newpos = mouseposition;
 
-		if (newpos == m_oldpos)
+		if (   (newpos == m_oldpos) )
+			 //|| sf::VideoMode::getDesktopMode().width - m_LevelSize.x -500 > newpos.x  
+		     // || newpos.x <   sf::VideoMode::getDesktopMode().width - m_LevelSize.x - 500)
 		{
-
-			move = 0;
+            move = 0;
 		}
 		else
 		{

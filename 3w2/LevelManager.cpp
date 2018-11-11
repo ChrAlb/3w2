@@ -9,7 +9,7 @@
 
 
 using namespace sf;
-using namespace std;
+using namespace  std;
 
 int** LevelManager::nextLevel(VertexArray& rVaLevel, leveldate& m_leveldaten)
 {
