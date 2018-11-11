@@ -28,7 +28,7 @@ public:
 	void Continue(EventDetails* l_details);
 
 	void read_Tileset();
-	void create_initLevel();
+	
     void set_const();
 	bool mouse_pos_in(FloatRect Fläche, Vector2f pos);
 
@@ -39,6 +39,8 @@ public:
 	void MouseClick(EventDetails* l_details);
 
 	int Calc_TileNumber(Vector2i mousepos);
+
+	void manage_ArrayLevel();
 
 private:
 
@@ -82,5 +84,7 @@ private:
 	bool m_inDesignView;
 
 	int m_picked_TileNumber;
+
+	int** m_ArrayLevel = NULL;
 
 	};

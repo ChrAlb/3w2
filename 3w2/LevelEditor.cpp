@@ -12,6 +12,39 @@ LevelEditor::LevelEditor(StateManager* l_stateManager)
 
 LevelEditor::~LevelEditor()  {}
 
+
+
+void LevelEditor::set_const()
+{
+	m_TileLevelSize.x = 6;
+	m_TileLevelSize.y = 5;
+
+	m_LevelSize.x = 41;
+	m_LevelSize.y = 21;
+
+	m_pos_TileArray.x = 50;
+	m_pos_TileArray.y = 400;
+
+	m_pos_DesingArray.x = 400;
+	m_pos_DesingArray.y = 0;
+
+	TileFläche = { m_pos_TileArray.x,m_pos_TileArray.y, m_TileLevelSize.x * TILE_SIZE,   m_TileLevelSize.y * TILE_SIZE };
+	DesignFläche = { m_pos_DesingArray.x, m_pos_DesingArray.y,m_LevelSize.x*TILE_SIZE, m_LevelSize.y*TILE_SIZE };
+
+	m_inTileView = false;
+	m_inDesignView = false;
+
+	m_Tile_picked = false;
+
+	m_oldpos = { 0,0 };
+
+	m_picked_TileNumber = 0;
+
+	m_LevelArray.setPrimitiveType(Quads);
+	m_LevelArray.resize(m_LevelSize.x*m_LevelSize.y*VERTS_IN_QUAD);
+
+}
+
 void LevelEditor::OnCreate()
 {
 	sf::Vector2u windowSize = m_stateMgr->GetContext()->m_wind->GetRenderWindow()->getSize();
@@ -31,8 +64,22 @@ void LevelEditor::OnCreate()
     evMgr->AddCallback(StateType::LevelEditor, "Mouse_Left", &LevelEditor::MouseClick, this);
 
 
+	m_ArrayLevel = new int*[m_LevelSize.y];
+	for (int i = 0; i < m_LevelSize.y; ++i)
+	{
+		m_ArrayLevel[i] = new int[m_LevelSize.x];
+	}
+
+	for (int x = 0; x < m_LevelSize.x; x++)
+	{
+		for (int y = 0; y < m_LevelSize.y; y++)
+		{
+			m_ArrayLevel[y][x] = 29 ;
+		}
+	}
+
 	LevelEditor::read_Tileset();
-	LevelEditor::create_initLevel();
+	LevelEditor::manage_ArrayLevel();
 
 }
 
@@ -93,65 +140,7 @@ void LevelEditor::read_Tileset()
 
 }
 
-void LevelEditor::create_initLevel()
-{
 
-	m_LevelArray.setPrimitiveType(Quads);
-	m_LevelArray.resize(m_LevelSize.x*m_LevelSize.y*VERTS_IN_QUAD);
-
-	int currentVertex = 0;
-	int verticalOffset = 0;
-	int verticalcounter = 0;
-
-	for (int x = 0; x < m_LevelSize.x; x++)
-	{
-		for (int y = 0; y < m_LevelSize.y; y++)
-		{
-			m_LevelArray[currentVertex + 0].position = Vector2f(m_pos_DesingArray.x+x*TILE_SIZE, y* TILE_SIZE);
-			m_LevelArray[currentVertex + 1].position = Vector2f(m_pos_DesingArray.x +x*TILE_SIZE + TILE_SIZE, y* TILE_SIZE);
-			m_LevelArray[currentVertex + 2].position = Vector2f(m_pos_DesingArray.x +x*TILE_SIZE + TILE_SIZE, y* TILE_SIZE + TILE_SIZE);
-			m_LevelArray[currentVertex + 3].position = Vector2f(m_pos_DesingArray.x +x*TILE_SIZE, y* TILE_SIZE + TILE_SIZE);
-
-			verticalOffset = 29*TILE_SIZE;  // 20 29. Tile in Set
-
-
-			m_LevelArray[currentVertex + 0].texCoords = Vector2f(0, 0 + verticalOffset);
-			m_LevelArray[currentVertex + 1].texCoords = Vector2f(TILE_SIZE, 0 + verticalOffset);
-			m_LevelArray[currentVertex + 2].texCoords = Vector2f(TILE_SIZE, TILE_SIZE + verticalOffset);
-			m_LevelArray[currentVertex + 3].texCoords = Vector2f(0, TILE_SIZE + verticalOffset);
-
-			currentVertex = currentVertex + VERTS_IN_QUAD;
-			verticalcounter++;
-		}
-	}
-}
-
-void LevelEditor::set_const()
-{
-	m_TileLevelSize.x = 6;
-	m_TileLevelSize.y = 5;
-	
-	m_LevelSize.x = 41;
-	m_LevelSize.y = 21;
-
-	m_pos_TileArray.x = 50 ;
-	m_pos_TileArray.y = 400 ;
-
-	m_pos_DesingArray.x = 400;
-	m_pos_DesingArray.y = 0;
-
-	TileFläche = { m_pos_TileArray.x,m_pos_TileArray.y, m_TileLevelSize.x * TILE_SIZE,   m_TileLevelSize.y * TILE_SIZE };
-	DesignFläche = { m_pos_DesingArray.x, m_pos_DesingArray.y,m_LevelSize.x*TILE_SIZE, m_LevelSize.y*TILE_SIZE };
-
-	m_inTileView = false;
-	m_inDesignView = false;
-
-	m_Tile_picked = false;
-
-	m_oldpos = { 0,0 };
-
-	m_picked_TileNumber = 0;
-}
 
 bool LevelEditor::mouse_pos_in(FloatRect Fläche, Vector2f pos)
 {
@@ -209,47 +198,6 @@ void LevelEditor::MouseClick(EventDetails * l_details)
 	if (m_inDesignView && m_Tile_picked)
 	{
 
-/*
-		int currentVertex = 0;
-		int verticalOffset = 0;
-		int verticalcounter = 0;
-
-		for (int x = 0; x < m_LevelSize.x; x++)
-		{
-			for (int y = 0; y < m_LevelSize.y; y++)
-			{
-				m_LevelArray[currentVertex + 0].position = Vector2f(m_pos_DesingArray.x + x*TILE_SIZE, y* TILE_SIZE);
-				m_LevelArray[currentVertex + 1].position = Vector2f(m_pos_DesingArray.x + x*TILE_SIZE + TILE_SIZE, y* TILE_SIZE);
-				m_LevelArray[currentVertex + 2].position = Vector2f(m_pos_DesingArray.x + x*TILE_SIZE + TILE_SIZE, y* TILE_SIZE + TILE_SIZE);
-				m_LevelArray[currentVertex + 3].position = Vector2f(m_pos_DesingArray.x + x*TILE_SIZE, y* TILE_SIZE + TILE_SIZE);
-
-				verticalOffset = m_picked_TileNumber * TILE_SIZE;  
-
-
-
-				m_LevelArray[currentVertex + 0].texCoords = Vector2f(0, 0 + verticalOffset);
-				m_LevelArray[currentVertex + 1].texCoords = Vector2f(TILE_SIZE, 0 + verticalOffset);
-				m_LevelArray[currentVertex + 2].texCoords = Vector2f(TILE_SIZE, TILE_SIZE + verticalOffset);
-				m_LevelArray[currentVertex + 3].texCoords = Vector2f(0, TILE_SIZE + verticalOffset);
-
-				currentVertex = currentVertex + VERTS_IN_QUAD;
-				verticalcounter++;
-			}
-		}
-*/
-		m_LevelArray[0].position = Vector2f(0,0);
-		m_LevelArray[1].position = Vector2f(0,50);
-		m_LevelArray[2].position = Vector2f(50,50);
-		m_LevelArray[3].position = Vector2f(50,0);
-
-		int verticalOffset = m_picked_TileNumber * TILE_SIZE;
-
-
-
-		m_LevelArray[0].texCoords = Vector2f(0, 0 + verticalOffset);
-		m_LevelArray[1].texCoords = Vector2f(TILE_SIZE, 0 + verticalOffset);
-		m_LevelArray[2].texCoords = Vector2f(TILE_SIZE, TILE_SIZE + verticalOffset);
-		m_LevelArray[3].texCoords = Vector2f(0, TILE_SIZE + verticalOffset);
 
 
 	}
@@ -275,6 +223,31 @@ int LevelEditor::Calc_TileNumber(Vector2i mousepos)
 	return Number;
 }
 
+void LevelEditor::manage_ArrayLevel()
+{
+	int currentVertex = 0;
+
+	for (int x = 0; x < m_LevelSize.x; x++)
+	{
+		for (int y = 0; y < m_LevelSize.y; y++)
+		{
+			m_LevelArray[currentVertex + 0].position = Vector2f(x*TILE_SIZE, y* TILE_SIZE);
+			m_LevelArray[currentVertex + 1].position = Vector2f(x*TILE_SIZE + TILE_SIZE, y* TILE_SIZE);
+			m_LevelArray[currentVertex + 2].position = Vector2f(x*TILE_SIZE + TILE_SIZE, y* TILE_SIZE + TILE_SIZE);
+			m_LevelArray[currentVertex + 3].position = Vector2f(x*TILE_SIZE, y* TILE_SIZE + TILE_SIZE);
+
+			int verticalOffset = m_ArrayLevel[y][x] * TILE_SIZE;
+
+			m_LevelArray[currentVertex + 0].texCoords = Vector2f(0, 0 + verticalOffset);
+			m_LevelArray[currentVertex + 1].texCoords = Vector2f(TILE_SIZE, 0 + verticalOffset);
+			m_LevelArray[currentVertex + 2].texCoords = Vector2f(TILE_SIZE, TILE_SIZE + verticalOffset);
+			m_LevelArray[currentVertex + 3].texCoords = Vector2f(0, TILE_SIZE + verticalOffset);
+
+			currentVertex = currentVertex + VERTS_IN_QUAD;
+		}
+	}
+}
+
 
 void LevelEditor::Update(const sf::Time & l_time) 
 
@@ -296,12 +269,11 @@ void LevelEditor::Update(const sf::Time & l_time)
 
 		Vector2f newpos;
 		float move;
-
+/*
 		newpos = mouseposition;
 
-		if (   (newpos == m_oldpos) )
-			 //|| sf::VideoMode::getDesktopMode().width - m_LevelSize.x -500 > newpos.x  
-		     // || newpos.x <   sf::VideoMode::getDesktopMode().width - m_LevelSize.x - 500)
+		if    (newpos == m_oldpos) 
+			 
 		{
             move = 0;
 		}
@@ -311,9 +283,9 @@ void LevelEditor::Update(const sf::Time & l_time)
 		}
 		m_oldpos = newpos;
 
-		m_DesignView.move(move, 0);
+		m_DesignView.move(move, 0);   */
 		
-	}
+	} 
 	else
 		m_inDesignView = false;
 
