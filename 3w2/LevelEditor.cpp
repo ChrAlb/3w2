@@ -198,7 +198,12 @@ void LevelEditor::MouseClick(EventDetails * l_details)
 	if (m_inDesignView && m_Tile_picked)
 	{
 
+		int x = mousePos.x / TILE_SIZE;
+		int y = mousePos.y / TILE_SIZE;
 
+		m_ArrayLevel[y][x] = m_picked_TileNumber;
+
+		LevelEditor::manage_ArrayLevel();
 
 	}
 
