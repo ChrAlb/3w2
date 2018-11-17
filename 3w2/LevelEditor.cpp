@@ -302,7 +302,10 @@ void LevelEditor::Draw()
 {
 	
 	sf::RenderWindow* window = m_stateMgr->	GetContext()->m_wind->GetRenderWindow();
-	//window->clear(sf::Color::Yellow);
+	
+	window->clear(sf::Color(255,160,0));
+	
+
 
 	window->setView(m_DesignView);
 	m_DesignView.setViewport(sf::FloatRect(0.2, 0, 1, 1));
