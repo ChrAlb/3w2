@@ -271,16 +271,18 @@ void LevelEditor::Update(const sf::Time & l_time)
 	if (mouse_pos_in(DesignFläche, mouseposition))    
 	{
 		m_inDesignView = true;
-
+		
 		Vector2f newpos;
 		float move;
-/*
-		newpos = mouseposition;
 
-		if    (newpos == m_oldpos) 
-			 
+		newpos.x = mouseposition.x;
+
+		float tt = sf::VideoMode::getDesktopMode().width;
+
+		if ((m_oldpos == newpos) || (newpos.x < (tt / 2)) || (newpos.x > (m_LevelSize.x *TILE_SIZE - (tt / 2))))
 		{
-            move = 0;
+			move = 0;
+
 		}
 		else
 		{
@@ -288,8 +290,8 @@ void LevelEditor::Update(const sf::Time & l_time)
 		}
 		m_oldpos = newpos;
 
-		m_DesignView.move(move, 0);   */
-		
+		m_DesignView.move(move,0);
+	
 	} 
 	else
 		m_inDesignView = false;
@@ -300,7 +302,7 @@ void LevelEditor::Draw()
 {
 	
 	sf::RenderWindow* window = m_stateMgr->	GetContext()->m_wind->GetRenderWindow();
-	window->clear(sf::Color::Yellow);
+	//window->clear(sf::Color::Yellow);
 
 	window->setView(m_DesignView);
 	m_DesignView.setViewport(sf::FloatRect(0.2, 0, 1, 1));
