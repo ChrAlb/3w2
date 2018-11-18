@@ -19,7 +19,7 @@ void LevelEditor::set_const()
 	m_TileLevelSize.x = 6;
 	m_TileLevelSize.y = 5;
 
-	m_LevelSize.x = 41;
+	m_LevelSize.x = 45;
 	m_LevelSize.y = 21;
 
 	m_pos_TileArray.x = 50;
@@ -197,12 +197,14 @@ void LevelEditor::MouseClick(EventDetails * l_details)
 
 	if (m_inDesignView && m_Tile_picked)
 	{
+        sf::RenderWindow* window = m_stateMgr->GetContext()->m_wind->GetRenderWindow();
+		window->setView(m_DesignView);
 
-		int x = mousePos.x / TILE_SIZE;
-		int y = mousePos.y / TILE_SIZE;
-
-		sf::RenderWindow* window = m_stateMgr->GetContext()->m_wind->GetRenderWindow();
+		
 		Vector2f pixpos = window->mapPixelToCoords(sf::Mouse::getPosition());
+		
+		int x = pixpos.x / TILE_SIZE;
+		int y = pixpos.y / TILE_SIZE;
 
 		m_ArrayLevel[y][x] = m_picked_TileNumber;
 
@@ -276,7 +278,8 @@ void LevelEditor::Update(const sf::Time & l_time)
 		m_inDesignView = true;
 
 		m_DesignView.setCenter(mouseposition.x, sf::VideoMode::getDesktopMode().height/2);
-
+		
+		
 		/*
 		Vector2f newpos;
 		float move;
@@ -346,6 +349,10 @@ void LevelEditor::Draw()
 		rectangle.setOutlineThickness(6);
 		rectangle.setOutlineColor(sf::Color::Blue);
 		rectangle.setFillColor(sf::Color::Transparent);
+
+
+
+
 		window->draw(rectangle);
 
 	}
