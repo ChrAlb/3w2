@@ -19,7 +19,7 @@ void LevelEditor::set_const()
 	m_TileLevelSize.x = 6;
 	m_TileLevelSize.y = 5;
 
-	m_LevelSize.x = 45;
+	m_LevelSize.x = 40;
 	m_LevelSize.y = 21;
 
 	m_pos_TileArray.x = 50;
@@ -52,8 +52,8 @@ void LevelEditor::OnCreate()
 	LevelEditor::set_const();
 	
 	m_TileView.reset(sf::FloatRect(0,0,400, VideoMode::getDesktopMode().height));
-	m_DesignView.reset(sf::FloatRect(400,0, VideoMode::getDesktopMode().width, VideoMode::getDesktopMode().height));
-	m_LevelView.reset(sf::FloatRect(400, 0,(m_LevelSize.y*TILE_SIZE) , (m_LevelSize.x*TILE_SIZE) ));
+	m_DesignView.reset(sf::FloatRect(0,0, VideoMode::getDesktopMode().width, VideoMode::getDesktopMode().height));
+	m_LevelView.reset(sf::FloatRect(0, 0,(m_LevelSize.y*TILE_SIZE) , (m_LevelSize.x*TILE_SIZE) ));
 	m_LayerView.reset(sf::FloatRect(0, 0, VideoMode::getDesktopMode().width, VideoMode::getDesktopMode().height));
 
 	m_TileSheet.load(Textures::Tileset1, "graphics/tiles_sheet.png");
@@ -277,6 +277,7 @@ void LevelEditor::Update(const sf::Time & l_time)
 	{
 		m_inDesignView = true;
 
+		// Variante 1: Follow mouse in center
 		m_DesignView.setCenter(mouseposition.x, sf::VideoMode::getDesktopMode().height/2);
 		
 		
@@ -285,11 +286,8 @@ void LevelEditor::Update(const sf::Time & l_time)
 		float move;
 
 		sf::RenderWindow* window = m_stateMgr->GetContext()->m_wind->GetRenderWindow();
-        Vector2f pixpos = window->mapPixelToCoords(sf::Mouse::getPosition());
-
+        
 		newpos = mouseposition;
-
-		
 
 		float tt = sf::VideoMode::getDesktopMode().width;
 
