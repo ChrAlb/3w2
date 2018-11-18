@@ -201,6 +201,9 @@ void LevelEditor::MouseClick(EventDetails * l_details)
 		int x = mousePos.x / TILE_SIZE;
 		int y = mousePos.y / TILE_SIZE;
 
+		sf::RenderWindow* window = m_stateMgr->GetContext()->m_wind->GetRenderWindow();
+		Vector2f pixpos = window->mapPixelToCoords(sf::Mouse::getPosition());
+
 		m_ArrayLevel[y][x] = m_picked_TileNumber;
 
 		LevelEditor::manage_ArrayLevel();
@@ -257,9 +260,9 @@ void LevelEditor::manage_ArrayLevel()
 void LevelEditor::Update(const sf::Time & l_time) 
 
 {
+	
 	mouseposition = static_cast <sf::Vector2f> (sf::Mouse::getPosition());
-	//printf("%f\n", mouseposition.x);
-	//printf("%f\n", mouseposition.y);
+	
 	if (mouse_pos_in(TileFläche, mouseposition))
 	{
 		m_ActualTile = LevelEditor::calculateActualTile(mouseposition);
@@ -271,11 +274,19 @@ void LevelEditor::Update(const sf::Time & l_time)
 	if (mouse_pos_in(DesignFläche, mouseposition))    
 	{
 		m_inDesignView = true;
-		
+
+		m_DesignView.setCenter(mouseposition.x, sf::VideoMode::getDesktopMode().height/2);
+
+		/*
 		Vector2f newpos;
 		float move;
 
-		newpos.x = mouseposition.x;
+		sf::RenderWindow* window = m_stateMgr->GetContext()->m_wind->GetRenderWindow();
+        Vector2f pixpos = window->mapPixelToCoords(sf::Mouse::getPosition());
+
+		newpos = mouseposition;
+
+		
 
 		float tt = sf::VideoMode::getDesktopMode().width;
 
@@ -291,6 +302,8 @@ void LevelEditor::Update(const sf::Time & l_time)
 		m_oldpos = newpos;
 
 		m_DesignView.move(move,0);
+
+		*/
 	
 	} 
 	else
