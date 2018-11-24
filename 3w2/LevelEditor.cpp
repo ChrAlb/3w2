@@ -19,7 +19,7 @@ void LevelEditor::set_const()
 	m_TileLevelSize.x = 6;
 	m_TileLevelSize.y = 5;
 
-	m_LevelSize.x = 40;
+	m_LevelSize.x = 45;
 	m_LevelSize.y = 21;
 
 	m_pos_TileArray.x = 50;
@@ -77,6 +77,8 @@ void LevelEditor::OnCreate()
 			m_ArrayLevel[y][x] = 29 ;
 		}
 	}
+
+
 
 	LevelEditor::read_Tileset();
 	LevelEditor::manage_ArrayLevel();
@@ -282,22 +284,29 @@ void LevelEditor::Update(const sf::Time & l_time)
 		
 		
 		/*
-		Vector2f newpos;
+		//Vector2f newpos;
 		float move;
 
 		sf::RenderWindow* window = m_stateMgr->GetContext()->m_wind->GetRenderWindow();
         
-		newpos = mouseposition;
+		Vector2f newpos = window->mapPixelToCoords(sf::Mouse::getPosition());
+		//newpos = mouseposition;
 
 		float tt = sf::VideoMode::getDesktopMode().width;
 
-		if ((m_oldpos == newpos) || (newpos.x < (tt / 2)) || (newpos.x > (m_LevelSize.x *TILE_SIZE - (tt / 2))))
+		if ((m_oldpos == newpos) || (newpos.x < (m_pos_TileArray.x + (tt-400) / 2)) || (newpos.x > (m_LevelSize.x *TILE_SIZE - ((tt- (m_pos_TileArray.x) / 2))))
 		{
 			move = 0;
 
 		}
 		else
 		{
+			
+			if (newpos.x > (m_LevelSize.x *TILE_SIZE - ((tt - 400) / 2)))
+			{
+				tt=tt;
+			}
+			
 			move = newpos.x - m_oldpos.x;
 		}
 		m_oldpos = newpos;
@@ -305,6 +314,8 @@ void LevelEditor::Update(const sf::Time & l_time)
 		m_DesignView.move(move,0);
 
 		*/
+
+
 	
 	} 
 	else
@@ -328,6 +339,7 @@ void LevelEditor::Draw()
 	
 	window->setView(m_TileView);
 	m_TileView.setViewport(sf::FloatRect(0, 0, 0.2, 1));
+	
     window->draw(m_TileArray, &m_TileSheet.get(Textures::Tileset1));
 
 	window->setView(m_LevelView);
