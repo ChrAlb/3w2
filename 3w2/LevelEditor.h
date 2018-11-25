@@ -38,6 +38,7 @@ public:
 
 	void MouseClick(EventDetails* l_details);
 
+	
 	int Calc_TileNumber(Vector2i mousepos);
 
 	void manage_ArrayLevel();
@@ -87,6 +88,6 @@ private:
 
 	int** m_ArrayLevel = NULL;
 
+	RectangleShape TileBackground;
 	
-
 	};

@@ -62,8 +62,7 @@ void LevelEditor::OnCreate()
 	EventManager* evMgr = m_stateMgr->GetContext()->m_eventManager;
     evMgr->AddCallback(StateType::LevelEditor, "Finish_LevelEditor", &LevelEditor::Continue, this);
     evMgr->AddCallback(StateType::LevelEditor, "Mouse_Left", &LevelEditor::MouseClick, this);
-
-
+	
 	m_ArrayLevel = new int*[m_LevelSize.y];
 	for (int i = 0; i < m_LevelSize.y; ++i)
 	{
@@ -78,8 +77,11 @@ void LevelEditor::OnCreate()
 		}
 	}
 
+	TileBackground.setPosition(0, 0);
+	TileBackground.setSize(Vector2f(m_pos_DesingArray.x, VideoMode::getDesktopMode().height));
+	TileBackground.setFillColor(sf::Color(192, 192,192));
 
-
+	
 	LevelEditor::read_Tileset();
 	LevelEditor::manage_ArrayLevel();
 
@@ -216,6 +218,8 @@ void LevelEditor::MouseClick(EventDetails * l_details)
 
 }
 
+
+
 int LevelEditor::Calc_TileNumber(Vector2i mousepos)
 {
 	
@@ -277,10 +281,24 @@ void LevelEditor::Update(const sf::Time & l_time)
 
 	if (mouse_pos_in(DesignFläche, mouseposition))    
 	{
+		
+		if (Keyboard::isKeyPressed(Keyboard::Right))
+
+		{
+			m_DesignView.move(1, 0);
+		}
+
+
+		if (Keyboard::isKeyPressed(Keyboard::Left))
+
+		{
+			m_DesignView.move(-1, 0);
+		}
+		
 		m_inDesignView = true;
 
 		// Variante 1: Follow mouse in center
-		m_DesignView.setCenter(mouseposition.x, sf::VideoMode::getDesktopMode().height/2);
+		//m_DesignView.setCenter(mouseposition.x, sf::VideoMode::getDesktopMode().height/2);
 		
 		
 		/*
@@ -338,12 +356,14 @@ void LevelEditor::Draw()
 	window->draw(m_LevelArray, &m_TileSheet.get(Textures::Tileset1));
 	
 	window->setView(m_TileView);
+	window->draw(TileBackground);
 	m_TileView.setViewport(sf::FloatRect(0, 0, 0.2, 1));
 	
     window->draw(m_TileArray, &m_TileSheet.get(Textures::Tileset1));
 
 	window->setView(m_LevelView);
 	m_LevelView.setViewport(sf::FloatRect(0, 0, 0.2, 0.2));
+	
 	window->draw(m_LevelArray, &m_TileSheet.get(Textures::Tileset1));
 	
 	if (m_inTileView)
