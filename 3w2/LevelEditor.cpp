@@ -53,7 +53,7 @@ void LevelEditor::OnCreate()
 	
 	m_TileView.reset(sf::FloatRect(0,0,400, VideoMode::getDesktopMode().height));
 	m_DesignView.reset(sf::FloatRect(0,0, VideoMode::getDesktopMode().width, VideoMode::getDesktopMode().height));
-	m_LevelView.reset(sf::FloatRect(0, 0,(m_LevelSize.y*TILE_SIZE) , (m_LevelSize.x*TILE_SIZE) ));
+	m_LevelView.reset(sf::FloatRect(0, 0,(m_LevelSize.x*TILE_SIZE) , (m_LevelSize.y*TILE_SIZE) ));
 	m_LayerView.reset(sf::FloatRect(0, 0, VideoMode::getDesktopMode().width, VideoMode::getDesktopMode().height));
 
 	m_TileSheet.load(Textures::Tileset1, "graphics/tiles_sheet.png");
@@ -79,7 +79,7 @@ void LevelEditor::OnCreate()
 
 	TileBackground.setPosition(0, 0);
 	TileBackground.setSize(Vector2f(m_pos_DesingArray.x, VideoMode::getDesktopMode().height));
-	TileBackground.setFillColor(sf::Color(192, 192,192));
+	TileBackground.setFillColor(sf::Color(255, 191,132));
 
 	
 	LevelEditor::read_Tileset();
@@ -297,44 +297,7 @@ void LevelEditor::Update(const sf::Time & l_time)
 		
 		m_inDesignView = true;
 
-		// Variante 1: Follow mouse in center
-		//m_DesignView.setCenter(mouseposition.x, sf::VideoMode::getDesktopMode().height/2);
 		
-		
-		/*
-		//Vector2f newpos;
-		float move;
-
-		sf::RenderWindow* window = m_stateMgr->GetContext()->m_wind->GetRenderWindow();
-        
-		Vector2f newpos = window->mapPixelToCoords(sf::Mouse::getPosition());
-		//newpos = mouseposition;
-
-		float tt = sf::VideoMode::getDesktopMode().width;
-
-		if ((m_oldpos == newpos) || (newpos.x < (m_pos_TileArray.x + (tt-400) / 2)) || (newpos.x > (m_LevelSize.x *TILE_SIZE - ((tt- (m_pos_TileArray.x) / 2))))
-		{
-			move = 0;
-
-		}
-		else
-		{
-			
-			if (newpos.x > (m_LevelSize.x *TILE_SIZE - ((tt - 400) / 2)))
-			{
-				tt=tt;
-			}
-			
-			move = newpos.x - m_oldpos.x;
-		}
-		m_oldpos = newpos;
-
-		m_DesignView.move(move,0);
-
-		*/
-
-
-	
 	} 
 	else
 		m_inDesignView = false;
