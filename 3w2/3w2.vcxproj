@@ -159,6 +159,8 @@
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameStats.h" />
+    <ClInclude Include="GUI_Manager.h" />
+    <ClInclude Include="GUI_Textbox.h" />
     <ClInclude Include="LevelEditor.h" />
     <ClInclude Include="LevelManager.h" />
     <ClInclude Include="MusicPlayer.h" />
@@ -187,6 +189,7 @@
     <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameStats.cpp" />
+    <ClCompile Include="GUI_Textbox.cpp" />
     <ClCompile Include="LevelEditor.cpp" />
     <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="LoadLevel.cpp" />
