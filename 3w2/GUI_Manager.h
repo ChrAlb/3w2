@@ -2,6 +2,7 @@
 #include <SFML\Graphics.hpp>
 #include <string>
 #include "SharedContext.h"
+#include "GUI_Textbox.h"
  
 
 using namespace sf;
@@ -16,8 +17,7 @@ class GUI_Manager
 protected:
 	
 	enum GUI_ElementType { TextField, EditBox };
-
-	enum  GUI_EventType { None, Click, Release, Hover, Leave };
+    enum  GUI_EventType { None, Click, Release, Hover, Leave };
 
 	GUI_ElementType g_type;
 	GUI_EventType   g_eventType;
@@ -38,7 +38,9 @@ protected:
 
 
 public:
-	
+	GUI_Manager();
+	~GUI_Manager();
+
 	void virtual draw(RenderWindow& window) = 0;
 	void virtual update() = 0;
 	

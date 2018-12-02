@@ -38,6 +38,7 @@ void LevelEditor::set_const()
 
 	m_oldpos = { 0,0 };
 
+
 	m_picked_TileNumber = 0;
 
 	m_LevelArray.setPrimitiveType(Quads);
