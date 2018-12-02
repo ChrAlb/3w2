@@ -88,8 +88,9 @@ void LevelEditor::OnCreate()
 	LevelEditor::read_Tileset();
 	LevelEditor::manage_ArrayLevel();
 
-	GUI_Manager* gui = m_stateMgr->GetContext()->m_gui->register_GUI;
-
+	
+	GUI_Manager* gui = m_stateMgr->GetContext()->m_gui;
+	gui->register_GUI();
 	}
 
 void LevelEditor::OnDestroy()
@@ -308,7 +309,8 @@ void LevelEditor::Update(const sf::Time & l_time)
 		m_inDesignView = false;
 
 	
-	GUI_Manager* gui = m_stateMgr->GetContext()->m_gui->update_GUI;
+	GUI_Manager* gui = m_stateMgr->GetContext()->m_gui;
+	gui->update_GUI();
 
 }
 
@@ -355,6 +357,7 @@ void LevelEditor::Draw()
 
 	}
 
-	GUI_Manager* gui = m_stateMgr->GetContext()->m_gui->draw_GUI;
+	GUI_Manager* gui = m_stateMgr->GetContext()->m_gui;
+	gui->draw_GUI(*window);
 
 }
