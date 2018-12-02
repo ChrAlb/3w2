@@ -40,12 +40,14 @@ struct SharedContext{
 	SharedContext():
 		m_wind(nullptr),
 		m_eventManager(nullptr),
+		m_gui(nullptr),
 		
 		//m_entityManager(nullptr),
 		m_gameMap(nullptr){}
 
 	Wind* m_wind;
 	EventManager* m_eventManager;
+	GUI_Manager* m_gui;
 	
 	//EntityManager* m_entityManager;
 	Map* m_gameMap;

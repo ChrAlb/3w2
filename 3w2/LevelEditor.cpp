@@ -5,6 +5,7 @@
 #include <fstream>
 #include "LevelManager.h"
 #include <iostream>
+#include "GUI_Manager.h"
 
 
 LevelEditor::LevelEditor(StateManager* l_stateManager)
@@ -63,6 +64,7 @@ void LevelEditor::OnCreate()
 	EventManager* evMgr = m_stateMgr->GetContext()->m_eventManager;
     evMgr->AddCallback(StateType::LevelEditor, "Finish_LevelEditor", &LevelEditor::Continue, this);
     evMgr->AddCallback(StateType::LevelEditor, "Mouse_Left", &LevelEditor::MouseClick, this);
+
 	
 	m_ArrayLevel = new int*[m_LevelSize.y];
 	for (int i = 0; i < m_LevelSize.y; ++i)
@@ -86,7 +88,9 @@ void LevelEditor::OnCreate()
 	LevelEditor::read_Tileset();
 	LevelEditor::manage_ArrayLevel();
 
-}
+	GUI_Manager* gui = m_stateMgr->GetContext()->m_gui->register_GUI;
+
+	}
 
 void LevelEditor::OnDestroy()
 {
@@ -303,6 +307,9 @@ void LevelEditor::Update(const sf::Time & l_time)
 	else
 		m_inDesignView = false;
 
+	
+	GUI_Manager* gui = m_stateMgr->GetContext()->m_gui->update_GUI;
+
 }
 
 void LevelEditor::Draw()
@@ -344,11 +351,10 @@ void LevelEditor::Draw()
 		rectangle.setOutlineColor(sf::Color::Blue);
 		rectangle.setFillColor(sf::Color::Transparent);
 
-
-
-
-		window->draw(rectangle);
+        window->draw(rectangle);
 
 	}
+
+	GUI_Manager* gui = m_stateMgr->GetContext()->m_gui->draw_GUI;
 
 }
