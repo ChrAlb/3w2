@@ -6,7 +6,7 @@ class GUI_Textbox : public GUI_Manager
 {
 public:
 	
-	void draw();
+	void draw(RenderWindow& window);
 	void update();
 	void acitvate(Vector2f pos, Vector2f size, String string);
 	void deactivate();

@@ -3,10 +3,10 @@
 
 
 
-void GUI_Textbox::draw()
+void GUI_Textbox::draw(RenderWindow& window)
 {
 	
-	sf::RenderWindow* window = m_stateMgr->GetContext()->m_wind->GetRenderWindow();
+	window.draw(g_window);
 }
 
 void GUI_Textbox::update()

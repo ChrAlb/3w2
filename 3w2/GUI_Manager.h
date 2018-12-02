@@ -30,13 +30,16 @@ protected:
 	Color          g_fontcolor;
 	String         g_windowtext;
 
-	
+	std::list<GUI_Manager*> GUI_objects;
+	std::list<GUI_Manager*>::iterator iter;
+	std::list <GUI_Manager* >::iterator iter2;
+
+	GUI_Textbox *textbox;
 
 
 public:
 	
-	
-	void virtual draw() = 0;
+	void virtual draw(RenderWindow& window) = 0;
 	void virtual update() = 0;
 	
 	void virtual deactivate() = 0;
