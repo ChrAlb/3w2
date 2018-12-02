@@ -34,7 +34,7 @@ protected:
 	std::list<GUI_Manager*>::iterator iter;
 	std::list <GUI_Manager* >::iterator iter2;
 
-	GUI_Textbox *textbox;
+	GUI_Textbox  *textbox;
 
 
 public:
@@ -45,6 +45,8 @@ public:
 	void virtual update() = 0;
 	
 	void virtual deactivate() = 0;
+
+	void register_GUI();
 
 	void update_GUI();
 	void draw_GUI(RenderWindow& window);

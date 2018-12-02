@@ -16,16 +16,8 @@ g_backgroundcolor = none;
 g_fontcolor = none;
 g_windowtext = "";
 
-	GUI_ElementType g_type;
-	GUI_EventType   g_eventType;
+	
 
-	RectangleShape g_window;
-	Vector2f       g_pos;
-	Vector2f       g_size;
-
-	Color          g_backgroundcolor;
-	Color          g_fontcolor;
-	String         g_windowtext;
 
 
 }
@@ -38,6 +30,14 @@ GUI_Manager::~GUI_Manager()
 		delete (*iter);
 		iter = GUI_objects.erase(iter);
 	}
+}
+
+void GUI_Manager::register_GUI()
+{
+	textbox = new GUI_Textbox();
+	textbox->acitvate({ 0,0 }, { 50,20 }, "Test");
+	GUI_objects.push_back(textbox);
+
 }
 
 void GUI_Manager::update_GUI()

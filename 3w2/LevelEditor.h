@@ -7,6 +7,7 @@
 #include "ResourceIdentifiers.h"
 #include <string>
 
+
 using namespace sf;
 
 class LevelEditor : public BaseState
@@ -89,5 +90,6 @@ private:
 	int** m_ArrayLevel = NULL;
 
 	RectangleShape TileBackground;
+
 	
 	};
