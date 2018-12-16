@@ -1,6 +1,7 @@
 #include "GUI_Manager.h"
 #include "SharedContext.h"
 
+
 GUI_Manager::GUI_Manager(EventManager* l_evMgr, SharedContext* l_shared)
 	: m_eventMgr(l_evMgr), m_context(l_shared), m_currentState(StateType(0))
 {

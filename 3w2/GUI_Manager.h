@@ -11,6 +11,7 @@
 #include <unordered_map>
 #include <functional>
 #include <fstream>
+#include "Utilities.h"
 
 using GUI_Interfaces = std::map<std::string, GUI_Interface*>;
 using GUI_Container = std::unordered_map<StateType, GUI_Interfaces>;
