@@ -1,7 +1,9 @@
 #pragma once
 #include "Window.h"
 #include "EventManager.h"
-
+#include "FontManager.h"
+#include "GUI_Manager.h"
+#include "TextureManager.h"
 
 #include <map>
 #include <string>
@@ -37,15 +39,22 @@ private:
 
 class Map;
 struct SharedContext{
-	SharedContext():
+	SharedContext() :
 		m_wind(nullptr),
 		m_eventManager(nullptr),
+		m_fontManager(nullptr),
+		m_guiManager(nullptr) {},
+		m_textureManager(nullptr),
+
 		
 		//m_entityManager(nullptr),
 		m_gameMap(nullptr){}
 
 	Wind* m_wind;
 	EventManager* m_eventManager;
+    FontManager* m_fontManager;
+	GUI_Manager* m_guiManager;
+	TextureManager* m_textureManager;
 	
 	//EntityManager* m_entityManager;
 	Map* m_gameMap;

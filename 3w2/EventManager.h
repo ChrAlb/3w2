@@ -7,6 +7,7 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include "GUI_Event.h"
 
 
 enum class EventType{
@@ -23,14 +24,17 @@ enum class EventType{
 	MouseLeft = sf::Event::MouseLeft,
 	Closed = sf::Event::Closed,
 	TextEntered = sf::Event::TextEntered,
-	Keyboard = sf::Event::Count + 1, Mouse, Joystick
+	Keyboard = sf::Event::Count + 1, Mouse, Joystick,
+	GUI_Click, GUI_Release, GUI_Hoover, GUI_Leave
 };
 
-struct EventInfo{
-	EventInfo(){ m_code = 0; }
-	EventInfo(int l_event){ m_code = l_event; }
-	union{
+struct EventInfo {
+	EventInfo() { m_code = 0; }
+	EventInfo(int l_event) { m_code = l_event; }
+	EventInfo(const GUI_Event& l_guiEvent) { m_gui = l_guiEvent; }
+	union {
 		int m_code;
+		GUI_Event m_gui;
 	};
 };
 
@@ -47,21 +51,40 @@ struct EventDetails{
 	int m_mouseWheelDelta;
 	int m_keyCode; // Single key code.
 
+	std::string m_guiInterface;
+	std::string m_guiElement;
+	GUI_EventType m_guiEvent;
+
 	void Clear(){
 		m_size = sf::Vector2i(0, 0);
 		m_textEntered = 0;
 		m_mouse = sf::Vector2i(0, 0);
 		m_mouseWheelDelta = 0;
 		m_keyCode = -1;
+		m_guiInterface = "";
+		m_guiElement = "";
+		m_guiEvent = GUI_EventType::None;
 	}
 };
 
 using Events = std::vector<std::pair<EventType, EventInfo>>;
 
-struct Binding{
-	Binding(const std::string& l_name) : m_name(l_name), m_details(l_name), c(0){}
-	~Binding(){}
-	void BindEvent(EventType l_type, EventInfo l_info = EventInfo()){
+struct Binding {
+	Binding(const std::string& l_name) : m_name(l_name), m_details(l_name), c(0) {}
+	~Binding() {
+		// GUI portion.
+		for (auto itr = m_events.begin();
+			itr != m_events.end(); ++itr)
+		{
+			if (itr->first == EventType::GUI_Click || itr->first == EventType::GUI_Release ||
+				itr->first == EventType::GUI_Hoover || itr->first == EventType::GUI_Leave)
+			{
+				delete[] itr->second.m_gui.m_interface;
+				delete[] itr->second.m_gui.m_element;
+			}
+		}
+	}
+	void BindEvent(EventType l_type, EventInfo l_info = EventInfo()) {
 		m_events.emplace_back(l_type, l_info);
 	}
 
@@ -110,6 +133,7 @@ public:
 	}
 
 	void HandleEvent(sf::Event& l_event);
+	void HandleEvent(GUI_Event& l_event);
 	void Update();
 
 	// Getters.

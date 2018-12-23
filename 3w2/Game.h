@@ -2,6 +2,9 @@
 #include "Window.h"
 #include "EventManager.h"
 #include "StateManager.h"
+#include "GUI_Manager.h"
+#include "FontManager.h"
+
 
 
 #include <iostream>
@@ -27,4 +30,7 @@ private:
 	Wind m_window;
 	
 	StateManager m_stateManager;
+	GUI_Manager m_guiManager;
+	FontManager m_fontManager;
+
 };
