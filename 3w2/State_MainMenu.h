@@ -19,6 +19,10 @@ public:
 	void Draw();
 
 	void MouseClick(EventDetails* l_details);
+
+	void Play(EventDetails* l_details);
+	void Quit(EventDetails* l_details);
+
 private:
 	TextureHolder m_bgtexture;
 	sf::Sprite m_BGSprite;
