@@ -17,26 +17,30 @@ void State_MainMenu::OnCreate() {
 	eMgr->AddCallback(StateType::MainMenu, "MainMenu_Quit", &State_MainMenu::Quit, this);
 }
 
-void State_MainMenu::OnDestroy(){
-	EventManager* evMgr = m_stateMgr->
-		GetContext()->m_eventManager;
-	evMgr->RemoveCallback(StateType::MainMenu, "Mouse_Left");
+void State_MainMenu::OnDestroy() {
+	m_stateMgr->GetContext()->m_guiManager->RemoveInterface(StateType::MainMenu, "MainMenu");
+	EventManager* eMgr = m_stateMgr->GetContext()->m_eventManager;
+	eMgr->RemoveCallback(StateType::MainMenu, "MainMenu_Play");
+	eMgr->RemoveCallback(StateType::MainMenu, "MainMenu_Quit");
 }
 
-void State_MainMenu::Activate(){
-	if (m_stateMgr->HasState(StateType::Game)
-		&& m_labels[0].getString() != "RESUME")
-	{
-		m_labels[0].setString(sf::String("RESUME"));
-	} else {
-		m_labels[0].setString(sf::String("Hi chasch spilä"));
+void State_MainMenu::Activate() {
+	auto& play = *m_stateMgr->GetContext()->m_guiManager->
+		GetInterface(StateType::MainMenu, "MainMenu")->GetElement("Play");
+	if (m_stateMgr->HasState(StateType::Game)) {
+		// Resume
+		play.SetText("Resume");
 	}
-
-	sf::FloatRect rect = m_labels[0].getLocalBounds();
-		m_labels[0].setOrigin(rect.left + rect.width / 2.0f,
-		rect.top + rect.height / 2.0f);
+	else {
+		// Play
+		play.SetText("Play");
+	}
 }
 
+void State_MainMenu::Play(EventDetails* l_details) { m_stateMgr->SwitchTo(StateType::Game); }
+void State_MainMenu::Quit(EventDetails* l_details) { m_stateMgr->GetContext()->m_wind->Close(); }
+
+/*
 void State_MainMenu::MouseClick(EventDetails* l_details){
 	SharedContext* context = m_stateMgr->GetContext();
 	sf::Vector2i mousePos = l_details->m_mouse;
@@ -61,6 +65,7 @@ void State_MainMenu::MouseClick(EventDetails* l_details){
 		}
 	}
 }
+*/
 
 void State_MainMenu::Draw(){
 	sf::RenderWindow* window = m_stateMgr->
