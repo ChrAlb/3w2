@@ -1,6 +1,7 @@
 #pragma once
 #include "GUI_Element.h"
 
+
 enum class SliderType{ Horizontal, Vertical };
 
 class GUI_Scrollbar : public GUI_Element{

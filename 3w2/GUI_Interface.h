@@ -5,6 +5,7 @@
 #include <SFML/Graphics/RenderTexture.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Sprite.hpp>
+#include "stdafx.h"
 
 using Elements = std::unordered_map<std::string,GUI_Element*>;
 

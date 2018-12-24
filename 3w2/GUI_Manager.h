@@ -1,6 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "stdafx.h"
 #include "EventManager.h"
+
 
 #include "GUI_Interface.h"
 #include "GUI_Event.h"
@@ -12,6 +14,7 @@
 #include <functional>
 #include <fstream>
 #include "Utilities.h"
+
 
 using GUI_Interfaces = std::map<std::string, GUI_Interface*>;
 using GUI_Container = std::unordered_map<StateType, GUI_Interfaces>;

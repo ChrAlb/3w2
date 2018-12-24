@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "GUI_Textfield.h"
 #include <algorithm>
 #include <iostream>

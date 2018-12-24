@@ -6,6 +6,7 @@
 #include <SFML/Graphics/Sprite.hpp>
 #include <string>
 
+
 enum class GUI_ElementState{ Neutral, Focused, Clicked };
 
 struct GUI_Style{

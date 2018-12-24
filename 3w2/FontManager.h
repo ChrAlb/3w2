@@ -1,5 +1,6 @@
 #pragma once
 #include "ResourceManager.h"
+
 #include <SFML/Graphics/Font.hpp>
 
 class FontManager : public ResourceManager<FontManager, sf::Font>{

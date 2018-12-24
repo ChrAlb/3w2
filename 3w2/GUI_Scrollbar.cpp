@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "GUI_Scrollbar.h"
 #include "GUI_Interface.h"
 #include "GUI_Manager.h"

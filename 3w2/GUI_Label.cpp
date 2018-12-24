@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "GUI_Label.h"
 #include <algorithm>
 #include <iostream>

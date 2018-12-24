@@ -43,10 +43,10 @@ struct SharedContext{
 		m_wind(nullptr),
 		m_eventManager(nullptr),
 		m_fontManager(nullptr),
-		m_guiManager(nullptr) {},
+		
 		m_textureManager(nullptr),
 
-		
+		m_guiManager(nullptr),
 		//m_entityManager(nullptr),
 		m_gameMap(nullptr){}
 
