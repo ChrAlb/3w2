@@ -25,7 +25,7 @@ enum class EventType{
 	Closed = sf::Event::Closed,
 	TextEntered = sf::Event::TextEntered,
 	Keyboard = sf::Event::Count + 1, Mouse, Joystick,
-	GUI_Click, GUI_Release, GUI_Hoover, GUI_Leave
+	GUI_Click, GUI_Release, GUI_Hover, GUI_Leave
 };
 
 struct EventInfo {
@@ -77,7 +77,7 @@ struct Binding {
 			itr != m_events.end(); ++itr)
 		{
 			if (itr->first == EventType::GUI_Click || itr->first == EventType::GUI_Release ||
-				itr->first == EventType::GUI_Hoover || itr->first == EventType::GUI_Leave)
+				itr->first == EventType::GUI_Hover || itr->first == EventType::GUI_Leave)
 			{
 				delete[] itr->second.m_gui.m_interface;
 				delete[] itr->second.m_gui.m_element;

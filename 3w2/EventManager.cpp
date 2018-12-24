@@ -41,7 +41,7 @@ void EventManager::HandleEvent(sf::Event& l_event) {
 		for (auto &e_itr : bind->m_events) {
 			EventType sfmlEvent = (EventType)l_event.type;
 			if (e_itr.first == EventType::GUI_Click || e_itr.first == EventType::GUI_Release ||
-				e_itr.first == EventType::GUI_Hoover || e_itr.first == EventType::GUI_Leave)
+				e_itr.first == EventType::GUI_Hover || e_itr.first == EventType::GUI_Leave)
 			{
 				continue;
 			}
@@ -94,13 +94,13 @@ void EventManager::HandleEvent(GUI_Event& l_event) {
 		for (auto &e_itr : bind->m_events)
 		{
 			if (e_itr.first != EventType::GUI_Click && e_itr.first != EventType::GUI_Release &&
-				e_itr.first != EventType::GUI_Hoover && e_itr.first != EventType::GUI_Leave)
+				e_itr.first != EventType::GUI_Hover && e_itr.first != EventType::GUI_Leave)
 			{
 				continue;
 			}
 			if ((e_itr.first == EventType::GUI_Click && l_event.m_type != GUI_EventType::Click) ||
 				(e_itr.first == EventType::GUI_Release && l_event.m_type != GUI_EventType::Release) ||
-				(e_itr.first == EventType::GUI_Hoover && l_event.m_type != GUI_EventType::Hover) ||
+				(e_itr.first == EventType::GUI_Hover && l_event.m_type != GUI_EventType::Hover) ||
 				(e_itr.first == EventType::GUI_Leave && l_event.m_type != GUI_EventType::Leave))
 			{
 				continue;
@@ -193,7 +193,7 @@ void EventManager::LoadBindings() {
 
 			EventInfo eventInfo;
 			if (type == EventType::GUI_Click || type == EventType::GUI_Release ||
-				type == EventType::GUI_Hoover || type == EventType::GUI_Leave)
+				type == EventType::GUI_Hover || type == EventType::GUI_Leave)
 			{
 				start = end + delimiter.length();
 				end = keyval.find(delimiter, start);
