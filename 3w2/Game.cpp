@@ -11,15 +11,17 @@ Game::Game(): m_window("3w2", sf::Vector2u(sf::VideoMode::getDesktopMode().width
 	m_context.m_eventManager = m_window.GetEventManager();
 
 	m_context.m_guiManager = &m_guiManager;
-
-	m_fontManager.RequireResource("MAIN");
+	m_context.m_fontManager = &m_fontManager;
+	
+	
+	m_fontManager.RequireResource("Main");
 	
 	m_stateManager.SwitchTo(StateType::Intro);
 }
 
 Game::~Game()
 {
-	m_fontManager.ReleaseResource("MAIN");
+	m_fontManager.ReleaseResource("Main");
 }
 
 sf::Time Game::GetElapsed(){ return m_clock.getElapsedTime(); }
