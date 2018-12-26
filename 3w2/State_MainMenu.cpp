@@ -40,8 +40,10 @@ void State_MainMenu::Activate() {
 	}
 }
 
+
 void State_MainMenu::Play(EventDetails* l_details) { m_stateMgr->SwitchTo(StateType::Game); }
-void State_MainMenu::Quit(EventDetails* l_details) { m_stateMgr->GetContext()->m_wind->Close(l_details); }
+void State_MainMenu::Quit(EventDetails* l_details) { m_stateMgr->GetContext()->m_wind->Close(l_details)   ; }
+//void State_MainMenu::Quit(EventDetails* l_details) { m_stateMgr->GetContext()->m_wind->Close(l_details); }
 void State_MainMenu::Draw()
 {
 	

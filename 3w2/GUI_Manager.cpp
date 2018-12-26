@@ -22,15 +22,19 @@ GUI_Manager::GUI_Manager(EventManager* l_evMgr, SharedContext* l_shared)
 }
 
 GUI_Manager::~GUI_Manager(){
+
+
 	m_eventMgr->RemoveCallback(StateType(0), "Mouse_Left");
 	m_eventMgr->RemoveCallback(StateType(0), "Mouse_Left_Release");
 	m_eventMgr->RemoveCallback(StateType(0), "Text_Entered");
+
 
 	for (auto &itr : m_interfaces){
 		for (auto &itr2 : itr.second){
 			delete itr2.second;
 		}
 	}
+	
 }
 GUI_Interface* GUI_Manager::GetInterface(const StateType& l_state,
 	const std::string& l_name)
