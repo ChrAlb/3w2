@@ -138,6 +138,7 @@ void GUI_Manager::Update(float l_dT){
 	}
 }
 void GUI_Manager::Render(sf::RenderWindow* l_wind){
+	
 	auto state = m_interfaces.find(m_currentState);
 	if (state == m_interfaces.end()){ return; }
 	for (auto &itr : state->second){
