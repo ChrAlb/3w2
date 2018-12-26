@@ -30,7 +30,7 @@ public:
 	bool IsFocused();
 
 	void ToggleFullscreen(EventDetails* l_details);
-	void Close(EventDetails* l_details);
+	void Close(EventDetails* l_details = nullptr);
 	
 	sf::RenderWindow* GetRenderWindow();
 	
