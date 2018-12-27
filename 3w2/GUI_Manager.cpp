@@ -34,7 +34,7 @@ GUI_Manager::~GUI_Manager(){
 			delete itr2.second;
 		}
 	}
-	
+
 }
 GUI_Interface* GUI_Manager::GetInterface(const StateType& l_state,
 	const std::string& l_name)
