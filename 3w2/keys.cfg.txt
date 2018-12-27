@@ -8,4 +8,5 @@ Key_P 5:15
 Finish_LevelEditor 5:58
 MouseWheel_Scrolled 8:0
 MainMenu_Play 27:MainMenu:Play
+MainMenu_LevEdit 27:MainMenu:LevEdit
 MainMenu_Quit 27:MainMenu:Quit

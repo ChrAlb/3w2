@@ -20,6 +20,7 @@ public:
 
 	
 	void Play(EventDetails* l_details);
+	void LevEdit(EventDetails* l_details);
 	void Quit(EventDetails* l_details);
 
 private:

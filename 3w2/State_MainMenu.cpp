@@ -17,6 +17,7 @@ void State_MainMenu::OnCreate() {
 	gui->GetInterface(StateType::MainMenu, "MainMenu")->SetPosition(sf::Vector2f(250.f, 168.f));
 	EventManager* eMgr = m_stateMgr->GetContext()->m_eventManager;
 	eMgr->AddCallback(StateType::MainMenu, "MainMenu_Play", &State_MainMenu::Play, this);
+	eMgr->AddCallback(StateType::MainMenu, "MainMenu_LevEdit", &State_MainMenu::LevEdit, this);
 	eMgr->AddCallback(StateType::MainMenu, "MainMenu_Quit", &State_MainMenu::Quit, this);
 }
 
@@ -24,6 +25,7 @@ void State_MainMenu::OnDestroy() {
 	m_stateMgr->GetContext()->m_guiManager->RemoveInterface(StateType::MainMenu, "MainMenu");
 	EventManager* eMgr = m_stateMgr->GetContext()->m_eventManager;
 	eMgr->RemoveCallback(StateType::MainMenu, "MainMenu_Play");
+	eMgr->RemoveCallback(StateType::MainMenu, "MainMenu_LevEdit");
 	eMgr->RemoveCallback(StateType::MainMenu, "MainMenu_Quit");
 }
 
@@ -42,12 +44,13 @@ void State_MainMenu::Activate() {
 
 
 void State_MainMenu::Play(EventDetails* l_details) { m_stateMgr->SwitchTo(StateType::Game); }
+void State_MainMenu::LevEdit(EventDetails * l_details) {m_stateMgr->SwitchTo(StateType::LevelEditor);} 
 void State_MainMenu::Quit(EventDetails* l_details) { m_stateMgr->GetContext()->m_wind->Close()   ; }
+//void State_MainMenu::Quit(EventDetails * l_details) { m_stateMgr->SwitchTo(StateType::LevelEditor); }
 void State_MainMenu::Draw()
 {
 	
-	sf::RenderWindow* window = m_stateMgr->
-		GetContext()->m_wind->GetRenderWindow();
+	sf::RenderWindow* window = m_stateMgr->GetContext()->m_wind->GetRenderWindow();
 	m_BGSprite.setTexture(m_bgtexture.get(Textures::MenuBGScreen));
 	window->draw(m_BGSprite);
 	
