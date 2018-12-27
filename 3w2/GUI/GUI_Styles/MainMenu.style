@@ -1,5 +1,6 @@
 State Neutral
-Size 300 150
-TextSize 12
+Size 600 400
+TextColor 0 0 0 255
+TextSize 20
 Font Main
 /State

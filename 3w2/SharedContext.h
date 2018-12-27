@@ -38,25 +38,23 @@ private:
 
 
 class Map;
-struct SharedContext{
+
+struct SharedContext {
 	SharedContext() :
 		m_wind(nullptr),
 		m_eventManager(nullptr),
+		m_textureManager(nullptr),
 		m_fontManager(nullptr),
 		
-		m_textureManager(nullptr),
-
-		m_guiManager(nullptr),
-		//m_entityManager(nullptr),
-		m_gameMap(nullptr){}
+		m_gameMap(nullptr),
+		m_guiManager(nullptr) {}
 
 	Wind* m_wind;
 	EventManager* m_eventManager;
-    FontManager* m_fontManager;
-	GUI_Manager* m_guiManager;
 	TextureManager* m_textureManager;
+	FontManager* m_fontManager;
 	
-	//EntityManager* m_entityManager;
 	Map* m_gameMap;
+	GUI_Manager* m_guiManager;
 	
 };
