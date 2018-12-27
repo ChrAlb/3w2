@@ -17,9 +17,10 @@ GUI_Interface::~GUI_Interface(){
 	if (m_backdropTexture){ delete m_backdropTexture; }
 	if (m_contentTexture){ delete m_contentTexture; }
 	if (m_controlTexture){ delete m_controlTexture; }
+	
 	for (auto &itr : m_elements){
-		delete itr.second;
-	}
+		delete itr.second; 
+	} 
 }
 
 void GUI_Interface::SetPosition(const sf::Vector2f& l_pos){

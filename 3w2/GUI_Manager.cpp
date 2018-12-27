@@ -28,7 +28,7 @@ GUI_Manager::~GUI_Manager(){
 	m_eventMgr->RemoveCallback(StateType(0), "Mouse_Left_Release");
 	m_eventMgr->RemoveCallback(StateType(0), "Text_Entered");
 
-
+	
 	for (auto &itr : m_interfaces){
 		for (auto &itr2 : itr.second){
 			delete itr2.second;
