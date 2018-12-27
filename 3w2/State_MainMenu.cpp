@@ -32,11 +32,11 @@ void State_MainMenu::Activate() {
 		GetInterface(StateType::MainMenu, "MainMenu")->GetElement("Play");
 	if (m_stateMgr->HasState(StateType::Game)) {
 		// Resume
-		play.SetText("Resume");
+		play.SetText("Pausä");
 	}
 	else {
 		// Play
-		play.SetText("Play");
+		play.SetText("Spilä");
 	}
 }
 

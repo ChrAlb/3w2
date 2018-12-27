@@ -15,7 +15,7 @@ int main()
 		game.Render();
 		game.LateUpdate();
 	}
-	system;
+	return 0;
 	
 }
 
