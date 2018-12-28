@@ -79,7 +79,7 @@ void LevelEditor::OnCreate()
 
 	TileBackground.setPosition(0, 0);
 	TileBackground.setSize(Vector2f(m_pos_DesingArray.x, VideoMode::getDesktopMode().height));
-	TileBackground.setFillColor(sf::Color(255, 191,132));
+	TileBackground.setFillColor(sf::Color(234, 162,43));
 
 	
 	LevelEditor::read_Tileset();

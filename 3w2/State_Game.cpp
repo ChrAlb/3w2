@@ -79,15 +79,14 @@ void State_Game::Update(const sf::Time& l_time)
 
 	if ((m_LM.get_allLeveldone()) || (m_gameStats.nomorelives()))
 	{
-
+		m_stateMgr->Remove(StateType::Game);
 		m_stateMgr->SwitchTo(StateType::MainMenu);
 	}
 
 
 	if (m_newlevelrequiered)
 	{
-		//oldpos = (*iter)->getCenter().x;
-		//oldpos = 150;
+		
 		// Hier alle Objects löschen!?
 		m_newlevelrequiered = false;
 		loadLevel();
