@@ -59,11 +59,17 @@ void LevelEditor::OnCreate()
 	m_TileSheet.load(Textures::Tileset1, "graphics/tiles_sheet.png");
 	m_DefaultTile.load(Textures::LevelEditorSet,"graphics/default_tile.png");
 	
+	GUI_Manager* gui = m_stateMgr->GetContext()->m_guiManager;
+	gui->LoadInterface(StateType::LevelEditor, "LevelEditor.interface", "LevelEditor");
+	gui->GetInterface(StateType::LevelEditor, "LevelEditor")->SetPosition(sf::Vector2f(50.f, 1000.f));
+
 	EventManager* evMgr = m_stateMgr->GetContext()->m_eventManager;
-    evMgr->AddCallback(StateType::LevelEditor, "Finish_LevelEditor", &LevelEditor::Continue, this);
     evMgr->AddCallback(StateType::LevelEditor, "Mouse_Left", &LevelEditor::MouseClick, this);
+	evMgr->AddCallback(StateType::LevelEditor, "LevelEditor_OK", &LevelEditor::OK, this);
 	
 	m_ArrayLevel = new int*[m_LevelSize.y];
+
+
 	for (int i = 0; i < m_LevelSize.y; ++i)
 	{
 		m_ArrayLevel[i] = new int[m_LevelSize.x];
@@ -104,10 +110,6 @@ void LevelEditor::Deactivate()
 }
 
 
-void LevelEditor::Continue(EventDetails* l_details) {
-	m_stateMgr->SwitchTo(StateType::MainMenu);
-	m_stateMgr->Remove(StateType::LevelEditor);
-}
 
 void LevelEditor::read_Tileset()
 {
@@ -216,6 +218,11 @@ void LevelEditor::MouseClick(EventDetails * l_details)
 
 	}
 
+}
+
+void LevelEditor::OK(EventDetails * l_details)
+{
+	m_stateMgr->SwitchTo(StateType::MainMenu);
 }
 
 

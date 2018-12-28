@@ -25,8 +25,7 @@ public:
 	void Update(const sf::Time& l_time);
 	void Draw();
 
-	void Continue(EventDetails* l_details);
-
+	
 	void read_Tileset();
 	
     void set_const();
@@ -38,6 +37,7 @@ public:
 
 	void MouseClick(EventDetails* l_details);
 
+	void OK(EventDetails* l_details);
 	
 	int Calc_TileNumber(Vector2i mousepos);
 

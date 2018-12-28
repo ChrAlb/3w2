@@ -15,6 +15,7 @@ void State_MainMenu::OnCreate() {
     GUI_Manager* gui = m_stateMgr->GetContext()->m_guiManager;
 	gui->LoadInterface(StateType::MainMenu, "MainMenu.interface", "MainMenu");
 	gui->GetInterface(StateType::MainMenu, "MainMenu")->SetPosition(sf::Vector2f(250.f, 168.f));
+	
 	EventManager* eMgr = m_stateMgr->GetContext()->m_eventManager;
 	eMgr->AddCallback(StateType::MainMenu, "MainMenu_Play", &State_MainMenu::Play, this);
 	eMgr->AddCallback(StateType::MainMenu, "MainMenu_LevEdit", &State_MainMenu::LevEdit, this);
