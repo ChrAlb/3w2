@@ -38,6 +38,7 @@ public:
 	void MouseClick(EventDetails* l_details);
 
 	void OK(EventDetails* l_details);
+	void Abbrechen(EventDetails* l_details);
 	
 	int Calc_TileNumber(Vector2i mousepos);
 
@@ -89,5 +90,7 @@ private:
 	int** m_ArrayLevel = NULL;
 
 	RectangleShape TileBackground;
+
+	RenderWindow* windo;
 	
 	};

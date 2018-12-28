@@ -8,7 +8,11 @@
 
 
 LevelEditor::LevelEditor(StateManager* l_stateManager)
-	: BaseState(l_stateManager) {}
+	: BaseState(l_stateManager) 
+{
+	windo = m_stateMgr->GetContext()->m_wind->GetRenderWindow();
+	windo->setView(m_DesignView);
+}
 
 LevelEditor::~LevelEditor()  {}
 
@@ -59,6 +63,7 @@ void LevelEditor::OnCreate()
 	m_TileSheet.load(Textures::Tileset1, "graphics/tiles_sheet.png");
 	m_DefaultTile.load(Textures::LevelEditorSet,"graphics/default_tile.png");
 	
+
 	GUI_Manager* gui = m_stateMgr->GetContext()->m_guiManager;
 	gui->LoadInterface(StateType::LevelEditor, "LevelEditor.interface", "LevelEditor");
 	gui->GetInterface(StateType::LevelEditor, "LevelEditor")->SetPosition(sf::Vector2f(50.f, 1000.f));
@@ -66,7 +71,8 @@ void LevelEditor::OnCreate()
 	EventManager* evMgr = m_stateMgr->GetContext()->m_eventManager;
     evMgr->AddCallback(StateType::LevelEditor, "Mouse_Left", &LevelEditor::MouseClick, this);
 	evMgr->AddCallback(StateType::LevelEditor, "LevelEditor_OK", &LevelEditor::OK, this);
-	
+	evMgr->AddCallback(StateType::LevelEditor, "LevelEditor_Abbrechen", &LevelEditor::Abbrechen, this);
+
 	m_ArrayLevel = new int*[m_LevelSize.y];
 
 
@@ -90,7 +96,8 @@ void LevelEditor::OnCreate()
 	
 	LevelEditor::read_Tileset();
 	LevelEditor::manage_ArrayLevel();
-
+	
+	windo->setView(m_DesignView);
 }
 
 void LevelEditor::OnDestroy()
@@ -161,15 +168,14 @@ bool LevelEditor::mouse_pos_in(FloatRect Fläche, Vector2f pos)
 
 void LevelEditor::draw_mousepose_inTileView(FloatRect field)
 {
-	sf::RenderWindow* window = m_stateMgr->GetContext()->m_wind->GetRenderWindow();
-	window->setView(m_LayerView);
+	windo->setView(m_LayerView);
 	sf::RectangleShape rectangle;
 	rectangle.setPosition(field.left,field.top);
 	rectangle.setSize(sf::Vector2f(field.width,field.height));
 	rectangle.setOutlineThickness(3);
 	rectangle.setOutlineColor(sf::Color::Black);
 	rectangle.setFillColor(sf::Color::Transparent);
-	window->draw(rectangle);
+	windo->draw(rectangle);
 }
 
 FloatRect LevelEditor::calculateActualTile(Vector2f mouspos)
@@ -203,11 +209,10 @@ void LevelEditor::MouseClick(EventDetails * l_details)
 
 	if (m_inDesignView && m_Tile_picked)
 	{
-        sf::RenderWindow* window = m_stateMgr->GetContext()->m_wind->GetRenderWindow();
-		window->setView(m_DesignView);
+       windo->setView(m_DesignView);
 
 		
-		Vector2f pixpos = window->mapPixelToCoords(sf::Mouse::getPosition());
+		Vector2f pixpos = windo->mapPixelToCoords(sf::Mouse::getPosition());
 		
 		int x = pixpos.x / TILE_SIZE;
 		int y = pixpos.y / TILE_SIZE;
@@ -221,6 +226,11 @@ void LevelEditor::MouseClick(EventDetails * l_details)
 }
 
 void LevelEditor::OK(EventDetails * l_details)
+{
+	m_stateMgr->SwitchTo(StateType::MainMenu);
+}
+
+void LevelEditor::Abbrechen(EventDetails * l_details)
 {
 	m_stateMgr->SwitchTo(StateType::MainMenu);
 }
@@ -314,27 +324,27 @@ void LevelEditor::Update(const sf::Time & l_time)
 void LevelEditor::Draw()
 {
 	
-	sf::RenderWindow* window = m_stateMgr->	GetContext()->m_wind->GetRenderWindow();
 	
-	window->clear(sf::Color(255,160,0));
 	
+	windo->clear(sf::Color(255,160,0));
+	
+	//window->setView(m_DesignView);
 
-
-	window->setView(m_DesignView);
+	windo->setView(m_DesignView);
 	m_DesignView.setViewport(sf::FloatRect(0.2, 0, 1, 1));
 	//window->draw(m_LevelArray, &m_DefaultTile.get(Textures::LevelEditorSet));
-	window->draw(m_LevelArray, &m_TileSheet.get(Textures::Tileset1));
+	windo->draw(m_LevelArray, &m_TileSheet.get(Textures::Tileset1));
 	
-	window->setView(m_TileView);
-	window->draw(TileBackground);
+	windo->setView(m_TileView);
+	windo->draw(TileBackground);
 	m_TileView.setViewport(sf::FloatRect(0, 0, 0.2, 1));
 	
-    window->draw(m_TileArray, &m_TileSheet.get(Textures::Tileset1));
+    windo->draw(m_TileArray, &m_TileSheet.get(Textures::Tileset1));
 
-	window->setView(m_LevelView);
+	windo->setView(m_LevelView);
 	m_LevelView.setViewport(sf::FloatRect(0, 0, 0.2, 0.2));
 	
-	window->draw(m_LevelArray, &m_TileSheet.get(Textures::Tileset1));
+	windo->draw(m_LevelArray, &m_TileSheet.get(Textures::Tileset1));
 	
 	if (m_inTileView)
 	   LevelEditor::draw_mousepose_inTileView(m_ActualTile);
@@ -342,7 +352,7 @@ void LevelEditor::Draw()
 	if (m_Tile_picked)
 	{
 
-		window->setView(m_LayerView);
+		windo->setView(m_LayerView);
 		sf::RectangleShape rectangle;
 		rectangle.setPosition(m_ClickedTile.left, m_ClickedTile.top);
 		rectangle.setSize(sf::Vector2f(m_ClickedTile.width, m_ClickedTile.height));
@@ -350,10 +360,9 @@ void LevelEditor::Draw()
 		rectangle.setOutlineColor(sf::Color::Blue);
 		rectangle.setFillColor(sf::Color::Transparent);
 
+        windo->draw(rectangle);
 
-
-
-		window->draw(rectangle);
+		
 
 	}
 
