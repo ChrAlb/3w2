@@ -50,6 +50,7 @@ void State_MainMenu::Quit(EventDetails* l_details)
 { 
 	    // Das ist Scheisse (Weihnachten 2018)
 	    m_stateMgr->Remove(StateType::MainMenu); 
+		//m_stateMgr->Remove(StateType::LevelEditor);
      	m_stateMgr->GetContext()->m_wind->Close()   ; 
 }
 

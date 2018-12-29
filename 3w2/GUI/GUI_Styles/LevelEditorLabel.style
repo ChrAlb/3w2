@@ -1,10 +1,10 @@
 State Neutral
-Size 800 64
+Size 50 20
 BgColor 255 0 0 255
 TextColor 0 0 0 255
-TextSize 14
+TextSize 12
 Font Main
-TextPadding 30 10
+TextPadding 5 0
 /State
 
 State Hover

@@ -13,3 +13,5 @@ MouseWheel_Scrolled 8:0
 MainMenu_Play 27:MainMenu:Play
 MainMenu_LevEdit 27:MainMenu:LevEdit
 MainMenu_Quit 27:MainMenu:Quit
+LevelEditor_OK 27:LevelEditor:OK
+LevelEditor_Abbrechen 27:LevelEditor:Abbrechen
