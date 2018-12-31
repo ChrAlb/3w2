@@ -28,6 +28,7 @@ private:
 	sf::Time m_elapsed;
 	SharedContext m_context;
 	Wind m_window;
+	//TextureManager m_textureManager;
 	
 	StateManager m_stateManager;
 	GUI_Manager m_guiManager;

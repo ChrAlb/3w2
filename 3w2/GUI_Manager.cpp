@@ -28,13 +28,13 @@ GUI_Manager::~GUI_Manager(){
 	m_eventMgr->RemoveCallback(StateType(0), "Mouse_Left_Release");
 	m_eventMgr->RemoveCallback(StateType(0), "Text_Entered");
 
-	
+/*	
 	for (auto &itr : m_interfaces){
 		for (auto &itr2 : itr.second){
 			delete itr2.second;
 		}
 	}
-
+*/
 }
 GUI_Interface* GUI_Manager::GetInterface(const StateType& l_state,
 	const std::string& l_name)
@@ -47,13 +47,15 @@ GUI_Interface* GUI_Manager::GetInterface(const StateType& l_state,
 
 bool GUI_Manager::RemoveInterface(const StateType& l_state,
 	const std::string& l_name)
-{
+{/*
 	auto s = m_interfaces.find(l_state);
 	if (s == m_interfaces.end()){ return false; }
 	auto i = s->second.find(l_name);
 	if (i == s->second.end()){ return false; }
 	delete i->second;
-	return s->second.erase(l_name);
+	return s->second.erase(l_name);    */
+	return true;
+	
 }
 void GUI_Manager::SetCurrentState(const StateType& l_state){
 	if (m_currentState == l_state){ return; }
