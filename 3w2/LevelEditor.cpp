@@ -66,7 +66,7 @@ void LevelEditor::OnCreate()
 
 	GUI_Manager* gui = m_stateMgr->GetContext()->m_guiManager;
 	gui->LoadInterface(StateType::LevelEditor, "LevelEditor.interface", "LevelEditor");
-	gui->GetInterface(StateType::LevelEditor, "LevelEditor")->SetPosition(sf::Vector2f(50.f, 900.f));
+	gui->GetInterface(StateType::LevelEditor, "LevelEditor")->SetPosition(sf::Vector2f(50.f, 950.f));
 
 	EventManager* evMgr = m_stateMgr->GetContext()->m_eventManager;
     evMgr->AddCallback(StateType::LevelEditor, "Mouse_Left", &LevelEditor::MouseClick, this);
@@ -227,11 +227,13 @@ void LevelEditor::MouseClick(EventDetails * l_details)
 
 void LevelEditor::OK(EventDetails * l_details)
 {
+	m_stateMgr->Remove(StateType::LevelEditor);
 	m_stateMgr->SwitchTo(StateType::MainMenu);
 }
 
 void LevelEditor::Abbrechen(EventDetails * l_details)
 {
+	m_stateMgr->Remove(StateType::LevelEditor);
 	m_stateMgr->SwitchTo(StateType::MainMenu);
 }
 

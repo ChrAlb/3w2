@@ -1,4 +1,4 @@
 Interface LevelEditor LevelEditor.style 0 0 Immovable NoTitle "LevelEditor"
-Element Label Title 0 0 LevelEditorTitle.style "Bis fertig?"
-Element Label OK 0 30 LevelEditorLabel.style "OK"
-Element Label Abbrechen 0 150 LevelEditorLabel.style "Abbrächä"
+Element TextField DatName 0 0 Textfield.style "Dateiname"
+Element Label OK 0 40 LevelEditorLabel.style "Fertig"
+Element Label Abbrechen 100 40 LevelEditorLabel.style "Abbrächä"
