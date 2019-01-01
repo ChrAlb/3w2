@@ -67,6 +67,7 @@ void LevelEditor::OnCreate()
 	GUI_Manager* gui = m_stateMgr->GetContext()->m_guiManager;
 	gui->LoadInterface(StateType::LevelEditor, "LevelEditor.interface", "LevelEditor");
 	gui->GetInterface(StateType::LevelEditor, "LevelEditor")->SetPosition(sf::Vector2f(50.f, 950.f));
+	
 
 	EventManager* evMgr = m_stateMgr->GetContext()->m_eventManager;
     evMgr->AddCallback(StateType::LevelEditor, "Mouse_Left", &LevelEditor::MouseClick, this);
@@ -98,10 +99,17 @@ void LevelEditor::OnCreate()
 	LevelEditor::manage_ArrayLevel();
 	
 	windo->setView(m_DesignView);
+
+	
 }
 
 void LevelEditor::OnDestroy()
 {
+	/*
+	GUI_Interface* menu = m_stateMgr->GetContext()->m_guiManager->GetInterface(StateType::LevelEditor, "LevelEditor");
+    std::string name = menu->GetElement("DatName")->GetText();
+	*/
+
 	EventManager* evMgr = m_stateMgr->GetContext()->m_eventManager;
 	evMgr->RemoveCallback(StateType::LevelEditor, "Finish_LevelEditor");
 }
