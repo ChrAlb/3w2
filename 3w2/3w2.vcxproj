@@ -168,6 +168,7 @@
     <ClInclude Include="GUI_Scrollbar.h" />
     <ClInclude Include="GUI_Style.h" />
     <ClInclude Include="GUI_TextField.h" />
+    <ClInclude Include="H_MakeTileSet.h" />
     <ClInclude Include="LevelEditor.h" />
     <ClInclude Include="LevelManager.h" />
     <ClInclude Include="MusicPlayer.h" />
@@ -205,6 +206,7 @@
     <ClCompile Include="GUI_Manager.cpp" />
     <ClCompile Include="GUI_Scrollbar.cpp" />
     <ClCompile Include="GUI_TextField.cpp" />
+    <ClCompile Include="H_MakeTileSet.cpp" />
     <ClCompile Include="LevelEditor.cpp" />
     <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="LoadLevel.cpp" />

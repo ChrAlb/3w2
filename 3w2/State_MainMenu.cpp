@@ -20,6 +20,7 @@ void State_MainMenu::OnCreate() {
 	eMgr->AddCallback(StateType::MainMenu, "MainMenu_Play", &State_MainMenu::Play, this);
 	eMgr->AddCallback(StateType::MainMenu, "MainMenu_LevEdit", &State_MainMenu::LevEdit, this);
 	eMgr->AddCallback(StateType::MainMenu, "MainMenu_Quit", &State_MainMenu::Quit, this);
+	eMgr->AddCallback(StateType::MainMenu, "Key_F1", &State_MainMenu::Start_TileMaker, this);
 }
 
 void State_MainMenu::OnDestroy() {
@@ -52,6 +53,10 @@ void State_MainMenu::Quit(EventDetails* l_details)
 	    //m_stateMgr->Remove(StateType::MainMenu); 
 		//m_stateMgr->Remove(StateType::LevelEditor);
      	m_stateMgr->GetContext()->m_wind->Close()   ; 
+}
+
+void State_MainMenu::Start_TileMaker(EventDetails * l_details)
+{
 }
 
 void State_MainMenu::Draw()
