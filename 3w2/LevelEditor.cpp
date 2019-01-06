@@ -21,7 +21,7 @@ LevelEditor::~LevelEditor()  {}
 void LevelEditor::set_const()
 {
 	m_TileLevelSize.x = 6;
-	m_TileLevelSize.y = 5;
+	m_TileLevelSize.y = 9;
 
 	m_LevelSize.x = 45;
 	m_LevelSize.y = 21;
@@ -60,8 +60,8 @@ void LevelEditor::OnCreate()
 	m_LevelView.reset(sf::FloatRect(0, 0,(m_LevelSize.x*TILE_SIZE) , (m_LevelSize.y*TILE_SIZE) ));
 	m_LayerView.reset(sf::FloatRect(0, 0, VideoMode::getDesktopMode().width, VideoMode::getDesktopMode().height));
 
-	m_TileSheet.load(Textures::Tileset1, "graphics/tiles_sheet.png");
-	m_DefaultTile.load(Textures::LevelEditorSet,"graphics/default_tile.png");
+	m_TileSheet.load(Textures::Tileset1, "graphics/tiles_sheet1.png");
+	//m_DefaultTile.load(Textures::LevelEditorSet,"graphics/default_tile.png");
 	
 
 	GUI_Manager* gui = m_stateMgr->GetContext()->m_guiManager;
@@ -86,7 +86,7 @@ void LevelEditor::OnCreate()
 	{
 		for (int y = 0; y < m_LevelSize.y; y++)
 		{
-			m_ArrayLevel[y][x] = 29 ;
+			m_ArrayLevel[y][x] = 50 ;
 		}
 	}
 

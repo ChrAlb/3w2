@@ -2,6 +2,7 @@
 #include <SFML\Graphics.hpp>
 #include <string>
 
+
 using namespace sf;
 
 class MakeTileSet 
@@ -9,18 +10,21 @@ class MakeTileSet
 {
 private:
 	
-	sf::Image SourceFiles;
-	sf::Image DestinationFile;
+	Image SourceFiles;
+	Image DestinationFile;
 
 	int amountTileFiles;
 
-	Vector2f Size_DestinationFile;
-	Vector2f Size_SourceFiles;
+	int TileSize;
+	int FilePosition;
 
-	String SourceFName;
-	String DestFName;
-	String Path;
+	Vector2i Size_DestinationFile;
+	Vector2i Size_SourceFiles;
 
+	std::string SourceFName;
+	std::string DestFName;
+	
+	
 public:
 
 	MakeTileSet();
@@ -28,5 +32,6 @@ public:
 
 	void create_TilSetFile();
 
+	
 
 };

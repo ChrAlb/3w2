@@ -57,6 +57,8 @@ void State_MainMenu::Quit(EventDetails* l_details)
 
 void State_MainMenu::Start_TileMaker(EventDetails * l_details)
 {
+	MakeTileSet maketileset;
+	maketileset.create_TilSetFile();
 }
 
 void State_MainMenu::Draw()

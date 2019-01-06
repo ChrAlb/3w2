@@ -3,6 +3,7 @@
 #include "EventManager.h"
 #include "SharedContext.h"
 #include "ResourceIdentifiers.h"
+#include "H_MakeTileSet.h"
 
 class State_MainMenu : public BaseState{
 public:
