@@ -44,6 +44,8 @@ public:
 
 	void manage_ArrayLevel();
 
+	std::ostream& saveLevelArray(std::ostream& os);
+
 private:
 
 	int m_NumberofFiles;

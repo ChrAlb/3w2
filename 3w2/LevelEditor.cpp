@@ -213,15 +213,15 @@ void LevelEditor::MouseClick(EventDetails * l_details)
 
 		m_picked_TileNumber = Calc_TileNumber(mousePos);
 	}
-	
+
 
 	if (m_inDesignView && m_Tile_picked)
 	{
-       windo->setView(m_DesignView);
+		windo->setView(m_DesignView);
 
-		
+
 		Vector2f pixpos = windo->mapPixelToCoords(sf::Mouse::getPosition());
-		
+
 		int x = pixpos.x / TILE_SIZE;
 		int y = pixpos.y / TILE_SIZE;
 
@@ -235,6 +235,13 @@ void LevelEditor::MouseClick(EventDetails * l_details)
 
 void LevelEditor::OK(EventDetails * l_details)
 {
+	GUI_Interface* menu = m_stateMgr->GetContext()->m_guiManager->GetInterface(StateType::LevelEditor, "LevelEditor");
+	std::string name = menu->GetElement("DatName")->GetText();
+	name = name + ".txt";
+	
+	std::fstream os(name, std::ios::out | std::ios::app);
+	LevelEditor::saveLevelArray(os);
+
 	m_stateMgr->Remove(StateType::LevelEditor);
 	m_stateMgr->SwitchTo(StateType::MainMenu);
 }
@@ -249,14 +256,14 @@ void LevelEditor::Abbrechen(EventDetails * l_details)
 
 int LevelEditor::Calc_TileNumber(Vector2i mousepos)
 {
-	
+
 	Vector2f pos;
 	int Number;
-	
+
 	mousepos.x = mousepos.x - m_pos_TileArray.x;
 	mousepos.y = mousepos.y - m_pos_TileArray.y;
 
-	pos.x = (int)mousepos.x / TILE_SIZE ;
+	pos.x = (int)mousepos.x / TILE_SIZE;
 	Number = pos.x;
 
 	pos.y = (int)mousepos.y / TILE_SIZE;
@@ -289,6 +296,26 @@ void LevelEditor::manage_ArrayLevel()
 			currentVertex = currentVertex + VERTS_IN_QUAD;
 		}
 	}
+}
+
+std::ostream & LevelEditor::saveLevelArray(std::ostream & os)
+{
+
+	for (int i = 0; i < m_LevelSize.y; ++i)
+	{
+		for (int j = 0; j < m_LevelSize.x; ++j)
+		{
+			if (m_ArrayLevel[i][j] < 10)
+				os << "0";
+
+			os << m_ArrayLevel[i][j] ;
+			
+			if (j < m_LevelSize.x - 1)
+				os << ",";
+		}
+		os << "\n";
+	}
+	return os;
 }
 
 
@@ -333,8 +360,6 @@ void LevelEditor::Update(const sf::Time & l_time)
 
 void LevelEditor::Draw()
 {
-	
-	
 	
 	windo->clear(sf::Color(255,160,0));
 	
