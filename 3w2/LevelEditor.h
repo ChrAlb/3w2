@@ -36,15 +36,17 @@ public:
 	FloatRect calculateActualTile(Vector2f mouspos);
 
 	void MouseClick(EventDetails* l_details);
-
-	void OK(EventDetails* l_details);
+    void OK(EventDetails* l_details);
 	void Abbrechen(EventDetails* l_details);
+	void Load(EventDetails* l_details);
 	
 	int Calc_TileNumber(Vector2i mousepos);
 
 	void manage_ArrayLevel();
 
 	std::ostream& saveLevelArray(std::ostream& os);
+
+	std::ostream& loadLevelArray(std::ostream& os);
 
 private:
 

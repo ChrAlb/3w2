@@ -29,6 +29,7 @@ void State_MainMenu::OnDestroy() {
 	eMgr->RemoveCallback(StateType::MainMenu, "MainMenu_Play");
 	eMgr->RemoveCallback(StateType::MainMenu, "MainMenu_LevEdit");
 	eMgr->RemoveCallback(StateType::MainMenu, "MainMenu_Quit");
+	eMgr->RemoveCallback(StateType::MainMenu, "Key_F1");
 }
 
 void State_MainMenu::Activate() {

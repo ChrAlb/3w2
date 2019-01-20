@@ -73,6 +73,8 @@ void LevelEditor::OnCreate()
     evMgr->AddCallback(StateType::LevelEditor, "Mouse_Left", &LevelEditor::MouseClick, this);
 	evMgr->AddCallback(StateType::LevelEditor, "LevelEditor_OK", &LevelEditor::OK, this);
 	evMgr->AddCallback(StateType::LevelEditor, "LevelEditor_Abbrechen", &LevelEditor::Abbrechen, this);
+	evMgr->AddCallback(StateType::LevelEditor, "Key_F2", &LevelEditor::Load, this);
+	
 
 	m_ArrayLevel = new int*[m_LevelSize.y];
 
@@ -105,14 +107,14 @@ void LevelEditor::OnCreate()
 
 void LevelEditor::OnDestroy()
 {
-	/*
-	GUI_Interface* menu = m_stateMgr->GetContext()->m_guiManager->GetInterface(StateType::LevelEditor, "LevelEditor");
-    std::string name = menu->GetElement("DatName")->GetText();
-	*/
+	
+    EventManager* evMgr = m_stateMgr->GetContext()->m_eventManager;
+	evMgr->RemoveCallback(StateType::LevelEditor, "LevelEditor_OK");
+	evMgr->RemoveCallback(StateType::LevelEditor, "LevelEditor_Abbrechen");
+	evMgr->RemoveCallback(StateType::LevelEditor, "MMouse_Left");
+} 
 
-	EventManager* evMgr = m_stateMgr->GetContext()->m_eventManager;
-	evMgr->RemoveCallback(StateType::LevelEditor, "Finish_LevelEditor");
-}
+
 
 void LevelEditor::Activate()
 {
@@ -238,18 +240,32 @@ void LevelEditor::OK(EventDetails * l_details)
 	GUI_Interface* menu = m_stateMgr->GetContext()->m_guiManager->GetInterface(StateType::LevelEditor, "LevelEditor");
 	std::string name = menu->GetElement("DatName")->GetText();
 	name = name + ".txt";
+
+	string path;
+	path = Utils::GetWorkingDirectory();
+	path = path + "\\levels\\";
 	
-	std::fstream os(name, std::ios::out | std::ios::app);
+	std::fstream os(path + name, std::ios::out | std::ios::trunc);
 	LevelEditor::saveLevelArray(os);
 
 	m_stateMgr->Remove(StateType::LevelEditor);
 	m_stateMgr->SwitchTo(StateType::MainMenu);
+
+	
 }
 
 void LevelEditor::Abbrechen(EventDetails * l_details)
 {
 	m_stateMgr->Remove(StateType::LevelEditor);
 	m_stateMgr->SwitchTo(StateType::MainMenu);
+}
+
+void LevelEditor::Load(EventDetails * l_details)
+{
+	/*
+	GUI_Manager* gui = m_stateMgr->GetContext()->m_guiManager;
+	gui->RemoveInterface(StateType::LevelEditor, "LevelEditor");
+	*/
 }
 
 
@@ -317,6 +333,12 @@ std::ostream & LevelEditor::saveLevelArray(std::ostream & os)
 	}
 	return os;
 }
+
+std::ostream & LevelEditor::loadLevelArray(std::ostream & os)
+{
+	return os;
+}
+
 
 
 void LevelEditor::Update(const sf::Time & l_time) 
