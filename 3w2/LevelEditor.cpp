@@ -262,10 +262,16 @@ void LevelEditor::Abbrechen(EventDetails * l_details)
 
 void LevelEditor::Load(EventDetails * l_details)
 {
-	/*
-	GUI_Manager* gui = m_stateMgr->GetContext()->m_guiManager;
-	gui->RemoveInterface(StateType::LevelEditor, "LevelEditor");
-	*/
+	GUI_Interface* menu = m_stateMgr->GetContext()->m_guiManager->GetInterface(StateType::LevelEditor, "LevelEditor");
+	std::string name = menu->GetElement("DatName")->GetText();
+	name = name + ".txt";
+	
+	string path;
+	path = Utils::GetWorkingDirectory();
+	path = path + "\\levels\\";
+
+	std::fstream os(path + name, std::ios::in );
+	LevelEditor::loadLevelArray(os);
 }
 
 
@@ -336,6 +342,27 @@ std::ostream & LevelEditor::saveLevelArray(std::ostream & os)
 
 std::ostream & LevelEditor::loadLevelArray(std::ostream & os)
 {
+	string row;
+	int y = 0;
+	std::string delimiter = ",";
+
+
+	while (os >> row)
+	{
+		int x = 0;
+		std::string token;
+		size_t pos = 0;
+
+		while ((pos = row.find(delimiter)) != std::string::npos)
+		{
+			token = row.substr(0, pos);
+			m_ArrayLevel[y][x] = std::stoi(token);
+			row.erase(0, pos + delimiter.length());
+			x++;
+		}
+
+		y++;
+	}
 	return os;
 }
 
