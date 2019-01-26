@@ -46,7 +46,7 @@ public:
 
 	std::ostream& saveLevelArray(std::ostream& os);
 
-	std::ostream& loadLevelArray(std::ostream& os);
+	void loadLevelArray(std::istream& os);
 
 private:
 

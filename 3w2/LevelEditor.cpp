@@ -272,6 +272,8 @@ void LevelEditor::Load(EventDetails * l_details)
 
 	std::fstream os(path + name, std::ios::in );
 	LevelEditor::loadLevelArray(os);
+
+	LevelEditor::manage_ArrayLevel();
 }
 
 
@@ -340,7 +342,7 @@ std::ostream & LevelEditor::saveLevelArray(std::ostream & os)
 	return os;
 }
 
-std::ostream & LevelEditor::loadLevelArray(std::ostream & os)
+void LevelEditor::loadLevelArray(std::istream & os)
 {
 	string row;
 	int y = 0;
@@ -363,8 +365,7 @@ std::ostream & LevelEditor::loadLevelArray(std::ostream & os)
 
 		y++;
 	}
-	return os;
-}
+ }
 
 
 
