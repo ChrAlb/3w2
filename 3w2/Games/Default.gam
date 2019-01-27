@@ -1,0 +1,17 @@
+2
+graphics/tiles_sheet1.png
+levels/level1.txt
+Textures::Level1Bg
+Textures::Tileset1
+350,750
+500,300
+//
+graphics/tiles_sheet2.png
+levels/level2.txt
+Textures::Level2Bg
+Textures::Tileset2
+150,750
+500,300
+//
+
+
