@@ -231,7 +231,7 @@ void LevelEditor::MouseClick(EventDetails * l_details)
 
 		LevelEditor::manage_ArrayLevel();
 
-	}
+	} 
 
 }
 
