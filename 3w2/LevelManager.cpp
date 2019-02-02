@@ -170,7 +170,7 @@ float LevelManager::getTimeLimit()
 
 Vector2f LevelManager::getStartPosition()
 {
-	return m_StartPosition;
+	return m_leveldata.m_PlayerStartPosition; 
 }
 
 bool LevelManager::get_allLeveldone()
@@ -206,6 +206,19 @@ bool LevelManager::readin_game(leveldate *level, string filename)
 		getline(os, row);
 		level->LevelName = row;
 
+		string delimiter = ",";
+		
+		size_t pos=0;
+		getline(os, row);
+		pos = row.find(delimiter);
+        level->m_PlayerStartPosition.x = std::stoi(row.substr(0, pos));
+		level->m_PlayerStartPosition.y = std::stoi(row.substr(pos + 1, std::string::npos));
+
+	    pos = 0;
+		getline(os, row);
+		pos = row.find(delimiter);
+		level->m_EnenemyStartPosition.x = std::stoi(row.substr(0, pos));
+		level->m_EnenemyStartPosition.y = std::stoi(row.substr(pos + 1, std::string::npos));
 
 		getline(os, row);
 		
