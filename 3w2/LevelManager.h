@@ -38,13 +38,16 @@ private:
 	
 	leveldate m_leveldata;
 
+	string m_GameName;
+
 	vector<leveldate> m_levelinfo;
 	
-	//Vector2f m_StartPosition;
-   //const int NUM_LEVELS = 2;
-
+	
 public:
 
+	LevelManager();
+	~LevelManager();
+	
 	const int TILE_SIZE = 50;
 	const int VERTS_IN_QUAD = 4;
 	
@@ -57,6 +60,8 @@ public:
 	int getCurrentLevel();
 	bool get_allLeveldone();
 	void set_allLeveldone(bool allLeveldone);
+
+	bool readin_game(leveldate *level, string filename);
 
 	
 	

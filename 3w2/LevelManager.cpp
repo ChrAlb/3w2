@@ -11,6 +11,20 @@
 using namespace sf;
 using namespace  std;
 
+LevelManager::LevelManager()
+{
+	m_GameName = "Default.gam";
+	if (readin_game(&m_leveldata, m_GameName))
+	{
+		;
+	}
+}
+
+LevelManager::~LevelManager()
+{
+}
+
+
 int** LevelManager::nextLevel(VertexArray& rVaLevel, leveldate& m_leveldaten)
 {
 	
@@ -20,13 +34,14 @@ int** LevelManager::nextLevel(VertexArray& rVaLevel, leveldate& m_leveldaten)
 
 	m_CurrentLevel++;
 	
-	if (m_CurrentLevel > NUM_LEVELS)
+	if (m_CurrentLevel > m_NumofLevels)
 	{
 	LevelManager::set_allLeveldone(true);
 	}
 
 	string levelToLoad;
 	
+
 	switch (m_CurrentLevel)
 	{
 	case 1:
@@ -37,10 +52,10 @@ int** LevelManager::nextLevel(VertexArray& rVaLevel, leveldate& m_leveldaten)
 		m_leveldata.m_tileset = Textures::Tileset1;
 			
 		levelToLoad = m_leveldata.LevelName;
-        m_StartPosition.x = 350;
-		m_StartPosition.y = 750;
+        m_leveldata.m_PlayerStartPosition.x = 350;
+		m_leveldata.m_PlayerStartPosition.y = 750;
 		// Korrektur Kommas aus level.txt
-		m_leveldata.MaxInt = 47;
+		//m_leveldata.MaxInt = 47;
 		
 		break;
 	
@@ -146,6 +161,8 @@ int LevelManager::getCurrentLevel()
 	return m_CurrentLevel;
 }
 
+
+
 float LevelManager::getTimeLimit()
 {
 	return 0;
@@ -164,5 +181,40 @@ bool LevelManager::get_allLeveldone()
 void LevelManager::set_allLeveldone(bool allLeveldone)
 {
 	m_allLevel = allLeveldone;
+}
+
+bool LevelManager::readin_game(leveldate *level, string filename)
+{
+	string row;
+	string path;
+	path = Utils::GetWorkingDirectory();
+	path = path + "\\Games\\";
+    std::fstream os(path +filename, std::ios::in);
+
+	getline(os, row);
+	m_NumofLevels = std::stoi(row); 
+
+	for (int i = 0; i < m_NumofLevels; i++)
+
+	{
+		getline(os, row);
+		level->BGFileName = row;
+
+		getline(os, row);
+		level->TilSetName = row;
+
+		getline(os, row);
+		level->LevelName = row;
+
+
+		getline(os, row);
+		
+		m_levelinfo.push_back(*level);
+
+
+	}
+
+	
+	return true;
 }
 
