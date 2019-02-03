@@ -39,45 +39,11 @@ int** LevelManager::nextLevel(VertexArray& rVaLevel, leveldate& m_leveldaten)
 	LevelManager::set_allLeveldone(true);
 	}
 
-	string levelToLoad;
 	
+	m_leveldaten = m_levelinfo[m_CurrentLevel];
 
-	switch (m_CurrentLevel)
-	{
-	case 1:
-		m_leveldata.LevelName = "levels/level1.txt";
-		m_leveldata.BGFileName = "graphics/bg.png";
-		m_leveldata.TilSetName = "graphics/tiles_sheet1.png";
-		m_leveldata.m_bg_texture = Textures::Level1Bg;
-		m_leveldata.m_tileset = Textures::Tileset1;
-			
-		levelToLoad = m_leveldata.LevelName;
-        m_leveldata.m_PlayerStartPosition.x = 350;
-		m_leveldata.m_PlayerStartPosition.y = 750;
-		// Korrektur Kommas aus level.txt
-		//m_leveldata.MaxInt = 47;
-		
-		break;
+	ifstream inputFile(m_leveldaten.LevelName);
 	
-	case 2:
-		m_leveldata.LevelName = "levels/level2.txt";
-		m_leveldata.BGFileName = "graphics/bg2.png";
-		m_leveldata.TilSetName = "graphics/tiles_sheet2.png";
-		m_leveldata.m_bg_texture = Textures::Level2Bg;
-		m_leveldata.m_tileset = Textures::Tileset2;
-
-		levelToLoad = m_leveldata.LevelName;
-		m_StartPosition.x = 150;
-		m_StartPosition.y = 750;
-		m_leveldata.MaxInt = 45;
-		
-		break;
-		
-	}
-	
-	m_leveldaten = m_leveldata;
-
-	ifstream inputFile(levelToLoad);
 	string s;
 
 	while (getline(inputFile, s))
@@ -85,7 +51,9 @@ int** LevelManager::nextLevel(VertexArray& rVaLevel, leveldate& m_leveldaten)
 		++m_LevelSize.y;
 	}
 	
-	m_LevelSize.x = m_leveldata.MaxInt;
+	
+	m_LevelSize.x = (std::string::npos)/3;
+	
 	
 	inputFile.clear();
 	inputFile.seekg(0, ios::beg);
