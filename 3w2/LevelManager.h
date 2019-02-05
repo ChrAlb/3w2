@@ -14,8 +14,8 @@ struct leveldate
 	string TilSetName;
 	string LevelName;
 	
-	Textures::ID m_bg_texture;
-	Textures::ID m_tileset;
+	string m_bg_texture;
+	string m_tileset;
 
 	Vector2f m_PlayerStartPosition;
 	Vector2f m_EnenemyStartPosition;

@@ -172,12 +172,19 @@ bool LevelManager::readin_game(leveldate *level, string filename)
 		level->TilSetName = row;
 
 		getline(os, row);
+		level->m_bg_texture = row;
+
+		getline(os, row);
+		level->m_tileset = row;
+
+		getline(os, row);
 		level->LevelName = row;
 
 		string delimiter = ",";
 		
 		size_t pos=0;
 		getline(os, row);
+
 		pos = row.find(delimiter);
         level->m_PlayerStartPosition.x = std::stoi(row.substr(0, pos));
 		level->m_PlayerStartPosition.y = std::stoi(row.substr(pos + 1, std::string::npos));
