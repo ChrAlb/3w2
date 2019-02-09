@@ -47,7 +47,7 @@ void State_Game::OnDestroy(){
 	evMgr->RemoveCallback(StateType::Game, "Key_Escape");
 	evMgr->RemoveCallback(StateType::Game, "Key_P");
 	evMgr->RemoveCallback(StateType::Game, "Key_F1");
-	evMgr->RemoveCallback(StateType::Game, "Key_F1");
+	evMgr->RemoveCallback(StateType::Game, "Key_F2");
 	evMgr->RemoveCallback(StateType::Game, "Key_F3");
 }
 

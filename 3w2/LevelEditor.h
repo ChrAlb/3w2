@@ -48,6 +48,7 @@ public:
 
 	void loadLevelArray(std::istream& os);
 
+	
 private:
 
 	int m_NumberofFiles;

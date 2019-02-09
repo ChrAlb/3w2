@@ -172,10 +172,10 @@ bool LevelManager::readin_game(leveldate *level, string filename)
 		level->TilSetName = row;
 
 		getline(os, row);
-		level->m_bg_texture = row;
+		level->m_bg_texture = parseRow(row);
 
 		getline(os, row);
-		level->m_tileset = row;
+		level->m_tileset = parseRow(row);
 
 		getline(os, row);
 		level->LevelName = row;
@@ -206,3 +206,34 @@ bool LevelManager::readin_game(leveldate *level, string filename)
 	return true;
 }
 
+Textures::ID LevelManager::parseRow(string row)
+{
+	if (row == "TitleScreen")
+		return Textures::TitleScreen;
+	if (row == "MenuBGScreen")
+		return Textures::MenuBGScreen;
+	if (row == "Player")
+		return Textures::Player;
+	if (row == "Enemy")
+		return Textures::Enemy;
+	if (row == "Level1Bg")
+		return Textures::Level1Bg;
+	if (row == "Level2Bg")
+		return Textures::Level2Bg;
+	if (row == "Tileset1")
+		return Textures::Tileset1;
+	if (row == "Tileset2")
+		return Textures::Tileset2;
+	if (row == "Tree")
+		return Textures::Tree;
+	if (row == "Bullet")
+		return Textures::Bullet;
+	if (row == "FinishLine")
+		return Textures::FinishLine;
+	if (row == "Hufeisen")
+		return Textures::Hufeisen;
+	if (row == "LevelEditorSet")
+		return Textures::LevelEditorSet;
+
+	
+}

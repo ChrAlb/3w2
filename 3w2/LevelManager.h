@@ -14,8 +14,8 @@ struct leveldate
 	string TilSetName;
 	string LevelName;
 	
-	string m_bg_texture;
-	string m_tileset;
+	Textures::ID  m_bg_texture;
+	Textures::ID m_tileset;
 
 	Vector2f m_PlayerStartPosition;
 	Vector2f m_EnenemyStartPosition;
@@ -63,7 +63,7 @@ public:
 
 	bool readin_game(leveldate *level, string filename);
 
-	
+	Textures::ID LevelManager::parseRow(string row);
 	
 };
 
