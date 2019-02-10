@@ -37,7 +37,7 @@ void State_Game::loadLevel()
 	if (!m_LM.get_allLeveldone())
 	{
          m_Textures.load(m_leveldaten.m_bg_texture, m_leveldaten.BGFileName);
-	     m_Textures.load(m_leveldaten.m_tileset, "graphics/tiles_sheet.png");
+	     m_Textures.load(m_leveldaten.m_tileset, m_leveldaten.TilSetName);
 	}
 	// end Load Textures
 	
