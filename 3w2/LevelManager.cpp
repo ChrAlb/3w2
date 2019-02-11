@@ -40,7 +40,7 @@ int** LevelManager::nextLevel(VertexArray& rVaLevel, leveldate& m_leveldaten)
 	}
 
 	
-	m_leveldaten = m_levelinfo[m_CurrentLevel];
+	m_leveldaten = m_levelinfo[m_CurrentLevel-1];
 
 	ifstream inputFile(m_leveldaten.LevelName);
 	
@@ -51,8 +51,8 @@ int** LevelManager::nextLevel(VertexArray& rVaLevel, leveldate& m_leveldaten)
 		++m_LevelSize.y;
 	}
 	
-	
-	m_LevelSize.x = (std::string::npos)/3;
+
+	m_LevelSize.x = (s.length())/3;
 	
 	
 	inputFile.clear();
@@ -172,13 +172,13 @@ bool LevelManager::readin_game(leveldate *level, string filename)
 		level->TilSetName = row;
 
 		getline(os, row);
+		level->LevelName = row;
+
+		getline(os, row);
 		level->m_bg_texture = parseRow(row);
 
 		getline(os, row);
 		level->m_tileset = parseRow(row);
-
-		getline(os, row);
-		level->LevelName = row;
 
 		string delimiter = ",";
 		
@@ -208,31 +208,31 @@ bool LevelManager::readin_game(leveldate *level, string filename)
 
 Textures::ID LevelManager::parseRow(string row)
 {
-	if (row == "TitleScreen")
+	if (row == "Textures::TitleScreen")
 		return Textures::TitleScreen;
-	if (row == "MenuBGScreen")
+	if (row == "Textures::MenuBGScreen")
 		return Textures::MenuBGScreen;
-	if (row == "Player")
+	if (row == "Textures::Player")
 		return Textures::Player;
-	if (row == "Enemy")
+	if (row == "Textures::Enemy")
 		return Textures::Enemy;
-	if (row == "Level1Bg")
+	if (row == "Textures::Level1Bg")
 		return Textures::Level1Bg;
-	if (row == "Level2Bg")
+	if (row == "Textures::Level2Bg")
 		return Textures::Level2Bg;
-	if (row == "Tileset1")
+	if (row == "Textures::Tileset1")
 		return Textures::Tileset1;
-	if (row == "Tileset2")
+	if (row == "Textures::Tileset2")
 		return Textures::Tileset2;
-	if (row == "Tree")
+	if (row == "Textures::Tree")
 		return Textures::Tree;
-	if (row == "Bullet")
+	if (row == "Textures::Bullet")
 		return Textures::Bullet;
-	if (row == "FinishLine")
+	if (row == "Textures::FinishLine")
 		return Textures::FinishLine;
-	if (row == "Hufeisen")
+	if (row == "Textures::Hufeisen")
 		return Textures::Hufeisen;
-	if (row == "LevelEditorSet")
+	if (row == "Textures::LevelEditorSet")
 		return Textures::LevelEditorSet;
 
 	
