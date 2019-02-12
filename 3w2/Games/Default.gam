@@ -8,7 +8,7 @@ Textures::Tileset1
 500,300
 //
 graphics/bg2.png
-graphics/tiles_sheet1.png
+graphics/tiles_sheet.png
 levels/level2.txt
 Textures::Level2Bg
 Textures::Tileset2

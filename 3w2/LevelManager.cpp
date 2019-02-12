@@ -32,7 +32,7 @@ int** LevelManager::nextLevel(VertexArray& rVaLevel, leveldate& m_leveldaten)
 	m_LevelSize.x = 0;
 	m_LevelSize.y = 0;
 
-	m_CurrentLevel++;
+	
 	
 	if (m_CurrentLevel > m_NumofLevels)
 	{
@@ -40,7 +40,15 @@ int** LevelManager::nextLevel(VertexArray& rVaLevel, leveldate& m_leveldaten)
 	}
 
 	
-	m_leveldaten = m_levelinfo[m_CurrentLevel-1];
+	
+	
+	if (m_CurrentLevel < m_NumofLevels)
+	{
+        m_leveldaten = m_levelinfo[m_CurrentLevel];
+		m_CurrentLevel++;
+	}
+	    
+
 
 	ifstream inputFile(m_leveldaten.LevelName);
 	
