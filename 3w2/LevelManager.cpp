@@ -33,21 +33,18 @@ int** LevelManager::nextLevel(VertexArray& rVaLevel, leveldate& m_leveldaten)
 	m_LevelSize.y = 0;
 
 	
-	
-	if (m_CurrentLevel > m_NumofLevels)
-	{
-	LevelManager::set_allLeveldone(true);
-	}
-
-	
-	
-	
 	if (m_CurrentLevel < m_NumofLevels)
 	{
         m_leveldaten = m_levelinfo[m_CurrentLevel];
-		m_CurrentLevel++;
+		
 	}
 	    
+	m_CurrentLevel++;
+
+	if (m_CurrentLevel > m_NumofLevels)
+	{
+		LevelManager::set_allLeveldone(true);
+	}
 
 
 	ifstream inputFile(m_leveldaten.LevelName);
