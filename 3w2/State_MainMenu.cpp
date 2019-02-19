@@ -50,10 +50,8 @@ void State_MainMenu::Play(EventDetails* l_details) { m_stateMgr->SwitchTo(StateT
 void State_MainMenu::LevEdit(EventDetails * l_details) {m_stateMgr->SwitchTo(StateType::LevelEditor);} 
 void State_MainMenu::Quit(EventDetails* l_details) 
 { 
-	    // Das ist Scheisse (Weihnachten 2018)
-	    //m_stateMgr->Remove(StateType::MainMenu); 
-		//m_stateMgr->Remove(StateType::LevelEditor);
-     	m_stateMgr->GetContext()->m_wind->Close()   ; 
+	
+	m_stateMgr->GetContext()->m_wind->Close()   ; 
 }
 
 void State_MainMenu::Start_TileMaker(EventDetails * l_details)

@@ -81,7 +81,8 @@ bool StateManager::HasState(const StateType& l_type){
 
 void StateManager::ProcessRequests(){
 	while (m_toRemove.begin() != m_toRemove.end()){
-		RemoveState(*m_toRemove.begin());
+		
+		(*m_toRemove.begin());
 		m_toRemove.erase(m_toRemove.begin());
 	}
 }
