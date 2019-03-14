@@ -20,7 +20,7 @@ Enemy::Enemy() : m_hasDestination(false)
 	max_frames[int(EnemyAnimationIndex::WalkingLeft)] = 5;
 	max_frames[int(EnemyAnimationIndex::DyingRight)] = 5;
 	max_frames[int(EnemyAnimationIndex::Dead)] = 1;
-
+	 
 	m_otype = t_Enemy;
 	m_iscollided = false;
 	m_is_alive = true;
