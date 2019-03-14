@@ -35,6 +35,8 @@ void State_MainMenu::OnDestroy() {
 void State_MainMenu::Activate() {
 	auto& play = *m_stateMgr->GetContext()->m_guiManager->
 		GetInterface(StateType::MainMenu, "MainMenu")->GetElement("Play");
+
+	
 	if (m_stateMgr->HasState(StateType::Game)) {
 		// Resume
 		play.SetText("Pausä");
@@ -43,6 +45,7 @@ void State_MainMenu::Activate() {
 		// Play
 		play.SetText("Spilä");
 	}
+	
 }
 
 

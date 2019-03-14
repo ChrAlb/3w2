@@ -79,8 +79,8 @@ void State_Game::Update(const sf::Time& l_time)
 
 	if ((m_LM.get_allLeveldone()) || (m_gameStats.nomorelives()))
 	{
-		m_stateMgr->Remove(StateType::Game);
 		m_stateMgr->SwitchTo(StateType::MainMenu);
+		//m_stateMgr->Remove(StateType::Game);
 	}
 
 
