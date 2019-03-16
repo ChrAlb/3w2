@@ -15,10 +15,10 @@ class State_Game : public BaseState{
 
 
 private:
-	bool debug = false;
-	bool stats = false;
+	bool debug;
+	bool stats;
 
-	bool gamestat = true;
+	bool gamestat;
 
 	sf::View gameview;
 	sf::View bgview;
@@ -39,8 +39,8 @@ private:
 
 	const int GRAVITY = 300;
 
-	bool m_newlevelrequiered = true;
-	bool m_Playing = false;
+	bool m_newlevelrequiered;
+	bool m_Playing ;
 
 
 	VertexArray m_VALevel;
@@ -83,7 +83,7 @@ private:
 
 	sf::Text text;
 
-	bool m_onSlope = false;
+	bool m_onSlope;
 
 
 	float m_Gravity;

@@ -24,13 +24,19 @@ void State_Game::OnCreate(){
 	evMgr->AddCallback(StateType::Game, "Key_F2", &State_Game::Debug, this);
 	evMgr->AddCallback(StateType::Game, "Key_F3", &State_Game::PlayerInfo, this);
 
-
+	 
 	slopenumber = 0;
 	//m_font.loadFromFile("graphics/Arial.ttf");
 	// Dummy für Deco in Levels, später zu LevelManager zügeln!
 	m_Textures.load(Textures::Tree, "graphics/Tree.png");
 
 	m_justexploded = false;
+	debug = false;
+	stats = false;
+    gamestat = true;
+    m_newlevelrequiered = true;
+	m_Playing = false;
+	m_onSlope = false;
 
 	sf::Vector2u size = m_stateMgr->GetContext()->m_wind->GetWindowSize();
 	m_view.setSize(size.x,size.y);
@@ -79,8 +85,10 @@ void State_Game::Update(const sf::Time& l_time)
 
 	if ((m_LM.get_allLeveldone()) || (m_gameStats.nomorelives()))
 	{
-		m_stateMgr->SwitchTo(StateType::MainMenu);
-		//m_stateMgr->Remove(StateType::Game);
+		    
+    		m_stateMgr->SwitchTo(StateType::MainMenu);
+            m_stateMgr->Remove(StateType::Game);
+			
 	}
 
 
