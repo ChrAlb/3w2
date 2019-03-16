@@ -20,6 +20,8 @@ public:
 	void print_lives(int lives, sf::RenderWindow& windowRef);
 
 	bool nomorelives();
+
+	void resetstat();
 	
 
 private:

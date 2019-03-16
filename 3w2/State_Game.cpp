@@ -37,6 +37,7 @@ void State_Game::OnCreate(){
     m_newlevelrequiered = true;
 	m_Playing = false;
 	m_onSlope = false;
+	m_notfirstgame = false;
 
 	sf::Vector2u size = m_stateMgr->GetContext()->m_wind->GetWindowSize();
 	m_view.setSize(size.x,size.y);
@@ -55,6 +56,15 @@ void State_Game::OnDestroy(){
 	evMgr->RemoveCallback(StateType::Game, "Key_F1");
 	evMgr->RemoveCallback(StateType::Game, "Key_F2");
 	evMgr->RemoveCallback(StateType::Game, "Key_F3");
+
+	for (iter = objects.begin(); iter != objects.end();)
+	{
+		delete (*iter);
+		iter = objects.erase(iter);
+		
+	}
+
+
 }
 
 
@@ -81,15 +91,6 @@ void State_Game::Update(const sf::Time& l_time)
 	float dt = l_time.asSeconds();
 
 	//LevelManager lm;
-
-
-	if ((m_LM.get_allLeveldone()) || (m_gameStats.nomorelives()))
-	{
-		    
-    		m_stateMgr->SwitchTo(StateType::MainMenu);
-            m_stateMgr->Remove(StateType::Game);
-			
-	}
 
 
 	if (m_newlevelrequiered)
@@ -219,6 +220,15 @@ void State_Game::Update(const sf::Time& l_time)
 		}
 	}
 
+	if ((m_LM.get_allLeveldone()) || (m_gameStats.nomorelives()))
+	{
+
+		resetGame();
+		m_LM.set_allLeveldone(false);
+		m_stateMgr->SwitchTo(StateType::MainMenu);
+		//m_stateMgr->Remove(StateType::Game);
+
+	}
 
 	return;
 
@@ -336,6 +346,7 @@ void State_Game::spawnRandomEnemies()
 
 
 
+
 		enemy->spawn(spawnpos, GRAVITY);
 		//unschön!
 		enemy->set_maxlevelsize(maxlevelsize);
@@ -343,6 +354,20 @@ void State_Game::spawnRandomEnemies()
 
 	}
 
+}
+
+void State_Game::resetGame()
+{
+	m_justexploded = false;
+	debug = false;
+	stats = false;
+	gamestat = true;
+	m_newlevelrequiered = true;
+	m_Playing = false;
+	m_onSlope = false;
+	m_gameStats.resetstat();
+	m_notfirstgame = true;
+	m_LM.set_currentlevel(0);
 }
 
 void State_Game::Statistik(EventDetails* l_details)

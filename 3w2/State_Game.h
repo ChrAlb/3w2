@@ -61,6 +61,7 @@ private:
 
 	bool m_justexploded;
 
+	bool m_notfirstgame;
 	
 	int slopenumber;
 
@@ -93,7 +94,7 @@ private:
 
 	SoundPlayer m_SoundPlayer;
 
-	
+	void resetGame();
 
 public:
 	State_Game(StateManager* l_stateManager);
@@ -120,6 +121,8 @@ public:
 	Vector2f getPlayer_position_putofList();
 
 	void spawnRandomEnemies();
+
+	
 
 
 

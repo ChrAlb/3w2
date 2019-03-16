@@ -156,6 +156,13 @@ void LevelManager::set_allLeveldone(bool allLeveldone)
 	m_allLevel = allLeveldone;
 }
 
+
+
+void LevelManager::set_currentlevel(int lev)
+{
+	m_CurrentLevel = lev;
+}
+
 bool LevelManager::readin_game(leveldate *level, string filename)
 {
 	string row;

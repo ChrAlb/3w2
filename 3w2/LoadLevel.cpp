@@ -34,11 +34,16 @@ void State_Game::loadLevel()
 	m_ArrayLevel = m_LM.nextLevel(m_VALevel, m_leveldaten);
 
 	// Load Textures
-	if (!m_LM.get_allLeveldone())
+	if (!m_notfirstgame)
 	{
-         m_Textures.load(m_leveldaten.m_bg_texture, m_leveldaten.BGFileName);
-	     m_Textures.load(m_leveldaten.m_tileset, m_leveldaten.TilSetName);
+		if (!m_LM.get_allLeveldone())
+		{
+			m_Textures.load(m_leveldaten.m_bg_texture, m_leveldaten.BGFileName);
+			m_Textures.load(m_leveldaten.m_tileset, m_leveldaten.TilSetName);
+		}
+
 	}
+	
 	// end Load Textures
 	
 

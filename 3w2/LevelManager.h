@@ -35,6 +35,7 @@ private:
 	int m_CurrentLevel = 0;
 	
 	bool m_allLevel = false;
+
 	
 	leveldate m_leveldata;
 
@@ -60,6 +61,9 @@ public:
 	int getCurrentLevel();
 	bool get_allLeveldone();
 	void set_allLeveldone(bool allLeveldone);
+	
+
+	void set_currentlevel(int lev);
 
 	bool readin_game(leveldate *level, string filename);
 

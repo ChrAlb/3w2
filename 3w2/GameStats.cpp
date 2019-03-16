@@ -85,6 +85,12 @@ bool GameStats::nomorelives()
 		return false;
 }
 
+void GameStats::resetstat()
+{
+	m_lives = 3;
+	m_points = 0;
+}
+
 
 
 std::string GameStats::Convert(float number)
