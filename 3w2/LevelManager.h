@@ -61,6 +61,8 @@ public:
 	int getCurrentLevel();
 	bool get_allLeveldone();
 	void set_allLeveldone(bool allLeveldone);
+
+	int get_alllevel();
 	
 
 	void set_currentlevel(int lev);
@@ -70,6 +72,7 @@ public:
 	Textures::ID LevelManager::parseRow(string row);
 
 	leveldate get_leveldate(int currentlevel);
+
 	
 };
 

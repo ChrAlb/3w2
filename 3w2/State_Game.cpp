@@ -50,7 +50,7 @@ void State_Game::OnCreate(){
 
 void State_Game::OnDestroy(){
 	EventManager* evMgr = m_stateMgr->
-		GetContext()->m_eventManager;
+	GetContext()->m_eventManager;
 	evMgr->RemoveCallback(StateType::Game, "Key_Escape");
 	evMgr->RemoveCallback(StateType::Game, "Key_P");
 	evMgr->RemoveCallback(StateType::Game, "Key_F1");

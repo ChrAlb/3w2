@@ -36,15 +36,15 @@ void State_Game::loadLevel()
 	// Load Textures
 	if (!m_notfirstgame)
 	{
-		for (int i = 0; i < maxLevel, i++)
+		int count = 0;
+		for (int i = 0; i < m_LM.get_alllevel() ; i++)
 		{
-			m_leveldaten = m_LM.get_leveldate(i);
-			m_Textures.load(m_leveldaten.m_bg_texture, m_leveldaten.BGFileName);
-			m_Textures.load(m_leveldaten.m_tileset, m_leveldaten.TilSetName);
-
+			m_ld = m_LM.get_leveldate(count);
+			m_Textures.load(m_ld.m_bg_texture, m_ld.BGFileName);
+			m_Textures.load(m_ld.m_tileset, m_ld.TilSetName);
+			count++;
 		}
 	}
-	
 	// end Load Textures
 	
 

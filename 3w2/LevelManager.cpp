@@ -156,6 +156,11 @@ void LevelManager::set_allLeveldone(bool allLeveldone)
 	m_allLevel = allLeveldone;
 }
 
+int LevelManager::get_alllevel()
+{
+	return m_NumofLevels;
+}
+
 
 
 void LevelManager::set_currentlevel(int lev)
@@ -253,6 +258,6 @@ Textures::ID LevelManager::parseRow(string row)
 leveldate LevelManager::get_leveldate(int currentlevel)
 {
 	leveldate  m_leveldaten;
-	m_leveldaten = m_levelinfo[m_CurrentLevel];
+	m_leveldaten = m_levelinfo[currentlevel];
 	return m_leveldaten;
 }
