@@ -37,7 +37,7 @@ void State_Game::OnCreate(){
     m_newlevelrequiered = true;
 	m_Playing = false;
 	m_onSlope = false;
-	m_notfirstgame = false;
+	
 
 	sf::Vector2u size = m_stateMgr->GetContext()->m_wind->GetWindowSize();
 	m_view.setSize(size.x,size.y);
@@ -45,6 +45,17 @@ void State_Game::OnCreate(){
 	m_view.zoom(0.6f);
 	m_stateMgr->GetContext()->m_wind->GetRenderWindow()->setView(m_view);
 
+	// Load Textures
+		int count = 0;
+		for (int i = 0; i < m_LM.get_alllevel(); i++)
+		{
+			m_ld = m_LM.get_leveldate(count);
+			m_Textures.load(m_ld.m_bg_texture, m_ld.BGFileName);
+			m_Textures.load(m_ld.m_tileset, m_ld.TilSetName);
+			count++;
+		}
+	
+	// end Load Textures
 	
 }
 
@@ -366,7 +377,7 @@ void State_Game::resetGame()
 	m_Playing = false;
 	m_onSlope = false;
 	m_gameStats.resetstat();
-	m_notfirstgame = true;
+	
 	m_LM.set_currentlevel(0);
 }
 

@@ -62,8 +62,6 @@ private:
 
 	bool m_justexploded;
 
-	bool m_notfirstgame;
-	
 	int slopenumber;
 
 

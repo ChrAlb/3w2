@@ -33,19 +33,7 @@ void State_Game::loadLevel()
 
 	m_ArrayLevel = m_LM.nextLevel(m_VALevel, m_leveldaten);
 
-	// Load Textures
-	if (!m_notfirstgame)
-	{
-		int count = 0;
-		for (int i = 0; i < m_LM.get_alllevel() ; i++)
-		{
-			m_ld = m_LM.get_leveldate(count);
-			m_Textures.load(m_ld.m_bg_texture, m_ld.BGFileName);
-			m_Textures.load(m_ld.m_tileset, m_ld.TilSetName);
-			count++;
-		}
-	}
-	// end Load Textures
+	
 	
 
     player = new Player();
