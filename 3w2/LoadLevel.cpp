@@ -36,12 +36,13 @@ void State_Game::loadLevel()
 	// Load Textures
 	if (!m_notfirstgame)
 	{
-		if (!m_LM.get_allLeveldone())
+		for (int i = 0; i < maxLevel, i++)
 		{
+			m_leveldaten = m_LM.get_leveldate(i);
 			m_Textures.load(m_leveldaten.m_bg_texture, m_leveldaten.BGFileName);
 			m_Textures.load(m_leveldaten.m_tileset, m_leveldaten.TilSetName);
-		}
 
+		}
 	}
 	
 	// end Load Textures

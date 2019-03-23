@@ -249,3 +249,10 @@ Textures::ID LevelManager::parseRow(string row)
 
 	
 }
+
+leveldate LevelManager::get_leveldate(int currentlevel)
+{
+	leveldate  m_leveldaten;
+	m_leveldaten = m_levelinfo[m_CurrentLevel];
+	return m_leveldaten;
+}

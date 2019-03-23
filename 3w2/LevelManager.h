@@ -68,6 +68,8 @@ public:
 	bool readin_game(leveldate *level, string filename);
 
 	Textures::ID LevelManager::parseRow(string row);
+
+	leveldate get_leveldate(int currentlevel);
 	
 };
 
