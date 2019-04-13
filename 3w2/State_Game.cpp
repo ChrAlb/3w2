@@ -144,7 +144,7 @@ void State_Game::Update(const sf::Time& l_time)
 			else
 				player->set_justfired(false);
 		 
-
+		 
 		detectCollisions_Objects();
 		clean_objects();
 		Vector2f tt;
