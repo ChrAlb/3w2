@@ -5,7 +5,7 @@
 
 EnemyAnimation::EnemyAnimation()
 {
-	m_Textures.load(Textures::Enemy, "graphics/enemysheet.png");
+	m_Textures.load(Textures::Enemy, "graphics/enemy1sheet.png");
 
 }
 
