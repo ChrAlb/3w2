@@ -34,7 +34,7 @@ public:
 	bool handleInput();
 	void update(float dt, Vector2f Plpos);
 
-	const int EnemySpeed = 75;
+	const int EnemySpeed = 100;
 
 	EnemyAnimation animations[int(EnemyAnimationIndex::Count)];
 	EnemyAnimationIndex curAnimation = EnemyAnimationIndex::WalkingRight;
