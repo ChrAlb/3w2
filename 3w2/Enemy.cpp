@@ -11,10 +11,10 @@ Enemy::Enemy() : m_hasDestination(false)
 	m_Sprite = Sprite(m_Textures.get(Textures::Enemy));
     
 	
-	animations[int(EnemyAnimationIndex::WalkingRight)].addRow(0, 0, 100, 100, 5);
+	animations[int(EnemyAnimationIndex::WalkingRight)].addRow(0, 000, 100, 100, 5);
 	animations[int(EnemyAnimationIndex::WalkingLeft)].addRow(0, 100, 100, 100, 5);
 	animations[int(EnemyAnimationIndex::DyingRight)].addRow(0, 200, 100, 100, 5);
-	animations[int(EnemyAnimationIndex::Dead)].addRow(400, 200, 100, 100, 1);
+	animations[int(EnemyAnimationIndex::Dead)].addRow(200, 200, 100, 100, 5);
 
 	max_frames[int(EnemyAnimationIndex::WalkingRight)] = 5;
 	max_frames[int(EnemyAnimationIndex::WalkingLeft)] = 5;
@@ -89,7 +89,7 @@ void Enemy::update(float dt, Vector2f Plpos)
 	{
 		m_destination.x = -m_destination.x;
 	}
-	
+	 
 	if (m_destination.x < 0)
 		curAnimation = EnemyAnimationIndex::WalkingLeft;
 	else
@@ -97,7 +97,7 @@ void Enemy::update(float dt, Vector2f Plpos)
 
 	if (m_iscollidedwithobject)
 	{
-		
+		         
 		for (int i=0;i<5;i++)    // Hardcode = Anzahlframes von DyingRight
             curAnimation = EnemyAnimationIndex::DyingRight;
 			
