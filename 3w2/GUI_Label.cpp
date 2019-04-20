@@ -13,7 +13,7 @@ void GUI_Label::ReadIn(std::stringstream& l_stream){
 	Utils::ReadQuotedString(l_stream, content);
 	m_visual.m_text.setString(content);
 }
-
+ 
 void GUI_Label::OnClick(const sf::Vector2f& l_mousePos){
 	SetState(GUI_ElementState::Clicked);
 }
