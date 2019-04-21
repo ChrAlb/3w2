@@ -24,6 +24,7 @@ private:
 
 	int m_dying_counter;
 	const int m_dying_time = 190;
+	int m_hit;
 
 	
 
