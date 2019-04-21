@@ -195,7 +195,7 @@
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="DetectCollisions.cpp" />
-    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="enemy.cpp" />
     <ClCompile Include="EnemyAnimation.cpp" />
     <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="Game.cpp" />
