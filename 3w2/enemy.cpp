@@ -7,14 +7,14 @@
 Enemy::Enemy() : m_hasDestination(false)
 {
 
-	m_Textures.load(Textures::Enemy, "graphics/enemysheet.png");
+	m_Textures.load(Textures::Enemy, "graphics/enemy1sheet.png");
 	m_Sprite = Sprite(m_Textures.get(Textures::Enemy));
 
 
 	animations[int(EnemyAnimationIndex::WalkingRight)].addRow(0, 000, 100, 100, 33);
 	animations[int(EnemyAnimationIndex::WalkingLeft)].addRow(0, 100, 100, 100, 33);
 	animations[int(EnemyAnimationIndex::DyingRight)].addRow(0, 200, 100, 100, 33);
-	animations[int(EnemyAnimationIndex::Dead)].addRow(200, 200, 100, 100, 33);
+	animations[int(EnemyAnimationIndex::Dead)].addRow(3200, 200, 100, 100, 1);
 
 	max_frames[int(EnemyAnimationIndex::WalkingRight)] = 33;
 	max_frames[int(EnemyAnimationIndex::WalkingLeft)] = 33;
@@ -32,6 +32,7 @@ Enemy::Enemy() : m_hasDestination(false)
 	m_RightPressed = true;
 
 	m_dying_counter = 0;
+	m_hit = 0;
 
 
 }
@@ -97,26 +98,28 @@ void Enemy::update(float dt, Vector2f Plpos)
 
 	if (m_iscollidedwithobject)
 	{
-
-		for (int i = 0; i < 5; i++)    // Hardcode = Anzahlframes von DyingRight
-			curAnimation = EnemyAnimationIndex::DyingRight;
-
-		curAnimation = EnemyAnimationIndex::Dead;
-
-		if (m_dying_counter < m_dying_time)
+		if (m_hit < max_frames[int(EnemyAnimationIndex::DyingRight)])
 		{
-			curAnimation = EnemyAnimationIndex::Dead;
-			m_dying_counter++;
+			curAnimation = EnemyAnimationIndex::DyingRight;
+			m_hit++;
 		}
 		else
 		{
-			m_is_alive = false;
-			m_dying_counter = 0;
+			if (m_dying_counter < m_dying_time)
+			{
+				curAnimation = EnemyAnimationIndex::Dead;
+				m_dying_counter++;
+			}
+			else
+			{
+				m_is_alive = false;
+				m_dying_counter = 0;
+				m_hit = 0;
+			}
+
+
 		}
-
-
-
-
+			
 	}
 
 

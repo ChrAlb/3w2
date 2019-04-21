@@ -26,8 +26,6 @@ private:
 	const int m_dying_time = 190;
 	int m_hit;
 
-	
-
 	TextureHolder m_Textures;
 
 public:
