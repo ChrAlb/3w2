@@ -16,6 +16,8 @@ State_Game::State_Game(StateManager* l_stateManager)
 State_Game::~State_Game(){}
 
 void State_Game::OnCreate(){
+
+	
 	EventManager* evMgr = m_stateMgr->GetContext()->m_eventManager;
 
 	evMgr->AddCallback(StateType::Game, "Key_Escape", &State_Game::MainMenu, this);

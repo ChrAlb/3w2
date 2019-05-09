@@ -7,7 +7,7 @@
 Enemy::Enemy() : m_hasDestination(false)
 {
 
-	m_Textures.load(Textures::Enemy, "graphics/enemy1sheet.png");
+	m_Textures.load(Textures::Enemy, "graphics/enemysheet.png");
 	m_Sprite = Sprite(m_Textures.get(Textures::Enemy));
 
 

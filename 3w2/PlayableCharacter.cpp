@@ -10,6 +10,8 @@ PlayableCharacter::PlayableCharacter() : m_id(0)
 	m_isfiring = false;
 	m_justfired = true;
 	m_Position = { 0,0 };
+
+	
 }
 
 void PlayableCharacter::spawn(Vector2f startPosition, float gravity)
