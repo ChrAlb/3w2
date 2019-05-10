@@ -1,14 +1,17 @@
 
 #include "stdafx.h"
-
-#include <iostream>
 #include "Enemy.h"
+#include "SharedContext.h"
+#include "ResourceIdentifiers.h"
+#include <iostream>
+
+
 
 Enemy::Enemy() : m_hasDestination(false)
 {
 
-	m_Textures.load(Textures::Enemy, "graphics/enemysheet.png");
-	m_Sprite = Sprite(m_Textures.get(Textures::Enemy));
+	//m_Textures.load(Textures::Enemy, "graphics/enemysheet.png");
+	//m_Sprite = Sprite(m_Textures.get(Textures::Enemy));
 
 
 	animations[int(EnemyAnimationIndex::WalkingRight)].addRow(0, 000, 100, 100, 33);

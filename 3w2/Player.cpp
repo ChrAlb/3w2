@@ -2,7 +2,6 @@
 #include "Player.h"
 #include "SharedContext.h"
 #include "ResourceIdentifiers.h"
-
 #include <iostream>
 
 
