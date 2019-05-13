@@ -8,6 +8,15 @@
 using namespace sf;
 using namespace std;
 
+enum enemy_type { first_enemy, second_enemy };
+
+struct enemydate
+{
+enemy_type enemytype;
+Vector2f  enemypos;
+};
+	
+
 struct leveldate
 {
 	string BGFileName;
@@ -18,9 +27,9 @@ struct leveldate
 	Textures::ID m_tileset;
 
 	Vector2f m_PlayerStartPosition;
-	Vector2f m_EnenemyStartPosition;
+	int m_NumofEnemies;
+	std::list<enemy_type> enemydat;
 
-    //int MaxInt;
 };
 
  
@@ -29,6 +38,7 @@ class LevelManager
 private:
 	
 	int m_NumofLevels;
+	
 	Vector2i m_LevelSize;
 	
 	float m_TimeModifier = 1;
