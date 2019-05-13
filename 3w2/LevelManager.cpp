@@ -211,7 +211,8 @@ bool LevelManager::readin_game(leveldate *level, string filename)
 
 		for (int i = 0; i < level->m_NumofEnemies; i++)
 		{
-			//level->enemydat.begin
+			
+			
 		}
 	    
 		/*
