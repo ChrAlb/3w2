@@ -80,6 +80,7 @@ public:
 	bool readin_game(leveldate *level, string filename);
 
 	Textures::ID LevelManager::parseRow(string row);
+	enemy_type LevelManager::parseRow_type(string row);
 
 	leveldate get_leveldate(int currentlevel);
 

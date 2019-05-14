@@ -211,8 +211,24 @@ bool LevelManager::readin_game(leveldate *level, string filename)
 
 		for (int i = 0; i < level->m_NumofEnemies; i++)
 		{
+			enemy_type et;
+			Vector2f position;
+
+
+			getline(os, row);
+			et = parseRow_type(row);
+			enemydate edat;
+
+			size_t pos = 0;
+			getline(os, row);
+			pos = row.find(delimiter);
+			position.x = std::stoi(row.substr(0, pos));
+			position.y = std::stoi(row.substr(pos + 1, std::string::npos));
 			
-			
+			edat.enemytype = et;
+			edat.enemypos = position;
+			level->enemydat.push_back(edat);
+
 		}
 	    
 		/*
@@ -262,8 +278,16 @@ Textures::ID LevelManager::parseRow(string row)
 		return Textures::Hufeisen;
 	if (row == "Textures::LevelEditorSet")
 		return Textures::LevelEditorSet;
-
 	
+}
+
+enemy_type LevelManager::parseRow_type(string row)
+{
+	if (row == "first_enemy")
+	return first_enemy;
+
+	if (row == "second_enemy")
+		return second_enemy;
 }
 
 leveldate LevelManager::get_leveldate(int currentlevel)
