@@ -231,13 +231,6 @@ bool LevelManager::readin_game(leveldate *level, string filename)
 
 		}
 	    
-		/*
-		pos = 0;
-		getline(os, row);
-		pos = row.find(delimiter);
-		level->m_EnenemyStartPosition.x = std::stoi(row.substr(0, pos));
-		level->m_EnenemyStartPosition.y = std::stoi(row.substr(pos + 1, std::string::npos));
-		*/
 
 		getline(os, row);
 		

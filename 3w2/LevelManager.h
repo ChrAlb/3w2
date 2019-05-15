@@ -28,7 +28,7 @@ struct leveldate
 
 	Vector2f m_PlayerStartPosition;
 	int m_NumofEnemies;
-	std::list<enemy_type> enemydat;
+	std::list<enemydate> enemydat;
 
 };
 
