@@ -52,7 +52,7 @@ void State_Game::loadLevel()
 		if (m_leveldaten.enemydat[i].enemytype == first_enemy)
 		{
           enemy = new Enemy();
-		  enemy->spawn(m_leveldaten.enemydat[1].enemypos, GRAVITY);
+		  enemy->spawn(m_leveldaten.enemydat[i].enemypos, GRAVITY);
           enemy->set_maxlevelsize(maxlevelsize);
 	      objects.push_back(enemy);
 		}

@@ -220,6 +220,7 @@ void Player::update(float elapsedTime, Vector2f Plpos)
 	m_Center.width = 2;
 	m_Center.height = r.height - (r.height *.3) ;
 
+	
 	animations[int(curAnimation)].Update(elapsedTime, max_frames[int(curAnimation)]);
 
 	

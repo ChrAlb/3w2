@@ -51,6 +51,7 @@ bool Enemy::handleInput()
 void Enemy::update(float dt, Vector2f Plpos)
 {
 
+
 	m_oldposition = m_Position;
 
 	if (Plpos.x < m_Position.x)

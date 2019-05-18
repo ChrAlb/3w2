@@ -6,10 +6,10 @@ Textures::Level1Bg
 Textures::Tileset1
 350,750
 2
-first_eneny
-500,300
 first_enemy
-1300,300
+450,600
+first_enemy
+650,600
 //
 graphics/bg2.png
 graphics/tiles_sheet.png
@@ -17,8 +17,8 @@ levels/level2.txt
 Textures::Level2Bg
 Textures::Tileset2
 150,750
-1
-first_eneny
+2
+first_enemy
 500,300
 first_enemy
 500,300
