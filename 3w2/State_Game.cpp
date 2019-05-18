@@ -151,7 +151,7 @@ void State_Game::Update(const sf::Time& l_time)
 		clean_objects();
 		Vector2f tt;
 		tt = getPlayer_position_putofList();
-		spawnRandomEnemies();
+		//spawnRandomEnemies();
 
 
 
