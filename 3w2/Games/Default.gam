@@ -7,9 +7,9 @@ Textures::Tileset1
 350,750
 2
 first_enemy
-450,600
-first_enemy
 650,600
+first_enemy
+1750,650
 //
 graphics/bg2.png
 graphics/tiles_sheet.png

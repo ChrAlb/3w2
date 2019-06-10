@@ -51,7 +51,7 @@ bool Enemy::handleInput()
 void Enemy::update(float dt, Vector2f Plpos)
 {
 
-
+/*
 	m_oldposition = m_Position;
 
 	if (Plpos.x < m_Position.x)
@@ -61,7 +61,7 @@ void Enemy::update(float dt, Vector2f Plpos)
 
 	if (m_isFalling)
 	{
-		m_Position.y += m_Gravity * dt;
+		m_Position.y += 100 * dt;
 	}
 
 
@@ -69,7 +69,6 @@ void Enemy::update(float dt, Vector2f Plpos)
 	{
 		m_iscollided = false;
 	}
-
 
 
 	if (m_Position.x < 0)
@@ -159,7 +158,7 @@ void Enemy::update(float dt, Vector2f Plpos)
 	m_Center.width = 2;
 	m_Center.height = r.height - (r.height * .3);
 
-
+*/
 
 	animations[int(curAnimation)].Update(dt, max_frames[int(curAnimation)]);
 
