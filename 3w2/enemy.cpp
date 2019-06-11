@@ -13,7 +13,6 @@ Enemy::Enemy() : m_hasDestination(false)
 	m_Textures.load(Textures::Enemy, "graphics/enemysheet.png");
 	m_Sprite = Sprite(m_Textures.get(Textures::Enemy));
 
-
 	animations[int(EnemyAnimationIndex::WalkingRight)].addRow(0, 000, 100, 100, 33);
 	animations[int(EnemyAnimationIndex::WalkingLeft)].addRow(0, 100, 100, 100, 33);
 	animations[int(EnemyAnimationIndex::DyingRight)].addRow(0, 200, 100, 100, 33);
@@ -51,24 +50,32 @@ bool Enemy::handleInput()
 void Enemy::update(float dt, Vector2f Plpos)
 {
 
+	if (m_isFalling)
+	{
+		m_Position.y += 150 * dt;
+	}
+
+	if (m_iscollided)
+	{
+		m_iscollided = false;
+	}
+
+	if ((m_Position.x - 650) < 300)
+	{
+		m_Position.x += EnemySpeed * m_destination.x * dt;
+	}
+
 /*
-	m_oldposition = m_Position;
+	
 
 	if (Plpos.x < m_Position.x)
 		m_destination.x = -1;
 	else
 		m_destination.x = 1;
 
-	if (m_isFalling)
-	{
-		m_Position.y += 100 * dt;
-	}
+	
 
-
-	if (m_iscollided)
-	{
-		m_iscollided = false;
-	}
+	
 
 
 	if (m_Position.x < 0)
@@ -124,7 +131,7 @@ void Enemy::update(float dt, Vector2f Plpos)
 		}
 			
 	}
-
+*/
 
 	FloatRect r = getPosition();
 
@@ -158,7 +165,7 @@ void Enemy::update(float dt, Vector2f Plpos)
 	m_Center.width = 2;
 	m_Center.height = r.height - (r.height * .3);
 
-*/
+
 
 	animations[int(curAnimation)].Update(dt, max_frames[int(curAnimation)]);
 
