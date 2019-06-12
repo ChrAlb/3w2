@@ -108,6 +108,7 @@ protected:
 	Vector2i tile_pos;
 
 	Vector2f m_Position;
+	Vector2f m_initialPosition;
 
 	Vector2f m_vel;
 

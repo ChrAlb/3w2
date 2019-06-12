@@ -26,6 +26,8 @@ private:
 	const int m_dying_time = 190;
 	int m_hit;
 
+	int m_enenyRange = 200;
+
 	TextureHolder m_Textures;
 
 public:
@@ -33,7 +35,7 @@ public:
 	bool handleInput();
 	void update(float dt, Vector2f Plpos);
 
-	const int EnemySpeed = 100;
+	const int EnemySpeed = 75;
 
 	EnemyAnimation animations[int(EnemyAnimationIndex::Count)];
 	EnemyAnimationIndex curAnimation = EnemyAnimationIndex::WalkingRight;

@@ -49,10 +49,11 @@ bool Enemy::handleInput()
 
 void Enemy::update(float dt, Vector2f Plpos)
 {
+	m_oldposition = m_Position;
 
 	if (m_isFalling)
 	{
-		m_Position.y += 150 * dt;
+		m_Position.y += m_Gravity/2 * dt;
 	}
 
 	if (m_iscollided)
@@ -60,46 +61,23 @@ void Enemy::update(float dt, Vector2f Plpos)
 		m_iscollided = false;
 	}
 
-	if ((m_Position.x - 650) < 300)
+	if (fabs(m_Position.x - m_initialPosition.x) < m_enenyRange)
 	{
 		m_Position.x += EnemySpeed * m_destination.x * dt;
 	}
 
-/*
-	
-
-	if (Plpos.x < m_Position.x)
-		m_destination.x = -1;
-	else
-		m_destination.x = 1;
-
-	
-
-	
-
-
-	if (m_Position.x < 0)
+	if (m_Position.x >= m_initialPosition.x + m_enenyRange)
 	{
-		m_Position.x = 0;
+		m_Position.x = m_initialPosition.x + m_enenyRange -10;
 		m_destination.x = -m_destination.x;
-
-
 	}
-
-
-	if (m_Position.x > Enemy::get_maxlevelsize())
+	
+	if (m_Position.x <= m_initialPosition.x - m_enenyRange)
 	{
-		m_Position.x = Enemy::get_maxlevelsize();
+		m_Position.x = m_initialPosition.x - m_enenyRange + 10;
 		m_destination.x = -m_destination.x;
 	}
 
-	if (!m_iscollidedwithobject)
-		m_Position.x += EnemySpeed * m_destination.x * dt;
-
-	if (fabs(m_oldposition.x - m_Position.x) < 0.01)
-	{
-		m_destination.x = -m_destination.x;
-	}
 
 	if (m_destination.x < 0)
 		curAnimation = EnemyAnimationIndex::WalkingLeft;
@@ -129,9 +107,8 @@ void Enemy::update(float dt, Vector2f Plpos)
 
 
 		}
-			
+
 	}
-*/
 
 	FloatRect r = getPosition();
 
