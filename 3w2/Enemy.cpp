@@ -11,14 +11,14 @@ Enemy::Enemy() : m_hasDestination(false)
 	m_Sprite = Sprite(m_Textures.get(Textures::Enemy));
      
 	
-	animations[int(EnemyAnimationIndex::WalkingRight)].addRow(0, 000, 100, 100, 5);
-	animations[int(EnemyAnimationIndex::WalkingLeft)].addRow(0, 100, 100, 100, 5);
-	animations[int(EnemyAnimationIndex::DyingRight)].addRow(0, 200, 100, 100, 5);
-	animations[int(EnemyAnimationIndex::Dead)].addRow(200, 200, 100, 100, 5);
+	animations[int(EnemyAnimationIndex::WalkingRight)].addRow(0, 0, 100, 100, 33);
+	animations[int(EnemyAnimationIndex::WalkingLeft)].addRow(0, 100, 100, 100, 33);
+	animations[int(EnemyAnimationIndex::DyingRight)].addRow(0, 200, 100, 100, 33);
+	animations[int(EnemyAnimationIndex::Dead)].addRow(3200, 100, 100, 100, 1);
 
-	max_frames[int(EnemyAnimationIndex::WalkingRight)] = 5;
-	max_frames[int(EnemyAnimationIndex::WalkingLeft)] = 5;
-	max_frames[int(EnemyAnimationIndex::DyingRight)] = 5;
+	max_frames[int(EnemyAnimationIndex::WalkingRight)] = 33;
+	max_frames[int(EnemyAnimationIndex::WalkingLeft)] = 33;
+	max_frames[int(EnemyAnimationIndex::DyingRight)] = 33;
 	max_frames[int(EnemyAnimationIndex::Dead)] = 1;
 	 
 	m_otype = t_Enemy;
