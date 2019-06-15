@@ -174,10 +174,10 @@ bool LevelManager::readin_game(leveldate *level, string filename)
 	string path;
 	path = Utils::GetWorkingDirectory();
 	path = path + "\\Games\\";
-    std::fstream os(path +filename, std::ios::in);
+	std::fstream os(path + filename, std::ios::in);
 
 	getline(os, row);
-	m_NumofLevels = std::stoi(row); 
+	m_NumofLevels = std::stoi(row);
 
 	for (int i = 0; i < m_NumofLevels; i++)
 
@@ -198,12 +198,12 @@ bool LevelManager::readin_game(leveldate *level, string filename)
 		level->m_tileset = parseRow(row);
 
 		string delimiter = ",";
-		
-		size_t pos=0;
+
+		size_t pos = 0;
 		getline(os, row);
 
 		pos = row.find(delimiter);
-        level->m_PlayerStartPosition.x = std::stoi(row.substr(0, pos));
+		level->m_PlayerStartPosition.x = std::stoi(row.substr(0, pos));
 		level->m_PlayerStartPosition.y = std::stoi(row.substr(pos + 1, std::string::npos));
 
 		getline(os, row);
@@ -213,6 +213,7 @@ bool LevelManager::readin_game(leveldate *level, string filename)
 		{
 			enemy_type et;
 			Vector2f position;
+
 
 			getline(os, row);
 			et = parseRow_type(row);
@@ -227,14 +228,18 @@ bool LevelManager::readin_game(leveldate *level, string filename)
 			edat.enemytype = et;
 			edat.enemypos = position;
 			level->enemydat.push_back(edat);
+
 		}
-		
+
+
+		getline(os, row);
+
 		m_levelinfo.push_back(*level);
 
 
 	}
 
-	
+
 	return true;
 }
 
