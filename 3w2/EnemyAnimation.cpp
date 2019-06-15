@@ -44,7 +44,7 @@ void  EnemyAnimation::Update(float dt, int maxframes)
 void  EnemyAnimation::Advance()
 {
 
-	//if (++iFrame >= maxframes)   => hier geht es noch nicht
+	
 	if (++iFrame >= mframe)
 	{
 		iFrame = 0;

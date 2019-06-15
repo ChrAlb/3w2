@@ -23,7 +23,7 @@ private:
 	bool m_hasDestination;
 
 	int m_dying_counter;
-	const int m_dying_time = 190;
+	const int m_dying_time = 290;
 	int m_hit;
 
 	int m_enenyRange = 200;

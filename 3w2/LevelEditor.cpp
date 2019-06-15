@@ -23,7 +23,7 @@ void LevelEditor::set_const()
 	m_TileLevelSize.x = 6;
 	m_TileLevelSize.y = 9;
 
-	m_LevelSize.x = 45;
+	m_LevelSize.x = 65;
 	m_LevelSize.y = 21;
 
 	m_pos_TileArray.x = 50;
