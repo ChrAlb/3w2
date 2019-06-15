@@ -11,6 +11,7 @@
 #include "Bullet.h"
 #include "Levelmanager.h"
 
+
 class State_Game : public BaseState{
 
 
@@ -122,11 +123,6 @@ public:
 	void spawnRandomEnemies();
 
 	
-
-	
-
-
-
 };
 
 

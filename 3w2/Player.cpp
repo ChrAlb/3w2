@@ -7,6 +7,7 @@
 
 
 
+
 Player::Player()
 {
 	
@@ -151,6 +152,8 @@ void Player::update(float elapsedTime, Vector2f Plpos)
 
 			if (m_JustJumped)
 			{
+				
+				
 				m_SoundPlayer.play(SoundEffect::Jump);
 				m_JustJumped = false;
 			}
@@ -285,7 +288,8 @@ void Player::SetDirection(const sf::Vector2f & dir)
 		{
 		 
 		  if (m_explosion_counter == 1)
-		       m_SoundPlayer.play(SoundEffect::Explosion);
+		      
+			 m_SoundPlayer.play(SoundEffect::Explosion);
           curAnimation = AnimationIndex::Explode;
 		  temp = curAnimation;
 		  m_explosion_counter++;

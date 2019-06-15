@@ -46,7 +46,7 @@ void State_Game::loadLevel()
 	player->set_maxlevelsize(maxlevelsize);
 	objects.push_back(player);
 
-
+	
 	for (int i = 0; i < m_leveldaten.m_NumofEnemies; i++)
 	{
 		if (m_leveldaten.enemydat[i].enemytype == first_enemy)
@@ -57,7 +57,7 @@ void State_Game::loadLevel()
 	      objects.push_back(enemy);
 		}
 	}
-
+	
 	this->PlInfo.reset(sf::FloatRect(0, 0, VideoMode::getDesktopMode().width, VideoMode::getDesktopMode().height));
 	this->bgview.reset(sf::FloatRect(0, 0, VideoMode::getDesktopMode().width, VideoMode::getDesktopMode().height));
 	this->gameview.reset(sf::FloatRect(0, 0, VideoMode::getDesktopMode().width, VideoMode::getDesktopMode().height));
