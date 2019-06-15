@@ -8,6 +8,14 @@
 using namespace sf;
 using namespace std;
 
+enum  enemy_type {first_enemy , second_enemy};
+
+struct enemydate
+{
+	enemy_type enemytype;
+	Vector2f enemypos;
+};
+
 struct leveldate
 {
 	string BGFileName;
@@ -18,9 +26,10 @@ struct leveldate
 	Textures::ID m_tileset;
 
 	Vector2f m_PlayerStartPosition;
-	Vector2f m_EnenemyStartPosition;
+	int m_NumofEnemies;
+	vector<enemydate> enemydat;
 
-    //int MaxInt;
+    
 };
 
  
@@ -70,6 +79,7 @@ public:
 	bool readin_game(leveldate *level, string filename);
 
 	Textures::ID LevelManager::parseRow(string row);
+	enemy_type LevelManager::parseRow_type(string row);
 
 	leveldate get_leveldate(int currentlevel);
 

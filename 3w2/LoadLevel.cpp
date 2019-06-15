@@ -46,11 +46,16 @@ void State_Game::loadLevel()
 	player->set_maxlevelsize(maxlevelsize);
 	objects.push_back(player);
 
-
-	enemy = new Enemy();
-	enemy->spawn(m_leveldaten.m_EnenemyStartPosition,GRAVITY);
-	enemy->set_maxlevelsize(maxlevelsize);
-	objects.push_back(enemy);
+	for (int i = 0; i < m_leveldaten.m_NumofEnemies; i++)
+	{
+		if (m_leveldaten.enemydat[i].enemytype == first_enemy)
+		{
+			enemy = new Enemy();
+			enemy->spawn(m_leveldaten.enemydat[i].enemypos, GRAVITY);
+			enemy->set_maxlevelsize(maxlevelsize);
+			objects.push_back(enemy);
+		}
+	}
 
 	this->PlInfo.reset(sf::FloatRect(0, 0, VideoMode::getDesktopMode().width, VideoMode::getDesktopMode().height));
 	this->bgview.reset(sf::FloatRect(0, 0, VideoMode::getDesktopMode().width, VideoMode::getDesktopMode().height));
