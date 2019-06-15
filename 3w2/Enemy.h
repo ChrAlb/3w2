@@ -18,14 +18,15 @@ private:
 		Dead,
 		Count
 	};
-	  
+
 	sf::Vector2f m_destination;
 	bool m_hasDestination;
 
 	int m_dying_counter;
 	const int m_dying_time = 190;
+	int m_hit;
 
-	
+	int m_enenyRange = 200;
 
 	TextureHolder m_Textures;
 
@@ -40,7 +41,7 @@ public:
 	EnemyAnimationIndex curAnimation = EnemyAnimationIndex::WalkingRight;
 	int max_frames[int(EnemyAnimationIndex::Count)];
 
-	
+
 
 
 

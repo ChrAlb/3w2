@@ -14,8 +14,8 @@ PlayableCharacter::PlayableCharacter() : m_id(0)
 
 void PlayableCharacter::spawn(Vector2f startPosition, float gravity)
 {
-	m_Position.x = startPosition.x;
-	m_Position.y = startPosition.y;
+	m_Position = startPosition;
+	m_initialPosition = startPosition;
 
 	m_Gravity = gravity;
 
