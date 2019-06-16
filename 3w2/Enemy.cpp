@@ -14,7 +14,7 @@ Enemy::Enemy() : m_hasDestination(false)
 	animations[int(EnemyAnimationIndex::WalkingRight)].addRow(0, 0, 100, 100, 33);
 	animations[int(EnemyAnimationIndex::WalkingLeft)].addRow(0, 100, 100, 100, 33);
 	animations[int(EnemyAnimationIndex::DyingRight)].addRow(0, 200, 100, 100, 33);
-	animations[int(EnemyAnimationIndex::Dead)].addRow(3200, 100, 100, 100, 1);
+	animations[int(EnemyAnimationIndex::Dead)].addRow(3200, 200, 100, 100, 1);
 
 	max_frames[int(EnemyAnimationIndex::WalkingRight)] = 33;
 	max_frames[int(EnemyAnimationIndex::WalkingLeft)] = 33;
