@@ -21,6 +21,7 @@ void State_MainMenu::OnCreate() {
 	eMgr->AddCallback(StateType::MainMenu, "MainMenu_LevEdit", &State_MainMenu::LevEdit, this);
 	eMgr->AddCallback(StateType::MainMenu, "MainMenu_Quit", &State_MainMenu::Quit, this);
 	eMgr->AddCallback(StateType::MainMenu, "Key_F1", &State_MainMenu::Start_TileMaker, this);
+	eMgr->AddCallback(StateType::MainMenu, "Key_F2", &State_MainMenu::Start_SpriteSheetMaker, this);
 }
 
 void State_MainMenu::OnDestroy() {
@@ -30,6 +31,7 @@ void State_MainMenu::OnDestroy() {
 	eMgr->RemoveCallback(StateType::MainMenu, "MainMenu_LevEdit");
 	eMgr->RemoveCallback(StateType::MainMenu, "MainMenu_Quit");
 	eMgr->RemoveCallback(StateType::MainMenu, "Key_F1");
+	eMgr->RemoveCallback(StateType::MainMenu, "Key_F2");
 }
 
 void State_MainMenu::Activate() {
@@ -63,6 +65,13 @@ void State_MainMenu::Start_TileMaker(EventDetails * l_details)
 {
 	MakeTileSet maketileset;
 	maketileset.create_TilSetFile();
+}
+
+void State_MainMenu::Start_SpriteSheetMaker(EventDetails* l_details)
+{
+	MakeTileSet maketileset;
+	maketileset.init_SpriteSheet();
+	maketileset.create_SpriteSheet();
 }
 
 void State_MainMenu::Draw()

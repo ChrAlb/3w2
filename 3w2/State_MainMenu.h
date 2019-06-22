@@ -24,6 +24,7 @@ public:
 	void LevEdit(EventDetails* l_details);
 	void Quit(EventDetails* l_details);
 	void Start_TileMaker(EventDetails* l_details);
+	void State_MainMenu::Start_SpriteSheetMaker(EventDetails* l_details);
 
 private:
 	TextureHolder m_bgtexture;

@@ -18,6 +18,8 @@ private:
 	int TileSize;
 	int FilePosition;
 
+	int hCounter;
+
 	Vector2i Size_DestinationFile;
 	Vector2i Size_SourceFiles;
 
@@ -32,6 +34,7 @@ public:
 
 	void create_TilSetFile();
 
-	
+	void init_SpriteSheet();
+	void create_SpriteSheet();
 
 };
