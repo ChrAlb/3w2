@@ -61,7 +61,7 @@ void MakeTileSet::create_TilSetFile()
 
 void MakeTileSet::init_SpriteSheet()
 {
-	SourceFName = Utils::GetWorkingDirectory() + "\\Ressourcen\\Enemies\\slice 400x400 enemy_entity_000_die.png";
+	SourceFName = Utils::GetWorkingDirectory() + "\\Ressourcen\\Enemies\\slice 400x400 enemy_entity_000_iddle.png";
 	DestFName = "Destination.png";
 
 	amountTileFiles = 33;
