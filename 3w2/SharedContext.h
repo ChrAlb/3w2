@@ -11,7 +11,7 @@
 #include <stdexcept>
 #include <cassert>
 
-
+ 
 template <typename Resource, typename Identifier>
 class ResourceHolder
 {
