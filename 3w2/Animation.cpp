@@ -2,11 +2,12 @@
 #include "Animation.h"
 #include "SharedContext.h"
 #include "ResourceIdentifiers.h"
+#include "StateManager.h"
 
 Animation::Animation()
 {
-	m_Textures.load(Textures::Player, "graphics/joe_sheet1.png");
-	
+	//m_Textures.load(Textures::Player, "graphics/joe_sheet1.png");
+	TextureManager* textureMgr = m_stateMgr
 } 
 
 void Animation::addFrame(sf::IntRect rect)

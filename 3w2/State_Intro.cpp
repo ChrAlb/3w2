@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "State_Intro.h"
 #include "StateManager.h"
-
+ 
 State_Intro::State_Intro(StateManager* l_stateManager)
 	: BaseState(l_stateManager){}
 

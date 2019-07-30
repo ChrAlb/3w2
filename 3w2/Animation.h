@@ -3,6 +3,7 @@
 #include <SFML\Graphics.hpp>
 #include "SharedContext.h"
 #include "ResourceIdentifiers.h"
+#include "TextureManager.h"
 
 class Animation
 {
