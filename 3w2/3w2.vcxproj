@@ -148,6 +148,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Text Include="keys.cfg.txt" />
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>

@@ -12,6 +12,7 @@ void State_MainMenu::OnCreate() {
 
 	m_bgtexture.load(Textures::MenuBGScreen, "graphics/BG3.png");
 
+
     GUI_Manager* gui = m_stateMgr->GetContext()->m_guiManager;
 	gui->LoadInterface(StateType::MainMenu, "MainMenu.interface", "MainMenu");
 	gui->GetInterface(StateType::MainMenu, "MainMenu")->SetPosition(sf::Vector2f(250.f, 168.f));

@@ -140,6 +140,8 @@ public:
 	sf::Vector2i GetMousePos(sf::RenderWindow* l_wind = nullptr){
 		return (l_wind ? sf::Mouse::getPosition(*l_wind) : sf::Mouse::getPosition());
 	}
+
+
 private:
 	void LoadBindings();
 

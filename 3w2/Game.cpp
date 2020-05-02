@@ -14,6 +14,7 @@ Game::Game(): m_window("3w2", sf::Vector2u(sf::VideoMode::getDesktopMode().width
 	m_context.m_guiManager = &m_guiManager;
 	m_context.m_fontManager = &m_fontManager;
 
+
 	m_fontManager.RequireResource("Main");
 	
 	m_stateManager.SwitchTo(StateType::Intro);

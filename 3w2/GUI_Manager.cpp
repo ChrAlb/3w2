@@ -130,7 +130,7 @@ void GUI_Manager::Update(float l_dT){
 	for (auto itr = state->second.rbegin(); itr != state->second.rend(); ++itr){
 		GUI_Interface* i = itr->second;
 		if (!i->IsActive()){ continue; }
-		
+		 
 		i->Update(l_dT);
 		if (i->IsBeingMoved()){ continue; }
 		if (i->IsInside(sf::Vector2f(mousePos)))

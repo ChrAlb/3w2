@@ -6,8 +6,8 @@
 
 Animation::Animation()
 {
-	//m_Textures.load(Textures::Player, "graphics/joe_sheet1.png");
-	TextureManager* textureMgr = m_stateMgr
+	m_Textures.load(Textures::Player, "graphics/joe_sheet1.png");
+	
 } 
 
 void Animation::addFrame(sf::IntRect rect)
